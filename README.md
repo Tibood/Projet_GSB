@@ -1,3 +1,1 @@
-# SIO2_BONA_Projet_GSB
- 
-WWWAAA JE SUIS MAITRE DE YOUT JE PEUX HCANGER
+Bienvenue dans le projet GSB
