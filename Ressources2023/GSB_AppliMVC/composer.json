@@ -1,0 +1,33 @@
+{
+    "name": "gsb/applifrais",
+    "type": "project",
+    "description": "Application de gestion de frais pour les visiteurs médicaux de l'entreprise",
+    "homepage": "https://ameliapilou.github.io/",
+    "license": "Réseau CERTA",
+    "authors": [
+        {
+            "name": "Cheri Bibi - Réseau CERTA",
+            "email": "contact@reseaucerta.org",
+            "homepage": "https://www.reseaucerta.org/",
+            "role": "Developer"
+        },
+        {
+            "name": "José GIL - Lycée Bonaparte",
+            "email": "jgil@ac-nice.fr",
+            "homepage": "https://ameliapilou.github.io/",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src",
+            "Modeles\\": "src/Modeles",
+            "Outils\\": "resources/Outils"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sources\\": "tests"
+        }
+    }
+}
