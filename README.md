@@ -1,35 +1,50 @@
+#Documents principaux :
+
+Fichier PDF :
+- Partie 1 = Infos sur le contexte de l'entreprise
+- Partie 2 = Infos sur l'appli existante
+- Partie 3 = Infos sur les missions à réaliser
+- Partie 4 = Documents pour les missions
+
+Fichiers HTML / PHP :
+Le site est visible dans le répertoire 'GSB_v2032/GSB_AppliMVC/src/Vues/
+
 #PRESENTATION DU CONTEXTE :
 
-Galaxy Swiss Bourdin (GSB) = Laboratoire médical / Conglomérat international / fusion de plusieurs organismes = Mélange diforme.
+Galaxy Swiss Bourdin (GSB) = Laboratoire médical / Conglomérat international / fusion de plusieurs organismes = Mélange diforme (Galaxy + Swiss-Bourdin).
+Galaxy = Américain et Swiss Bourdin = Conglomérat européen
 
 Conglomérat = Ensemble d'entreprises réunies par des liens juridiques et financiers plus ou moins précis et s'adonnant à des activités très diverses ayant parfois peu de rapport entre elles.
-
-Visiteur médicaux = Démarcheurs / vendeurs de médicaments.
+Visiteurs médicaux = Démarcheurs / vendeurs de médicaments.
 
 La France est le témoin pour l’amélioration du suivi de l’activité de visite. 480 visiteurs médicaux en France métropolitaine et 60 en outre-mer français. GSB Europe a son siège administratif à Paris.
 
+Différences entre les visiteurs des deux entreprises à corriger : 
+Galaxy = Carte bancaire au nom de l'entreprise, Swiss-Boudin = Gestion forfaitaire puis remboursement après retour des pièces justificatives.
+
 #OBJECTIFS DE L’ENTREPRISE :
 
-
-- Uniformiser la gestion du suivi des frais et des visites.
+- Améliorer le contact entre acteurs mobiles autonomes et les différents services du siège parisien de l'entité Europe : Uniformiser la gestion du suivi des frais et des visites.
 
 - Moderniser l’activité de visite médicale que ça soit au niveau personnel ou administratif (thème bleu pour personnels, thème orange pour comptables).
 
-- Obtenir une vision plus régulière et efficace de l'activité menée sur le terrain auprès des praticiens,
+- Intégrer les données de la partie commerciale pour : Obtenir une vision plus régulière et efficace de l'activité menée sur le terrain auprès des praticiens,
 mais aussi redonner confiance aux équipes malmenées par les fusions récentes. 
 
+- Gestion unique des frais de remboursement pour l'ensemble de la flotte visite
+
+- Accès direct aux données du personnel
 
 #TÂCHES CONCRETES :
 
 - Stocker l’information en provenance des visiteurs.
-- Gérer les frais de déplacemement.
+- Gérer les frais de déplacemement, de restauration et d'hébergement générés par l'activité de visite médicale.
+- Permettre aux visiteurs d'inscrire leurs dépenses, visualiser la prise en charge des remboursements (enregistré, validé, remboursé).
 - Veiller au respect du RGPD.
 - Respecter les bonnes pratiques de développement, architecture dossiers, MVC, etc (Document 2, séquence 4).
-- Au plus tard le 20 de chaque mois, le service comptable adresse aux visiteurs la fiche de
-demande de remboursement pour le mois en cours.
+- Au plus tard le 20 de chaque mois, le service comptable adresse aux visiteurs la fiche de demande de remboursement pour le mois en cours.
 - Hasher les mots de passes.
 - Ne générer qu’une seule fois les fichiers PDF.
-
 - Utiliser un serveur web et développer sous PHP.
 - Coder la partie comptable en respectant le cas d’utilisation correspondant.
 
