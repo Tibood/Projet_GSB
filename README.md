@@ -41,3 +41,5 @@ demande de remboursement pour le mois en cours.
 
 #Debugger PHP7 Netbeans Xampp :
 https://bitbucket.org/guimotri/debugger-php7-avec-netbeans-8.2-et-xampp/src/master/
+
+JE SUIS D'ACCORD
