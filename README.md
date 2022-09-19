@@ -4,7 +4,7 @@ Fichier PDF :
 - Partie 1 = Infos sur le contexte de l'entreprise
 - Partie 2 = Infos sur l'appli existante
 - Partie 3 = Infos sur les missions à réaliser
-- Partie 4 = Documents pour les missions
+- Partie 4 BIEN SUR= Documents pour les missions
 
 Fichiers HTML / PHP :
 Le site est visible dans le répertoire 'GSB_v2032/GSB_AppliMVC/src/Vues/
