@@ -1,9 +1,9 @@
 -- Script de restauration de l'application "GSB Frais"
 
 -- Administration de la base de données
-CREATE DATABASE gsb_frais ;
-GRANT SHOW DATABASES ON *.* TO userGsb@localhost IDENTIFIED BY 'secret';
-GRANT ALL PRIVILEGES ON `gsb_frais`.* TO userGsb@localhost;
+-- CREATE DATABASE gsb_frais;
+-- GRANT SHOW DATABASES ON *.* TO userGsb@localhost IDENTIFIED BY 'secret';
+GRANT ALL PRIVILEGES ON `gsb_frais`.* TO rayane_Gsb@localhost;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 USE gsb_frais ;
 
