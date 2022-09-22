@@ -1,6 +1,10 @@
 #Avancée :
 
 - Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / Workbench
+- Planifier les tâches sur le site Trello
+
+#Avancée future :
+
 - Régler les bugs du site (Utilisateurs en SQL, bugs en PHP, etc...)
 
 #Documents principaux :
