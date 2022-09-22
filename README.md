@@ -1,3 +1,8 @@
+#Avancée :
+
+- Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / Workbench
+- Régler les bugs du site (Utilisateurs en SQL, bugs en PHP, etc...)
+
 #Documents principaux :
 
 Fichier PDF :
