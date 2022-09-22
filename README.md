@@ -3,7 +3,7 @@
 - Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / Workbench
 - Planifier les tâches sur le site Trello
 
-#Avancée future :
+#Avancée à faire :
 
 - Régler les bugs du site (Utilisateurs en SQL, bugs en PHP, etc...)
 
@@ -65,3 +65,17 @@ mais aussi redonner confiance aux équipes malmenées par les fusions récentes.
 
 #Debugger PHP7 Netbeans Xampp :
 https://bitbucket.org/guimotri/debugger-php7-avec-netbeans-8.2-et-xampp/src/master/
+
+# Requêtes SQL utiles :
+
+-- Liste les utilisateurs
+SELECT user FROM mysql.user;
+
+-- Donne TOUS les droits à l'utilisateur 'userGSB' avec le mdp 'secret'
+GRANT ALL PRIVILEGES ON *.* TO 'userGsb'@localhost IDENTIFIED BY 'secret';
+
+-- Actualise les privilèges 
+FLUSH PRIVILEGES;
+
+-- Montre les privilèges pour userGsb
+SHOW GRANTS FOR 'userGsb'@'localhost';
