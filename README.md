@@ -1,3 +1,5 @@
+Bienvenue dans le projet GHB
+
 #PRESENTATION DU CONTEXTE :
 
 Galaxy Swiss Bourdin (GSB) = Laboratoire médical / Conglomérat international / fusion de plusieurs organismes = Mélange diforme.
