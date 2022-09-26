@@ -15,6 +15,7 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 
+session_start();
 ?>
 <div id="accueil">
     <h2>
