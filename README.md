@@ -8,7 +8,7 @@
 - Régler les bugs du site (Utilisateurs en SQL, bugs en PHP, etc...)
 
 # Documents principaux :
-
+ 
 Fichier PDF :
 - Partie 1 = Infos sur le contexte de l'entreprise
 - Partie 2 = Infos sur l'appli existante
