@@ -31,7 +31,11 @@
     <body>
         <div class="container">
             <?php
+
+            // La variable 'uc' est 'GET' sur une page et filtre les caractères spéciaux (<, >, &, etc...)
             $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            $estConnecte = true;
             if ($estConnecte) {
                 ?>
             <div class="header">
