@@ -72,17 +72,21 @@ https://bitbucket.org/guimotri/debugger-php7-avec-netbeans-8.2-et-xampp/src/mast
 
 SELECT user FROM mysql.user;
 
+
 -- Créer un nouvel utilisateur 'userGsb' avec le mot de passe 'secret' :
 
 CREATE USER IF NOT EXISTS userGsb@localhost IDENTIFIED BY 'secret';
+
 
 -- Donne TOUS les droits à l'utilisateur 'userGSB' avec le mdp 'secret' :
 
 GRANT ALL PRIVILEGES ON *.* TO 'userGsb'@localhost IDENTIFIED BY 'secret';
 
+
 -- Actualise les privilèges :
 
 FLUSH PRIVILEGES;
+
 
 -- Montre les privilèges pour userGsb :
 
