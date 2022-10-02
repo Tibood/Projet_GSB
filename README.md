@@ -1,13 +1,13 @@
-#Avancée :
+# Avancée :
 
 - Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / Workbench
 - Planifier les tâches sur le site Trello
 
-#Avancée à faire :
+# Avancée à faire :
 
 - Régler les bugs du site (Utilisateurs en SQL, bugs en PHP, etc...)
 
-#Documents principaux :
+# Documents principaux :
 
 Fichier PDF :
 - Partie 1 = Infos sur le contexte de l'entreprise
@@ -18,7 +18,7 @@ Fichier PDF :
 Fichiers HTML / PHP :
 Le site est visible dans le répertoire 'GSB_v2032/GSB_AppliMVC/src/Vues/
 
-#PRESENTATION DU CONTEXTE :
+# PRESENTATION DU CONTEXTE :
 
 Galaxy Swiss Bourdin (GSB) = Laboratoire médical / Conglomérat international / fusion de plusieurs organismes = Mélange diforme (Galaxy + Swiss-Bourdin).
 Galaxy = Américain et Swiss Bourdin = Conglomérat européen
@@ -31,7 +31,7 @@ La France est le témoin pour l’amélioration du suivi de l’activité de vis
 Différences entre les visiteurs des deux entreprises à corriger : 
 Galaxy = Carte bancaire au nom de l'entreprise, Swiss-Boudin = Gestion forfaitaire puis remboursement après retour des pièces justificatives.
 
-#OBJECTIFS DE L’ENTREPRISE :
+# OBJECTIFS DE L’ENTREPRISE :
 
 - Améliorer le contact entre acteurs mobiles autonomes et les différents services du siège parisien de l'entité Europe : Uniformiser la gestion du suivi des frais et des visites.
 
@@ -44,7 +44,7 @@ mais aussi redonner confiance aux équipes malmenées par les fusions récentes.
 
 - Accès direct aux données du personnel
 
-#TÂCHES CONCRETES :
+# TÂCHES CONCRETES :
 
 - Stocker l’information en provenance des visiteurs.
 - Gérer les frais de déplacemement, de restauration et d'hébergement générés par l'activité de visite médicale.
@@ -57,10 +57,10 @@ mais aussi redonner confiance aux équipes malmenées par les fusions récentes.
 - Utiliser un serveur web et développer sous PHP.
 - Coder la partie comptable en respectant le cas d’utilisation correspondant.
 
-#OUTILS :
+# OUTILS :
 - IDE NetBeans
-- Langage PHP
-- Serveur web + MariaDB
+- Langage PHP (version > 8 = mieux)
+- Serveur web + MariaDB (login PhpMyAdmin = 'root' + '' et y importer fichier 'resources/bdd/gsb_restore.sql' après avoir créé 'userGsb')
 - MVC : Modèle contient les données à afficher, Vue contient la présentation de l’interface graphique, Contrôleur contient la logique des actions utilisateurs.
 
 #Debugger PHP7 Netbeans Xampp :
@@ -70,6 +70,9 @@ https://bitbucket.org/guimotri/debugger-php7-avec-netbeans-8.2-et-xampp/src/mast
 
 -- Liste les utilisateurs
 SELECT user FROM mysql.user;
+
+-- Créer un nouvel utilisateur 'userGsb' avec le mot de passe 'secret'
+CREATE USER IF NOT EXISTS userGsb@localhost IDENTIFIED BY 'secret';
 
 -- Donne TOUS les droits à l'utilisateur 'userGSB' avec le mdp 'secret'
 GRANT ALL PRIVILEGES ON *.* TO 'userGsb'@localhost IDENTIFIED BY 'secret';
