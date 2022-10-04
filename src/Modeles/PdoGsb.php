@@ -42,7 +42,7 @@ namespace Modeles;
 use PDO;
 use Outils\Utilitaires;
 
-require '../../config/bdd.php';
+require '../config/bdd.php';
 
 class PdoGsb
 {
