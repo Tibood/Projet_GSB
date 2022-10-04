@@ -5,6 +5,7 @@
 
 # Avancée à faire :
 
+- Mettre à jour PHP > 8 (click sur logo Wamp en barre des tâches => PHP => Version => Sélectionner PHP 8)
 - Régler les bugs du site (Utilisateurs en SQL, bugs en PHP, etc...)
 
 # Documents principaux :
