@@ -16,8 +16,7 @@
  */
 
 use Outils\Utilitaires;
-session_start();
-
+//session_start();
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $idVisiteur = $_SESSION['idVisiteur'];
