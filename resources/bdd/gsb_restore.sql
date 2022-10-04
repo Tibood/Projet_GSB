@@ -1,8 +1,15 @@
 -- Script de restauration de l'application "GSB Frais"
 
 -- Administration de la base de données
+<<<<<<< Updated upstream:Ressources2023/GSB_AppliMVC/resources/bdd/gsb_restore.sql
 -- CREATE DATABASE gsb_frais;
 -- GRANT SHOW DATABASES ON *.* TO userGsb@localhost IDENTIFIED BY 'secret';
+=======
+-- CREATE DATABASE gsb_frais ;
+-- GRANT SHOW DATABASES ON *.* TO Tibo_GSB@localhost IDENTIFIED BY '8ISAHAQsTpLise59';
+
+
+>>>>>>> Stashed changes:resources/bdd/gsb_restore.sql
 GRANT ALL PRIVILEGES ON `gsb_frais`.* TO rayane_Gsb@localhost;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 USE gsb_frais ;
