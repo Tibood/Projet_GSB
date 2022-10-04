@@ -14,9 +14,8 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-
+// Pointe vers fichier resources/Outils/Utilitaires.php
 use Outils\Utilitaires;
-session_start();
 
 $idVisiteur = $_SESSION['idVisiteur'];
 $mois = Utilitaires::getMois(date('d/m/Y'));
