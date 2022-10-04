@@ -99,7 +99,7 @@ class PdoGsb
             . 'WHERE visiteur.login = :unLogin AND visiteur.mdp = :unMdp'
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);     
+        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);  
         $requetePrepare->execute();
         return $requetePrepare->fetch();
     }
