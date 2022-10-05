@@ -1,9 +1,9 @@
 -- Script de restauration de l'application "GSB Frais"
 
 -- Administration de la base de données
--- CREATE DATABASE gsb_frais ;
--- GRANT SHOW DATABASES ON *.* TO Tibo_GSB@localhost IDENTIFIED BY '8ISAHAQsTpLise59';
-GRANT ALL PRIVILEGES ON `gsb_frais`.* TO Tibo_GSB@localhost;
+CREATE DATABASE gsb_frais ;
+GRANT SHOW DATABASES ON *.* TO userGsb@localhost IDENTIFIED BY 'secret';
+GRANT ALL PRIVILEGES ON `gsb_frais`.* TO userGsb@localhost;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 USE gsb_frais ;
 
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS etat (
 CREATE TABLE IF NOT EXISTS visiteur (
   id char(4) NOT NULL,
   nom char(30) DEFAULT NULL,
-  prenom char(30)  DEFAULT NULL, 
+  prenom char(30)  DEFAULT NULL,
   login char(20) DEFAULT NULL,
   mdp char(20) DEFAULT NULL,
   adresse char(30) DEFAULT NULL,
