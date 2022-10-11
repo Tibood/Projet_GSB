@@ -16,7 +16,6 @@
  */
 
 use Outils\Utilitaires;
-session_start();
 
 $idVisiteur = $_SESSION['idVisiteur'];
 $mois = Utilitaires::getMois(date('d/m/Y'));

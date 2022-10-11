@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS etat (
 CREATE TABLE IF NOT EXISTS visiteur (
   id char(4) NOT NULL,
   nom char(30) DEFAULT NULL,
-  prenom char(30)  DEFAULT NULL, 
+  prenom char(30)  DEFAULT NULL,
   login char(20) DEFAULT NULL,
   mdp char(20) DEFAULT NULL,
   adresse char(30) DEFAULT NULL,
