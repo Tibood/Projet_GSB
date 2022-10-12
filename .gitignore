@@ -1,10 +1,10 @@
-/nbproject
+
 /vendor
 
 # thibaud
 /doc_projet
 /.vscode
-
+/nbproject
 
 # adrien
 /.vs
