@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/thibaud.brouillet/Desktop/Projet_GSB/src/Modeles/PdoGsb.php</file>
-            <file>file:/C:/Users/thibaud.brouillet/Desktop/Projet_GSB/src/Vues/v_entete.php</file>
-            <file>file:/C:/Users/thibaud.brouillet/Desktop/Projet_GSB/public/index.php</file>
-            <file>file:/C:/Users/thibaud.brouillet/Desktop/Projet_GSB/docs/css/base.css</file>
             <file>file:/C:/Users/thibaud.brouillet/Desktop/Projet_GSB/src/Controleurs/c_connexion.php</file>
-            <file>file:/C:/Users/thibaud.brouillet/Desktop/Projet_GSB/bin/gendatas/majGSB.php</file>
-            <file>file:/C:/Users/thibaud.brouillet/Desktop/Projet_GSB/config/bdd.php</file>
-            <file>file:/C:/Users/thibaud.brouillet/Desktop/Projet_GSB/src/Vues/v_deconnexion.php</file>
+            <file>file:/C:/Users/thibaud.brouillet/Desktop/Projet_GSB/src/Vues/v_pied.php</file>
+            <file>file:/C:/Users/thibaud.brouillet/Desktop/Projet_GSB/src/Modeles/PdoGsb.php</file>
+            <file>file:/C:/Users/thibaud.brouillet/Desktop/Projet_GSB/public/index.php</file>
         </group>
     </open-files>
 </project-private>
