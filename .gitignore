@@ -1,7 +1,10 @@
+#gitignore group
 /nbproject
 /vendor
 
 
+
+#gitignore personal
 # thibaud
 /doc_projet
 /.vscode
