@@ -1,13 +1,12 @@
 # Avancée :
 
 - Planifier les tâches avec Trello
-- Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / Workbench
 - Mettre à jour PHP > 8 (click sur logo Wamp en barre des tâches => PHP => Version => Sélectionner PHP 8)
-- Créer un virtualhost avec le chemin du projet
+- Mettre le PATH de PHP 8.1 dans variable d'environnement windows
+- Créer un virtualhost avec le chemin du projet pointant sur le répertoire 'public'
+- Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / MySQL Workbench
+- Lancer la commande 'php majGSB.php' dans le dossier '/bin/gendatas' 
 
-# Avancée à faire :
-
-- Régler les bugs du site (Utilisateurs en SQL, bugs en PHP, etc...)
 
 # Documents principaux :
  
@@ -80,9 +79,9 @@ SELECT user FROM mysql.user;
 CREATE USER IF NOT EXISTS userGsb@localhost IDENTIFIED BY 'secret';
 
 
--- Donne TOUS les droits à l'utilisateur 'userGSB' avec le mdp 'secret' :
+-- Donne TOUS les droits à l'utilisateur 'userGsb', sur toutes les tables de la BDD 'gsb_frais' :
 
-GRANT ALL PRIVILEGES ON *.* TO 'userGsb'@localhost IDENTIFIED BY 'secret';
+GRANT ALL PRIVILEGES ON gsb_frais.* TO 'userGsb'@'localhost'; 
 
 
 -- Actualise les privilèges :
