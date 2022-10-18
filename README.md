@@ -6,8 +6,9 @@
 - Créer un virtualhost avec le chemin du projet pointant sur le répertoire 'public'
 - Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / MySQL Workbench
 - Lancer la commande 'php majGSB.php' dans le dossier '/bin/gendatas' 
-- Bug repéré : Si un des trois champ hors forfait pour fiche de frais, un message d'erreur 
-	non adapté à l'utilisateur apparaît. A corriger
+- Bug corrigé sur fiche de frais hors forfait mal renseigné
+- Hashage de mot de passe : "echo password_hash('password', PASSWORD_BCRYPT);"
+$2y$10$8IJ/.zdAgvfO5Ev7uxm30OaHg5OmgQ2isUgebpJKFsfmElnCrrtvm
 
 # Documents principaux :
  
