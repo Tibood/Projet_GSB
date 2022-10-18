@@ -216,7 +216,7 @@ abstract class Utilitaires
             self::ajouterErreur('Le champ libellé ne peut pas être vide');
         }
         if ($montant == '') {
-            self::ajouterErreur('Le champ montant est obligatoire ET doit être un nombre');
+            self::ajouterErreur('Le champ montant est obligatoire et doit être un nombre');
         }
     }
 

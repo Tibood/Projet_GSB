@@ -53,7 +53,7 @@ switch ($action) {
             $pdo->creeNouveauFraisHorsForfait($idVisiteur, $mois, $libelle, $dateFrais, $montant);
         }
         break;
-        
+    
     case 'supprimerFrais':
         $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $pdo->supprimerFraisHorsForfait($idFrais);
