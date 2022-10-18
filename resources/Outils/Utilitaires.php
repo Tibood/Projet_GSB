@@ -213,12 +213,10 @@ abstract class Utilitaires
             }
         }
         if ($libelle == '') {
-            self::ajouterErreur('Le champ description ne peut pas être vide');
+            self::ajouterErreur('Le champ libellé ne peut pas être vide');
         }
         if ($montant == '') {
-            self::ajouterErreur('Le champ montant ne peut pas être vide');
-        } elseif (!is_numeric($montant)) {
-            self::ajouterErreur('Le champ montant doit être numérique');
+            self::ajouterErreur('Le champ montant est obligatoire ET doit être un nombre');
         }
     }
 
