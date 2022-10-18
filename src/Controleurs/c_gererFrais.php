@@ -45,6 +45,7 @@ switch ($action) {
         $montant = filter_input(INPUT_POST, 'montant', FILTER_VALIDATE_FLOAT);
         Utilitaires::valideInfosFrais($dateFrais, $libelle, $montant);
         if (Utilitaires::nbErreurs() != 0) {
+            Utilitaires::ajouterErreur('Les valeurs des frais hors forfait doivent être correctement insérées.');
             include PATH_VIEWS . 'v_erreurs.php';
         } else {
             $pdo->creeNouveauFraisHorsForfait($idVisiteur, $mois, $libelle, $dateFrais, $montant);

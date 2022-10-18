@@ -14,9 +14,8 @@ INSERT INTO COMPTABLE VALUES ('Comptable', 'f39');
 
 SELECT Visiteur.mdp FROM Visiteur
 INNER JOIN COMPTABLE 
-ON COMPTABLE.IDVISITEUR = Visiteur.id
-<<<<<<< HEAD
-WHERE COMPTABLE.LIBELLE = 'Comptable';
+ON COMPTABLE.IDVISITEUR = Visiteur.id;
+
 
 SELECT COUNT(*) AS nbPasComptable
 FROM Visiteur

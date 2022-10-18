@@ -6,7 +6,8 @@
 - Créer un virtualhost avec le chemin du projet pointant sur le répertoire 'public'
 - Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / MySQL Workbench
 - Lancer la commande 'php majGSB.php' dans le dossier '/bin/gendatas' 
-
+- Bug repéré : Si un des trois champ hors forfait pour fiche de frais, un message d'erreur 
+	non adapté à l'utilisateur apparaît. A corriger
 
 # Documents principaux :
  
@@ -76,7 +77,7 @@ SELECT user FROM mysql.user;
 
 -- Créer un nouvel utilisateur 'userGsb' avec le mot de passe 'secret' :
 
-CREATE USER IF NOT EXISTS userGsb@localhost IDENTIFIED BY 'secret';
+CREATE USER userGsb@localhost IDENTIFIED BY 'secret';
 
 
 -- Donne TOUS les droits à l'utilisateur 'userGsb', sur toutes les tables de la BDD 'gsb_frais' :
@@ -92,3 +93,8 @@ FLUSH PRIVILEGES;
 -- Montre les privilèges pour userGsb :
 
 SHOW GRANTS FOR 'userGsb'@'localhost';
+
+# Bonus PowerShell :
+
+#Trouver un fichier contenant un texte recherché :
+Get-ChildItem -Recurse | Select-String "Ici le texte à chercher" -List | Select Path
