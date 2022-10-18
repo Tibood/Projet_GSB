@@ -41,7 +41,7 @@ switch ($action) {
             if ($pdo->isComptable($id)){
                 $comptable = true;
             }
-            Utilitaires::connecter($id, $nom, $prenom,$comptable);
+            Utilitaires::connecter($id, $nom, $prenom, $comptable);
             header('Location: index.php');
         }
         break;
