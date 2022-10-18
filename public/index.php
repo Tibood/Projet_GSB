@@ -20,6 +20,7 @@ use Outils\Utilitaires;
 
 require '../vendor/autoload.php';
 require '../config/define.php';
+require '../src/Vues/v_test.php';
 
 session_start();
 

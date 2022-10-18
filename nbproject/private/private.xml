@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/rayane.bosso/Documents/GitHub/Projet_GSB/src/Controleurs/c_etatFrais.php</file>
+            <file>file:/C:/Users/rayane.bosso/Documents/GitHub/Projet_GSB/src/Vues/v_listeFraisHorsForfait.php</file>
+            <file>file:/C:/Users/rayane.bosso/Documents/GitHub/Projet_GSB/src/Controleurs/c_gererFrais.php</file>
+            <file>file:/C:/Users/rayane.bosso/Documents/GitHub/Projet_GSB/src/Modeles/PdoGsb.php</file>
+            <file>file:/C:/Users/rayane.bosso/Documents/GitHub/Projet_GSB/src/Vues/v_etatFrais.php</file>
+            <file>file:/C:/Users/rayane.bosso/Documents/GitHub/Projet_GSB/config/bdd.php</file>
+            <file>file:/C:/Users/rayane.bosso/Documents/GitHub/Projet_GSB/src/Vues/v_listeFraisForfait.php</file>
+            <file>file:/C:/Users/rayane.bosso/Documents/GitHub/Projet_GSB/public/index.php</file>
+        </group>
     </open-files>
 </project-private>
