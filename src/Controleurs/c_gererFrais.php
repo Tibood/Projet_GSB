@@ -37,20 +37,23 @@ switch ($action) {
             include PATH_VIEWS . 'v_erreurs.php';
         }
         break;
+        
     case 'validerCreationFrais':
         $dateFrais = Utilitaires::dateAnglaisVersFrancais(
             filter_input(INPUT_POST, 'dateFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS)
         );
         $libelle = filter_input(INPUT_POST, 'libelle', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $montant = filter_input(INPUT_POST, 'montant', FILTER_VALIDATE_FLOAT);
+        
         Utilitaires::valideInfosFrais($dateFrais, $libelle, $montant);
+        
         if (Utilitaires::nbErreurs() != 0) {
-            Utilitaires::ajouterErreur('Les valeurs des frais hors forfait doivent être correctement insérées.');
             include PATH_VIEWS . 'v_erreurs.php';
-        } else {
+        } else {           
             $pdo->creeNouveauFraisHorsForfait($idVisiteur, $mois, $libelle, $dateFrais, $montant);
         }
         break;
+        
     case 'supprimerFrais':
         $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $pdo->supprimerFraisHorsForfait($idFrais);

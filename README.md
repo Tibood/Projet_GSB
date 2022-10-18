@@ -96,5 +96,8 @@ SHOW GRANTS FOR 'userGsb'@'localhost';
 
 # Bonus PowerShell :
 
+#Trouver un fichier :
+Get-ChildItem -Recurse nomFichier
+
 #Trouver un fichier contenant un texte recherché :
 Get-ChildItem -Recurse | Select-String "Ici le texte à chercher" -List | Select Path

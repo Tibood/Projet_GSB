@@ -66,7 +66,7 @@ abstract class Utilitaires
     public static function dateFrancaisVersAnglais($maDate): string
     {
         @list($jour, $mois, $annee) = explode('/', $maDate);
-        return date('Y-m-d', mktime(0, 0, 0, $mois, $jour, $annee));
+        return date('Y-m-d', mktime(0, 0, 0, (int)$mois, (int)$jour, (int)$annee));
     }
 
     /**
@@ -167,7 +167,7 @@ abstract class Utilitaires
             if (!self::estTableauEntiers($tabDate)) {
                 $dateOK = false;
             } else {
-                if (!checkdate($tabDate[1], $tabDate[0], $tabDate[2])) {
+                if (!checkdate((int)$tabDate[1], (int)$tabDate[0], (int)$tabDate[2])) {
                     $dateOK = false;
                 }
             }
