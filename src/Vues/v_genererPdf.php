@@ -10,7 +10,19 @@
  *
  * @author rayane.bosso
  */
-class v_genererPdf {
-    //put your code here
-}
+
+require('../vendor/fpdf184/fpdf.php');
+
+$pdf = new FPDF('P','pt','A4');
+$pdf->AddPage();
+$pdf->SetFont('Arial','B',16);
+
+//LOGO
+$img = 'images/logo.jpg';
+$img_size = getimagesize($img); // [0] = width [1] = Height
+$pdf_xSize =$pdf->GetPageWidth();
+$xpos = $pdf_xSize / 2 - $img_size[0] / 2 * 0.75;
+$pdf->Image($img,$xpos ,20);
+
+$pdf->Output();
 
