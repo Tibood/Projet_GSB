@@ -21,6 +21,7 @@ use Outils\Utilitaires;
 require '../vendor/autoload.php';
 require '../config/define.php';
 require '../src/Vues/v_test.php';
+require '../src/Vues/v_genererPdf.php';
 
 session_start();
 
