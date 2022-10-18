@@ -38,6 +38,9 @@ switch ($action) {
             $id = $visiteur['id'];
             $nom = $visiteur['nom'];
             $prenom = $visiteur['prenom'];
+            if ($pdo->isComptable($id)){
+                $comptable = true;
+            }
             Utilitaires::connecter($id, $nom, $prenom);
             header('Location: index.php');
         }
