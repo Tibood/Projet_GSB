@@ -479,20 +479,20 @@ class PdoGsb
         $requetePrepare->execute();
     }
     
-    public function isComptable($idVisiteur): bool
+    public function isComptable($idVisiteur): string | array
     {
         $requetePrepare = $this->connexion->prepare(
-            'select roles.libelle'
-            .   'from roles inner join metiers'
-            .   'on roles.id = metiers.IdRoles'
-            .   'where metiers.IdVisiteur = :unIdVisiteur'
+            'select roles.libelle '
+            .   'from roles inner join metiers '
+            .   'on roles.id = metiers.IdRoles '
+            .   'where metiers.IdVisiteur = :unIdVisiteur '
         );
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->execute();
         $laLigne = $requetePrepare->fetch();
         if ($laLigne){
-                return true;
+                return $laLigne['libelle'];
         }
-        return false;
+        return 'visiteur';
     }
 }

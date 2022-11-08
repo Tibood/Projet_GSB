@@ -49,7 +49,7 @@
                     <div class="col-md-8">
                         <ul class="nav nav-pills pull-right" role="tablist">
                             <?php
-                            if ($_SESSION['comptable']){
+                            if ($_SESSION['metier'] === 'Comptable'){
                                 ?>
                             <li <?php if (!$uc || $uc == 'accueil') { ?>class="active" <?php } ?>>
                                 <a href="index.php">

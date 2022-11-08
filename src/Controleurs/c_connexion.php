@@ -38,10 +38,8 @@ switch ($action) {
             $id = $visiteur['id'];
             $nom = $visiteur['nom'];
             $prenom = $visiteur['prenom'];
-            if ($pdo->isComptable($id)){
-                $comptable = true;
-            }
-            Utilitaires::connecter($id, $nom, $prenom, $comptable);
+            $metier = $pdo->isComptable($id);
+            Utilitaires::connecter($id, $nom, $prenom, $metier);
             header('Location: index.php');
         }
         break;
