@@ -16,3 +16,9 @@ if ($fp) {
     fclose($fp);
 }
 
+// ALTER TABLE nomTableUtilisateurs
+// MODIFY COLUMN passwordColumn VARCHAR(255);
+
+// UPDATE nomTable 
+// SET passwordColumn = hash
+// WHERE id = idChoisi;
