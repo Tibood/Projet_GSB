@@ -63,14 +63,14 @@ if ($_SESSION['metier'] === 'Comptable'){
                                     Accueil
                                 </a>
                             </li>
-                            <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=gererFrais&action=saisirFrais">
+                            <li <?php if ($uc == 'validerFicheFrais') { ?>class="active"<?php } ?>>
+                                <a href="index.php?uc=validerFicheFrais">
                                     <span class="glyphicon glyphicon-ok"></span>
                                     Valider les fiches de frais
                                 </a>
                             </li>
-                            <li <?php if ($uc == 'etatFrais') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=etatFrais&action=selectionnerMois">
+                            <li <?php if ($uc == 'suivrePaiementFicheFrais') { ?>class="active"<?php } ?>>
+                                <a href="index.php?uc=suivrePaiementFicheFrais">
                                     <span class="glyphicon glyphicon-euro"></span>
                                     Suivre le paiement des fiches de frais
                                 </a>

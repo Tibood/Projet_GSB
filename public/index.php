@@ -52,6 +52,9 @@ switch ($uc) {
     case 'deconnexion':
         include PATH_CTRLS . 'c_deconnexion.php';
         break;
+    case 'validerFicheFrais':
+        include PATH_CTRLS . 'c_validerFicheFrais.php';
+        break;
     default:
         Utilitaires::ajouterErreur('Page non trouvée, veuillez vérifier votre lien...');
         include PATH_VIEWS . 'v_erreurs.php';
