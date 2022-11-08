@@ -482,8 +482,10 @@ class PdoGsb
     public function isComptable($idVisiteur): bool
     {
         $requetePrepare = $this->connexion->prepare(
-        'SELECT * FROM comptable '
-        . 'WHERE COMPTABLE.IDVISITEUR = :unIdVisiteur '
+            'select roles.libelle'
+            .   'from roles inner join metiers'
+            .   'on roles.id = metiers.IdRoles'
+            .   'where metiers.IdVisiteur = :unIdVisiteur'
         );
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->execute();
