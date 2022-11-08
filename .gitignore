@@ -5,6 +5,8 @@
 
 # adrien
 /.vs
-/AP-GSB-2023.pdf
+/customtools/clear_passwords.txt
+/customtools/hashed_passwords.txt
+/customtools/passwords_and_hashes.txt
 
 # rayan

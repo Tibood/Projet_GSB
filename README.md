@@ -18,8 +18,6 @@ Fichier PDF :
 - Partie 3 = Infos sur les missions à réaliser
 - Partie 4 = Documents pour les missions
 
-Fichiers HTML / PHP :
-Le site est visible dans le répertoire 'GSB_v2032/GSB_AppliMVC/src/Vues/
 
 # PRESENTATION DU CONTEXTE :
 
@@ -62,7 +60,7 @@ mais aussi redonner confiance aux équipes malmenées par les fusions récentes.
 
 # OUTILS :
 - IDE NetBeans
-- Langage PHP (version > 8 = mieux)
+- Langage PHP (version > 8)
 - Serveur web + MariaDB (login PhpMyAdmin = 'root' + '' et y importer fichier 'resources/bdd/gsb_restore.sql' après avoir créé 'userGsb')
 - MVC : Modèle contient les données à afficher, Vue contient la présentation de l’interface graphique, Contrôleur contient la logique des actions utilisateurs.
 
