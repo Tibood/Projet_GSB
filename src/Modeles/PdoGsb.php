@@ -92,11 +92,16 @@ class PdoGsb
      */
     public function getInfosVisiteur($login, $mdp): array | bool
     {        
+        if (password_verify(':unMdp', 'visiteur.mdp') !== false) {
+            echo "Password is valid";
+        } else {
+            echo "Password is invalid";
+        }
         $requetePrepare = $this->connexion->prepare(
             'SELECT visiteur.id AS id, visiteur.nom AS nom, '
             . 'visiteur.prenom AS prenom '
             . 'FROM visiteur '
-            . 'WHERE visiteur.login = :unLogin AND ' . password_verify(':unMdp', 'visiteur.mdp') !== false
+            . 'WHERE visiteur.login = :unLogin AND visiteur.mdp = :unMdp'
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);  
