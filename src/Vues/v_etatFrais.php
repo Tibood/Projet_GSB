@@ -73,3 +73,4 @@
         ?>
     </table>
 </div>
+<button class="btn btn-success" type="submit">Generer un pdf</button>
