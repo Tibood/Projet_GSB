@@ -7,8 +7,8 @@
 - Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / MySQL Workbench
 - Lancer la commande 'php majGSB.php' dans le dossier '/bin/gendatas' 
 - Bug corrigé sur fiche de frais hors forfait mal renseigné
-- Hashage de mot de passe : "echo password_hash('password', PASSWORD_BCRYPT);"
-$2y$10$8IJ/.zdAgvfO5Ev7uxm30OaHg5OmgQ2isUgebpJKFsfmElnCrrtvm
+- Hashage de mot de passe : "echo password_hash('password', PASSWORD_BCRYPT, ['cost' => 12]);"
+
 
 # Documents principaux :
  
@@ -92,6 +92,18 @@ FLUSH PRIVILEGES;
 -- Montre les privilèges pour userGsb :
 
 SHOW GRANTS FOR 'userGsb'@'localhost';
+
+
+-- Modifie une colonne pour y stocker un hash
+
+ALTER TABLE nomTableUtilisateurs
+MODIFY COLUMN passwordColumn VARCHAR(255);
+
+
+UPDATE nomTableUtilisateurs
+SET passwordColumn = hash
+WHERE id = idChoisi;
+
 
 # Bonus PowerShell :
 
