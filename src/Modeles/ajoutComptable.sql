@@ -15,7 +15,7 @@ Drop table if exists roles;
 create table roles (
     id int not null auto_increment,
     libelle varchar (30) not null,
-    constraint PK_Metier primary key (id)
+    constraint PK_roles primary key (id)
 );
 
 insert into roles value (1,'Comptable');
