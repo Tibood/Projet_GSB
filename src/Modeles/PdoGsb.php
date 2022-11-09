@@ -479,7 +479,7 @@ class PdoGsb
         $requetePrepare->execute();
     }
 
-    public function isComptable($idVisiteur): string | array
+    public function getRole($idVisiteur): string | array
     {
         $requetePrepare = $this->connexion->prepare(
             'select roles.libelle '
