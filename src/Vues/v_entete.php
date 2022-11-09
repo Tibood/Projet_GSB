@@ -30,7 +30,7 @@
 <?php
 if ($_SESSION['metier'] === 'Comptable'){
 ?>
-        <link href="./styles/comptable.css" rel="stylesheet">
+        <link href="./styles/styleComptable.css" rel="stylesheet">
 <?php
 }
 ?>
