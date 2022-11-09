@@ -38,8 +38,8 @@ switch ($action) {
             $id = $visiteur['id'];
             $nom = $visiteur['nom'];
             $prenom = $visiteur['prenom'];
-            $metier = $pdo->isComptable($id);
-            Utilitaires::connecter($id, $nom, $prenom, $metier);
+            $_SESSION['metier'] = $pdo->isComptable($id);
+            Utilitaires::connecter($id, $nom, $prenom);
             header('Location: index.php');
         }
         break;
