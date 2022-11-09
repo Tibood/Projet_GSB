@@ -90,7 +90,7 @@ class PdoGsb
      *
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
-    public function getInfosVisiteur($login, $mdp): array|bool
+    public function getInfosVisiteur($login, $mdp): array | bool
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT visiteur.id AS id, visiteur.nom AS nom, '
@@ -478,7 +478,7 @@ class PdoGsb
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
-    
+
     public function isComptable($idVisiteur): string | array
     {
         $requetePrepare = $this->connexion->prepare(
