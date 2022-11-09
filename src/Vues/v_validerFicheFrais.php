@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Vue valider les Fiche de Frais
+ *
+ * PHP Version 8
+ *
+ * @category  PPE
+ * @package   GSB
+ * @author    BROUILLET THIBAUD
+ */
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,7 +72,7 @@
             <td>Cell4</td>
         </tr>
         <?php }?>
-        
+
     </tbody>
 </table>
 
