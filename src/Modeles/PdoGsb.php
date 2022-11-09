@@ -483,9 +483,8 @@ class PdoGsb
     {
         $requetePrepare = $this->connexion->prepare(
             'select roles.libelle '
-            .   'from roles inner join metiers '
-            .   'on roles.id = metiers.IdRoles '
-            .   'where metiers.IdVisiteur = :unIdVisiteur '
+            .   'from roles '
+            .   'where roles.IdVisiteur = :unIdVisiteur '
         );
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->execute();
