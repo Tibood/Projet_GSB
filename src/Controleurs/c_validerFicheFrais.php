@@ -9,9 +9,13 @@
  * @author    BROUILLET THIBAUD
  */
 use Outils\Utilitaires;
+require '..\bin\gendatas\fonctions.php';
 
+$pdo = new PDO('mysql:host=localhost;dbname=gsb_frais', 'userGsb', 'secret');
+$pdo->query('SET CHARACTER SET utf8');
 
 if ($_SESSION['metier'] === 'Comptable' ) {
+    $visiteurs = getLesVisiteurs($pdo);
     include PATH_VIEWS . 'v_validerFicheFrais.php';
 } else {
     Utilitaires::ajouterErreur("Vous n'êtes pas comptable");

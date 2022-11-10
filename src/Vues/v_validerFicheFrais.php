@@ -10,31 +10,56 @@
  * @author    BROUILLET THIBAUD
  */
 ?>
-
-<label>Choisir le visiteur :</label>
-	<select id="listVisiteur">
-		<option value="">--Please choose an option--</option>
-	</select>
-<label>Mois :</label>
-	<select id="listMois">
-		<option value="">--Please choose an option--</option>
-	</select>
+<div>
+    <div class="input-group mb-3">
+        <label>Choisir le visiteur :</label>
+            <select class="form-select" id="listVisiteur">
+<?php
+foreach ($visiteurs as $unVisiteur) {
+    $id = $unVisiteur['id'];
+    $nom = $unVisiteur['nom'];
+    $prenom = $unVisiteur['prenom'];
+?>
+                <option value="<?php echo $id ?>">
+                    <?php echo $nom .' '. $prenom ?>
+                </option>
+<?php
+}
+?>
+            </select>
+    </div>
+    <div class="input-group mb-3">
+        <label>Mois :</label>
+            <select id="listMois">
+                <option value="">--Please choose an option--</option>
+            </select>
+    </div>
+</div>
 
 <h1>Valider la fiche de frais</h1>
-<h2>Eléments forfaitisé</h2>
+<div class='container'>
+    <div class="input-group">
+        <h2>Eléments forfaitisé</h2>
+        <label>Fofait Etape</label>
+        <br/>
+        <input type="text" id="name" name="name" required
+            minlength="4" maxlength="8" size="10">
+        <br/>
+        <label>Frais Kilometrique</label>
+        <br/>
+        <input type="text" id="name" name="name" required
+            minlength="4" maxlength="8" size="10">
+        <br/>
+        <label>Repas Restaurant</label>
+        <br/>
+        <input type="text" id="name" name="name" required
+            minlength="4" maxlength="8" size="10">
+    </div>
+    <br/>
+    <button type="button" class="btn btn-success">Corriger</button>
+    <button type="button" class="btn btn-danger">Reinitialiser</button>
+</div>
 
-<label>Fofait Etape</label>
-<input type="text" id="name" name="name" required
-    minlength="4" maxlength="8" size="10">
-<label>Frais Kilometrique</label>
-<input type="text" id="name" name="name" required
-    minlength="4" maxlength="8" size="10">
-<label>Repas Restaurant</label>
-<input type="text" id="name" name="name" required
-    minlength="4" maxlength="8" size="10">
-
-<button type="button" class="btn btn-success">Corriger</button>
-<button type="button" class="btn btn-danger">Reinitialiser</button>
 
 <table class="table">
     <thead>
