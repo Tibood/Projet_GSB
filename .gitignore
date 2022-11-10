@@ -5,8 +5,9 @@
 
 # adrien
 /.vs
-/customtools/clear_passwords.txt
-/customtools/hashed_passwords.txt
-/customtools/passwords_and_hashes.txt
+/tests/clear_passwords.txt
+/tests/hashed_passwords.txt
+/tests/passwords_and_hashes.txt
+/tests/id.txt
 
 # rayan
