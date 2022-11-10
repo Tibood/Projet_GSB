@@ -479,7 +479,14 @@ class PdoGsb
         $requetePrepare->execute();
     }
 
-    public function getRole($idVisiteur): string | array
+    /**
+     * Retourne le role d'un visiteur
+     *
+     * @param String $idVisiteur ID du visiteur
+     *
+     * @return String le role du visiteur
+     */
+    public function getRole($idVisiteur): string
     {
         $requetePrepare = $this->connexion->prepare(
             'select roles.libelle '
