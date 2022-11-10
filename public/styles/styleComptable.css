@@ -22,3 +22,12 @@ a:hover, a:focus {
 h1 {
     color: orange
 }
+.panel-info > .panel-heading {
+    color: #fff;
+    background-color: orange;
+    border-color: orange;
+}
+
+.panel-info {
+    border-color: orange;
+}
