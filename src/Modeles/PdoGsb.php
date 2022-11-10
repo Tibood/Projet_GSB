@@ -90,7 +90,7 @@ class PdoGsb
      *
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
-    public function getInfosVisiteur($login, $mdp): array | bool
+    public function getInfosVisiteur($login): array | bool
     {        
         if (password_verify(':unMdp', 'visiteur.mdp') !== false) {
             echo "Password is valid";
@@ -101,14 +101,24 @@ class PdoGsb
             'SELECT visiteur.id AS id, visiteur.nom AS nom, '
             . 'visiteur.prenom AS prenom '
             . 'FROM visiteur '
-            . 'WHERE visiteur.login = :unLogin AND visiteur.mdp = :unMdp'
+            . 'WHERE visiteur.login = :unLogin'
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);  
         $requetePrepare->execute();
         return $requetePrepare->fetch();
     }
 
+    public function getMdpVisiteur($login) {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT mdp '
+            . 'FROM visiteur '
+            . 'WHERE visiteur.login = :unLogin'
+        );
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch(PDO::FETCH_OBJ)->mdp;
+    }
+    
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais
      * hors forfait concernées par les deux arguments.
