@@ -28,14 +28,18 @@ foreach ($visiteurs as $unVisiteur) {
 ?>
             </select>
     </div>
+    <form action='' methode='post' role='form'>
     <div class="input-group mb-3">
         <label>Mois :</label>
             <select id="listMois">
-                <option value="">--Please choose an option--</option>
+                <option value=""></option>
             </select>
     </div>
+    </form>
 </div>
-
+<?php
+echo getMois(date('d/m/Y'));
+?>
 <h1>Valider la fiche de frais</h1>
 <div class='container'>
     <div class="input-group">
@@ -60,30 +64,25 @@ foreach ($visiteurs as $unVisiteur) {
     <button type="button" class="btn btn-danger">Reinitialiser</button>
 </div>
 
-
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Descriptif des éléments hors forfais</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td scope="col">Date</td>
-            <td scope="col">Libellé</td>
-            <td scope="col">Montant</td>
-            <td scope="col"></td>
-        </tr>
-<?php
-//foreach ($azf as $value) {
-?>
-        <tr>
-            <td scope="row">Cell3</td>
-            <td scope="row">Cell4</td>
-        </tr>
-<?php
-//}
-?>
-    </tbody>
-</table>
+<div class='panel panel-info'>
+    <div class="panel-heading">Descriptif des éléments hors forfait</div>
+    <table class='table table-bordered table-responsive'>
+        <tbody>
+            <tr>
+                <th>Date</th>
+                <th>Libellé</th>
+                <th>Montant</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>Cell3</td>
+                <td>Cell4</td>
+                <td>Cell4</td>
+                <td>
+                <button type="button" class="btn btn-success">Corriger</button>
+                <button type="button" class="btn btn-danger">Reinitialiser</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <body>

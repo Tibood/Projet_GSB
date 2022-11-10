@@ -16,6 +16,7 @@ $pdo->query('SET CHARACTER SET utf8');
 
 if ($_SESSION['metier'] === 'Comptable' ) {
     $visiteurs = getLesVisiteurs($pdo);
+    //$lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
     include PATH_VIEWS . 'v_validerFicheFrais.php';
 } else {
     Utilitaires::ajouterErreur("Vous n'êtes pas comptable");
