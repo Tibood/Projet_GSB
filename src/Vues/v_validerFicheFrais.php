@@ -11,32 +11,47 @@
  */
 ?>
 <div>
-    <div class="input-group mb-3">
-        <label>Choisir le visiteur :</label>
-            <select class="form-select" id="listVisiteur">
+    <form action="index.php?uc=validerFicheFrais" method="post" role="form">
+        <div class="form-group">
+            <label for ='listVisiteur2'>Choisir le visiteur :</label>
+            <select class="form-control" id="listVisiteur2">
 <?php
 foreach ($visiteurs as $unVisiteur) {
     $id = $unVisiteur['id'];
     $nom = $unVisiteur['nom'];
     $prenom = $unVisiteur['prenom'];
 ?>
-                <option value="<?php echo $id ?>">
-                    <?php echo $nom .' '. $prenom ?>
-                </option>
+        <option value="<?php echo $id ?>">
+            <?php echo $nom .' '. $prenom ?>
+        </option>
 <?php
 }
 ?>
             </select>
-    </div>
-    <form action='' methode='post' role='form'>
-    <div class="input-group mb-3">
-        <label>Mois :</label>
-            <select id="listMois">
-                <option value=""></option>
-            </select>
-    </div>
+        </div>
     </form>
-</div>
+        <label for="listMois2">Mois :</label>
+        <select class="form-control" id="listMois2">
+        <?php
+        foreach ($lesMois as $unMois) {
+            $mois = $unMois['mois'];
+            $numAnnee = $unMois['numAnnee'];
+            $numMois = $unMois['numMois'];
+            if ($mois == $moisASelectionner) {
+                ?>
+                <option selected value="<?php echo $mois ?>">
+                    <?php echo $numMois . '/' . $numAnnee ?> </option>
+                <?php
+            } else {
+                ?>
+                <option value="<?php echo $mois ?>">
+                    <?php echo $numMois . '/' . $numAnnee ?> </option>
+                <?php
+            }
+            }
+            ?>
+        </select>
+    </div>
 <?php
 echo getMois(date('d/m/Y'));
 ?>
