@@ -75,12 +75,6 @@ if ($_SESSION['metier'] === 'Comptable'){
                                     Suivre le paiement des fiches de frais
                                 </a>
                             </li>
-                            <li
-                            <?php if ($uc == 'deconnexion') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=deconnexion&action=demandeDeconnexion">
-                                    Déconnexion
-                                </a>
-                            </li>
                             <?php
                             } else {
                                 ?>
@@ -102,6 +96,9 @@ if ($_SESSION['metier'] === 'Comptable'){
                                     Afficher mes fiches de frais
                                 </a>
                             </li>
+                            <?php
+                            }
+                            ?>
                             <li
                             <?php if ($uc == 'deconnexion') { ?>class="active"<?php } ?>>
                                 <a href="index.php?uc=deconnexion&action=demandeDeconnexion">
@@ -109,9 +106,6 @@ if ($_SESSION['metier'] === 'Comptable'){
                                     Déconnexion
                                 </a>
                             </li>
-                            <?php
-                            }
-                            ?>
                         </ul>
                     </div>
                 </div>
