@@ -14,22 +14,33 @@
     <form action="index.php?uc=validerFicheFrais" method="post" role="form">
         <div class="form-group">
             <label for ='listVisiteur2'>Choisir le visiteur :</label>
-            <select class="form-control" id="listVisiteur2">
-<?php
-foreach ($visiteurs as $unVisiteur) {
-    $id = $unVisiteur['id'];
-    $nom = $unVisiteur['nom'];
-    $prenom = $unVisiteur['prenom'];
-?>
-        <option value="<?php echo $id ?>">
-            <?php echo $nom .' '. $prenom ?>
-        </option>
-<?php
-}
-?>
+            <select class="form-control" id='listVisiteur'name="listVisiteur">
+            <?php
+            foreach ($visiteurs as $unVisiteur) {
+                $id = $unVisiteur['id'];
+                $nom = $unVisiteur['nom'];
+                $prenom = $unVisiteur['prenom'];
+                if ($id == $_POST['listVisiteur']) {
+                ?>
+                    <option selected value="<?php echo $mois ?>">
+                        <?php echo $nom . ' ' . $prenom ?> </option>
+                <?php
+                } else {
+                ?>
+                    <option value="<?php echo $id ?>">
+                        <?php echo $nom .' '. $prenom ?>
+                    </option>
+                <?php
+                }
+            }
+            ?>
             </select>
         </div>
+        <input id="ok" type="submit" value="Valider" class="btn btn-success"
+               role="button">
     </form>
+    <?php
+?>
         <label for="listMois2">Mois :</label>
         <select class="form-control" id="listMois2">
         <?php
@@ -53,8 +64,10 @@ foreach ($visiteurs as $unVisiteur) {
         </select>
     </div>
 <?php
-echo getMois(date('d/m/Y'));
+echo $_POST['listVisiteur2'];
+//echo getMois(date('d/m/Y'));
 ?>
+<!--
 <h1>Valider la fiche de frais</h1>
 <div class='container'>
     <div class="input-group">
