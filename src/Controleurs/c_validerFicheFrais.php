@@ -21,11 +21,13 @@ if ($_SESSION['metier'] === 'Comptable' ) {
     switch ($action) {
         case 'saisirInfo':
             $visiteurs = getLesVisiteurs($pdo2);
-            include PATH_VIEWS . 'v_validerFicheFrais.php';
-            
+            include PATH_VIEWS . 'v_listVisiteur_Mois.php';
+            break;
         case 'afficherLigneFrais':
-            
-
+            $visiteurs = getLesVisiteurs($pdo2);
+            include PATH_VIEWS . 'v_listVisiteur_Mois.php';
+            include PATH_VIEWS . 'v_validerFicheFrais.php';
+            break;
     }
 } else {
     Utilitaires::ajouterErreur("Vous n'êtes pas comptable");
