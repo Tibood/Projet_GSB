@@ -7,7 +7,6 @@
 /.vs
 /tests/clear_passwords.txt
 /tests/hashed_passwords.txt
-/tests/passwords_and_hashes.txt
 /tests/id.txt
 
 # rayan
