@@ -1,16 +1,16 @@
 USE gsb_frais;
-drop table metiers;
+-- drop table metiers;
 DROP TABLE IF exists Roles;
 CREATE TABLE Roles (	
 	IDVISITEUR CHAR(4) NOT NULL,
-    Role VARCHAR(50) NOT NULL,
+    Libelle VARCHAR(50) NOT NULL,
     
-    CONSTRAINT PK_Roles PRIMARY KEY (IDVISITEUR,Role),
+    CONSTRAINT PK_Roles PRIMARY KEY (IDVISITEUR,Libelle),
     CONSTRAINT FK_Roles_VISITEUR FOREIGN KEY (IDVISITEUR)
 		REFERENCES VISITEUR (ID)
 );
-insert into metiers value ('f4','Comptable');
-insert into metiers value ('f39','Comptable');
+insert into roles value ('f4','Comptable');
+insert into roles value ('f39','Comptable');
 
 /*
 Solution n°1
