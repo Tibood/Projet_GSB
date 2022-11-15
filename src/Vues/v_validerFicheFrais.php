@@ -10,61 +10,8 @@
  * @author    BROUILLET THIBAUD
  */
 ?>
-<div>
-    <form action="index.php?uc=validerFicheFrais" method="post" role="form">
-        <div class="form-group container-fluid">
-            <label for ='listVisiteur2'>Choisir le visiteur :</label>
-            <select class="form-control" id='listVisiteur'name="listVisiteur">
-            <?php
-            foreach ($visiteurs as $unVisiteur) {
-                $id = $unVisiteur['id'];
-                $nom = $unVisiteur['nom'];
-                $prenom = $unVisiteur['prenom'];
-                if ($id == $_POST['listVisiteur']) {
-                ?>
-                    <option selected value="<?php echo $mois ?>">
-                        <?php echo $nom . ' ' . $prenom ?> </option>
-                <?php
-                } else {
-                ?>
-                    <option value="<?php echo $id ?>">
-                        <?php echo $nom .' '. $prenom ?>
-                    </option>
-                <?php
-                }
-            }
-            ?>
-            </select>
-            &nbsp;
-            <label for="listMois2">Mois :</label>
-            <select class="form-control" id="listMois2" id="listMois2">
-            <?php
-            foreach ($lesMois as $unMois) {
-                $mois = $unMois['mois'];
-                $numAnnee = $unMois['numAnnee'];
-                $numMois = $unMois['numMois'];
-                if ($mois == $_POST['listMois2']) {
-                    ?>
-                    <option selected value="<?php echo $mois ?>">
-                        <?php echo $numMois . '/' . $numAnnee ?> </option>
-                    <?php
-                } else {
-                    ?>
-                    <option value="<?php echo $mois ?>">
-                        <?php echo $numMois . '/' . $numAnnee ?> </option>
-                    <?php
-                }
-                }
-                ?>
-            </select> 
-        </div>
-    </form>
-</div>
-<?php
-//echo $_POST['listVisiteur2'];
-//echo getMois(date('d/m/Y'));
-?>
-<!--
+
+
 <h1>Valider la fiche de frais</h1>
 <div class='container'>
     <div class="input-group">
@@ -85,10 +32,9 @@
             minlength="4" maxlength="8" size="10">
     </div>
     <br/>
-    <input type="button" class="btn btn-success">Corriger</input>
-    <input type="button" class="btn btn-danger">Reinitialiser</input>
+    <input type="button" value="Corriger"class="btn btn-success"></input>
+    <input type="button" value="Reinitialiser"class="btn btn-danger"></input>
 </div>
-
 <div class='panel panel-info'>
     <div class="panel-heading">Descriptif des éléments hors forfait</div>
     <table class='table table-bordered table-responsive'>
@@ -110,4 +56,3 @@
         </tbody>
     </table>
 </div>
-</body>
