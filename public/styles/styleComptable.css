@@ -31,3 +31,8 @@ h1 {
 .panel-info {
     border-color: orange;
 }
+
+.form-control{
+    display: inline;
+    width: fit-content
+}

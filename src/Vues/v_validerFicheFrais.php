@@ -12,7 +12,7 @@
 ?>
 <div>
     <form action="index.php?uc=validerFicheFrais" method="post" role="form">
-        <div class="form-group">
+        <div class="form-group container-fluid">
             <label for ='listVisiteur2'>Choisir le visiteur :</label>
             <select class="form-control" id='listVisiteur'name="listVisiteur">
             <?php
@@ -35,36 +35,33 @@
             }
             ?>
             </select>
+            &nbsp;
+            <label for="listMois2">Mois :</label>
+            <select class="form-control" id="listMois2" id="listMois2">
+            <?php
+            foreach ($lesMois as $unMois) {
+                $mois = $unMois['mois'];
+                $numAnnee = $unMois['numAnnee'];
+                $numMois = $unMois['numMois'];
+                if ($mois == $_POST['listMois2']) {
+                    ?>
+                    <option selected value="<?php echo $mois ?>">
+                        <?php echo $numMois . '/' . $numAnnee ?> </option>
+                    <?php
+                } else {
+                    ?>
+                    <option value="<?php echo $mois ?>">
+                        <?php echo $numMois . '/' . $numAnnee ?> </option>
+                    <?php
+                }
+                }
+                ?>
+            </select> 
         </div>
-        <input id="ok" type="submit" value="Valider" class="btn btn-success"
-               role="button">
     </form>
-    <?php
-?>
-        <label for="listMois2">Mois :</label>
-        <select class="form-control" id="listMois2">
-        <?php
-        foreach ($lesMois as $unMois) {
-            $mois = $unMois['mois'];
-            $numAnnee = $unMois['numAnnee'];
-            $numMois = $unMois['numMois'];
-            if ($mois == $moisASelectionner) {
-                ?>
-                <option selected value="<?php echo $mois ?>">
-                    <?php echo $numMois . '/' . $numAnnee ?> </option>
-                <?php
-            } else {
-                ?>
-                <option value="<?php echo $mois ?>">
-                    <?php echo $numMois . '/' . $numAnnee ?> </option>
-                <?php
-            }
-            }
-            ?>
-        </select>
-    </div>
+</div>
 <?php
-echo $_POST['listVisiteur2'];
+//echo $_POST['listVisiteur2'];
 //echo getMois(date('d/m/Y'));
 ?>
 <!--
@@ -88,8 +85,8 @@ echo $_POST['listVisiteur2'];
             minlength="4" maxlength="8" size="10">
     </div>
     <br/>
-    <button type="button" class="btn btn-success">Corriger</button>
-    <button type="button" class="btn btn-danger">Reinitialiser</button>
+    <input type="button" class="btn btn-success">Corriger</input>
+    <input type="button" class="btn btn-danger">Reinitialiser</input>
 </div>
 
 <div class='panel panel-info'>
@@ -113,4 +110,4 @@ echo $_POST['listVisiteur2'];
         </tbody>
     </table>
 </div>
-<body>
+</body>
