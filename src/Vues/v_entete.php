@@ -64,7 +64,7 @@ if ($_SESSION['metier'] === 'Comptable'){
                                 </a>
                             </li>
                             <li <?php if ($uc == 'validerFicheFrais') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=validerFicheFrais">
+                                <a href="index.php?uc=validerFicheFrais&action=saisirInfo">
                                     <span class="glyphicon glyphicon-ok"></span>
                                     Valider les fiches de frais
                                 </a>
