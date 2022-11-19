@@ -10,6 +10,7 @@ if ($fp) {
         $id = trim(preg_replace('/\s+/', ' ', $id));
         // Mot de passe ===> Même mot de passe, mais hashé 
         echo "UPDATE visiteur SET mdp = '";
+        // remplacer cette ligne par $buffer si on veut restorer mdp originaux :
         echo password_hash($buffer, PASSWORD_DEFAULT); // $buffer . " ===> " . 
         echo "' WHERE id = '" . $id . "';\n";    
     }

@@ -26,7 +26,7 @@ abstract class Utilitaires
      */
     public static function estConnecte(): bool
     {
-        return isset($_SESSION['idVisiteur']);
+        return isset($_SESSION['idVisiteur']) && isset($_SESSION['codeA2f']);
     }
 
     /**
@@ -45,6 +45,17 @@ abstract class Utilitaires
         $_SESSION['prenom'] = $prenom;
     }
 
+    /**
+     * Implémente le code de vérification à 2 facteurs dans 
+     * une variable de session.
+     * 
+     * @param type $code
+     */
+    public static function connecterA2f($code)
+    {
+        $_SESSION['codeA2f'] = $code;
+    }
+    
     /**
      * Détruit la session active
      *
