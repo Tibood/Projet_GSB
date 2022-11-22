@@ -1,8 +1,10 @@
 <div>
+    <script src = "//code.jquery.com/jquery-1.12.0.min.js">
+    <script src = "public/js/testajax.js">
     <form action="index.php?uc=validerFicheFrais&action=afficherLigneFrais" method="post" role="form">
         <div class="form-group container-fluid">
             <label for ='listVisiteur'>Choisir le visiteur :</label>
-            <select class="form-control" id='listVisiteur'name="listVisiteur" onchange="this.form.submit()">
+            <select class="form-control" id='listVisiteur'  onchange="this.form.submit()" >
                 <?php
                 foreach ($visiteurs as $unVisiteur) {
                     $id = $unVisiteur['id'];
@@ -25,7 +27,7 @@
             </select>
             &nbsp;
             <label for="listMois">Mois :</label>
-            <select class="form-control" id="listMois" id="listMois">
+            <select class="form-control" id="listMois">
                 <?php
                 foreach ($lesMois as $unMois) {
                     $mois = $unMois['mois'];
