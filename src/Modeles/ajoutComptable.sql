@@ -14,5 +14,24 @@ INSERT INTO COMPTABLE VALUES ('Comptable', 'f39');
 
 SELECT Visiteur.mdp FROM Visiteur
 INNER JOIN COMPTABLE 
+<<<<<<< HEAD
 ON COMPTABLE.IDVISITEUR = Visiteur.id
 WHERE COMPTABLE.LIBELLE = 'Comptable';
+=======
+ON COMPTABLE.IDVISITEUR = Visiteur.id;
+
+
+SELECT COUNT(*) AS nbPasComptable
+FROM Visiteur
+WHERE Visiteur.id NOT IN 
+(SELECT COMPTABLE.IDVISITEUR FROM COMPTABLE);
+
+SELECT * FROM visiteur;
+
+ALTER TABLE visiteur
+MODIFY COLUMN mdp VARCHAR(255);
+
+UPDATE visiteur 
+SET mdp = '$2y$12$EdJlIhnJ1zpFx6GnVZnrOu4jzuujaJmCrUbEtnNgkPDr.EVkErR/a'
+WHERE id = 'a131';
+>>>>>>> origin/branch_Adrien

@@ -1,11 +1,14 @@
 # Avancée :
 
-- Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / Workbench
-- Planifier les tâches sur le site Trello
+- Planifier les tâches avec Trello
+- Mettre à jour PHP > 8 (click sur logo Wamp en barre des tâches => PHP => Version => Sélectionner PHP 8)
+- Mettre le PATH de PHP 8.1 dans variable d'environnement windows
+- Créer un virtualhost avec le chemin du projet pointant sur le répertoire 'public'
+- Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / MySQL Workbench
+- Lancer la commande 'php majGSB.php' dans le dossier '/bin/gendatas' 
+- Bug corrigé sur fiche de frais hors forfait mal renseigné
+- Hashage de mot de passe : "echo password_hash('password', PASSWORD_BCRYPT, ['cost' => 12]);"
 
-# Avancée à faire :
-
-- Régler les bugs du site (Utilisateurs en SQL, bugs en PHP, etc...)
 
 # Documents principaux :
  
@@ -15,8 +18,6 @@ Fichier PDF :
 - Partie 3 = Infos sur les missions à réaliser
 - Partie 4 = Documents pour les missions
 
-Fichiers HTML / PHP :
-Le site est visible dans le répertoire 'GSB_v2032/GSB_AppliMVC/src/Vues/
 
 # PRESENTATION DU CONTEXTE :
 
@@ -59,7 +60,7 @@ mais aussi redonner confiance aux équipes malmenées par les fusions récentes.
 
 # OUTILS :
 - IDE NetBeans
-- Langage PHP (version > 8 = mieux)
+- Langage PHP (version > 8)
 - Serveur web + MariaDB (login PhpMyAdmin = 'root' + '' et y importer fichier 'resources/bdd/gsb_restore.sql' après avoir créé 'userGsb')
 - MVC : Modèle contient les données à afficher, Vue contient la présentation de l’interface graphique, Contrôleur contient la logique des actions utilisateurs.
 
@@ -75,12 +76,12 @@ SELECT user FROM mysql.user;
 
 -- Créer un nouvel utilisateur 'userGsb' avec le mot de passe 'secret' :
 
-CREATE USER IF NOT EXISTS userGsb@localhost IDENTIFIED BY 'secret';
+CREATE USER userGsb@localhost IDENTIFIED BY 'secret';
 
 
--- Donne TOUS les droits à l'utilisateur 'userGSB' avec le mdp 'secret' :
+-- Donne TOUS les droits à l'utilisateur 'userGsb', sur toutes les tables de la BDD 'gsb_frais' :
 
-GRANT ALL PRIVILEGES ON *.* TO 'userGsb'@localhost IDENTIFIED BY 'secret';
+GRANT ALL PRIVILEGES ON gsb_frais.* TO 'userGsb'@'localhost'; 
 
 
 -- Actualise les privilèges :
@@ -91,3 +92,23 @@ FLUSH PRIVILEGES;
 -- Montre les privilèges pour userGsb :
 
 SHOW GRANTS FOR 'userGsb'@'localhost';
+
+
+-- Modifie une colonne pour y stocker un hash
+
+ALTER TABLE nomTableUtilisateurs
+MODIFY COLUMN passwordColumn VARCHAR(255);
+
+
+UPDATE nomTableUtilisateurs
+SET passwordColumn = hash
+WHERE id = idChoisi;
+
+
+# Bonus PowerShell :
+
+#Trouver un fichier :
+Get-ChildItem -Recurse nomFichier
+
+#Trouver un fichier contenant un texte recherché :
+Get-ChildItem -Recurse | Select-String "Ici le texte à chercher" -List | Select Path

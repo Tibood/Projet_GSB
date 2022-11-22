@@ -2,3 +2,5 @@ RewriteEngine on
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php  [QSA,L]
+
+ErrorDocument 403 "Message personnalisé pour accès interdit (ERREUR HTTP 403). Contactez %{SERVER_ADMIN}"
