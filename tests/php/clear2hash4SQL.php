@@ -1,7 +1,7 @@
 <?php
 
-$fp = @fopen("clear_passwords.txt", "r");
-$idfile = @fopen("id.txt", "r");
+$fp = @fopen("../txt/clear_passwords.txt", "r");
+$idfile = @fopen("../txt/id.txt", "r");
 
 if ($fp) {
     while (($buffer = fgets($fp, 4096)) && ($id = fgets($idfile, 4096)) !== false) {
