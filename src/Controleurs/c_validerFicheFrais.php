@@ -10,11 +10,11 @@
  */
 use Outils\Utilitaires;
 require '..\bin\gendatas\fonctions.php';
-
+if(!empty($_POST['listVisiteur'])){
+    return $lesMois = $pdo->getLesMoisDisponibles($_POST['listVisiteur']);
+}
 $pdo2 = new PDO('mysql:host=localhost;dbname=gsb_frais', 'userGsb', 'secret');
-$pdo2->query('SET CHARACTER SET utf8');
-
-
+    $pdo2->query('SET CHARACTER SET utf8');
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 if ($_SESSION['metier'] === 'Comptable' ) {

@@ -1,8 +1,9 @@
+<script src="test.js"> </script>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <div>
     <form action="index.php?uc=validerFicheFrais&action=afficherLigneFrais" method="post" role="form">
-        <div class="form-group container-fluid">
             <label for ='listVisiteur'>Choisir le visiteur :</label>
-            <select class="form-control" id='listVisiteur'name="listVisiteur" onchange="this.form.submit()">
+            <select class="form-control" id='listVisiteur'name="listVisiteur" onchange="getMois(this.value)">
                 <?php
                 foreach ($visiteurs as $unVisiteur) {
                     $id = $unVisiteur['id'];
@@ -10,7 +11,7 @@
                     $prenom = $unVisiteur['prenom'];
                     if ($id == $_POST['listVisiteur']) {
                     ?>
-                        <option selected value="<?php echo $mois ?>">
+                        <option selected value="<?php echo $id ?>">
                             <?php echo $nom . ' ' . $prenom ?> </option>
                     <?php
                     } else {
@@ -27,6 +28,7 @@
             <label for="listMois">Mois :</label>
             <select class="form-control" id="listMois" id="listMois">
                 <?php
+                /*
                 foreach ($lesMois as $unMois) {
                     $mois = $unMois['mois'];
                     $numAnnee = $unMois['numAnnee'];
@@ -43,6 +45,8 @@
                         <?php
                     }
                     }
+                    ?>
+                    */
                     ?>
             </select>
         </div>
