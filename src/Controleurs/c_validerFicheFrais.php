@@ -26,7 +26,9 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             break;
         case 'getMois':
             $idVisiteurSelectionner = filter_input(INPUT_GET, 'idVisiteur', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $lesMois = $pdo->getLesMoisDisponibles($idVisiteurSelectionner);
+            $lesMois = $pdo->getLesMoisDisponibles($idVisiteurSelectionner);    
+            $lesCles = array_keys($lesMois);
+            $moisASelectionner = $lesCles[0];
             break;
         case 'afficherLigneFrais':
             $visiteurs = getLesVisiteurs($pdo2);
@@ -39,5 +41,4 @@ if ($_SESSION['metier'] === 'Comptable' ) {
     include PATH_VIEWS . 'v_erreurs.php';
 }
     
-    $lesCles = array_keys($lesMois);
-    $moisASelectionner = $lesCles[0];
+
