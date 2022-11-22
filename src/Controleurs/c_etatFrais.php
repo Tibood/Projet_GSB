@@ -17,10 +17,6 @@
 
 // Pointe vers fichier resources/Outils/Utilitaires.php
 use Outils\Utilitaires;
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/branch_Adrien
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $idVisiteur = $_SESSION['idVisiteur'];
