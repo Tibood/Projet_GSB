@@ -10,9 +10,7 @@
  */
 use Outils\Utilitaires;
 require '..\bin\gendatas\fonctions.php';
-if(!empty($_POST['listVisiteur'])){
-    return $lesMois = $pdo->getLesMoisDisponibles($_POST['listVisiteur']);
-}
+
 $pdo2 = new PDO('mysql:host=localhost;dbname=gsb_frais', 'userGsb', 'secret');
     $pdo2->query('SET CHARACTER SET utf8');
 
@@ -26,7 +24,7 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             break;
         case 'getMois':
             $idVisiteurSelectionner = filter_input(INPUT_GET, 'idVisiteur', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $lesMois = $pdo->getLesMoisDisponibles($idVisiteurSelectionner);    
+            $lesMois = $pdo->getLesMoisDisponibles($idVisiteurSelectionner);
             $lesCles = array_keys($lesMois);
             $moisASelectionner = $lesCles[0];
             break;
@@ -40,5 +38,5 @@ if ($_SESSION['metier'] === 'Comptable' ) {
     Utilitaires::ajouterErreur("Vous n'êtes pas comptable");
     include PATH_VIEWS . 'v_erreurs.php';
 }
-    
+
 
