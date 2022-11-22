@@ -17,11 +17,16 @@ $pdo2->query('SET CHARACTER SET utf8');
 
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
 if ($_SESSION['metier'] === 'Comptable' ) {
     switch ($action) {
         case 'saisirInfo':
             $visiteurs = getLesVisiteurs($pdo2);
             include PATH_VIEWS . 'v_listVisiteur_Mois.php';
+            break;
+        case 'getMois':
+            $idVisiteurSelectionner = filter_input(INPUT_GET, 'idVisiteur', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $lesMois = $pdo->getLesMoisDisponibles($idVisiteurSelectionner);
             break;
         case 'afficherLigneFrais':
             $visiteurs = getLesVisiteurs($pdo2);
@@ -33,6 +38,6 @@ if ($_SESSION['metier'] === 'Comptable' ) {
     Utilitaires::ajouterErreur("Vous n'êtes pas comptable");
     include PATH_VIEWS . 'v_erreurs.php';
 }
-    $lesMois = $pdo->getLesMoisDisponibles($_SESSION['idVisiteur']);
+    
     $lesCles = array_keys($lesMois);
     $moisASelectionner = $lesCles[0];
