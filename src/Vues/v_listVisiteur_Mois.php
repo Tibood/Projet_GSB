@@ -1,4 +1,4 @@
-<script src="test.js"> </script>
+
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <div>
     <br><!--this.form.submit()"-->
