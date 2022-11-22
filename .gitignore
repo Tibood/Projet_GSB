@@ -1,12 +1,13 @@
+/nbproject
+/vendor
+
 # thibaud
 /doc_projet
 /.vscode
 
-
 # adrien
-/.vs
-/tests/clear_passwords.txt
-/tests/hashed_passwords.txt
-/tests/id.txt
+/tests/sql
+/tests/php
+/tests/txt
 
-# rayan
+# rayane

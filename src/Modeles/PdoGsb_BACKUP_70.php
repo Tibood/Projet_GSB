@@ -90,14 +90,22 @@ class PdoGsb
      *
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
-
+<<<<<<< HEAD
+    public function getInfosVisiteur($login): array | bool {        
+=======
+<<<<<<< HEAD
+    public function getInfosVisiteur($login, $mdp): array|bool
+    {
+=======
     public function getInfosVisiteur($login): array | bool
     {        
+>>>>>>> cacba456541ff4bce180b522b66f998ad6a47905
         if (password_verify(':unMdp', 'visiteur.mdp') !== false) {
             echo "Password is valid";
         } else {
             echo "Password is invalid";
         }
+>>>>>>> origin/branch_Adrien
         $requetePrepare = $this->connexion->prepare(
             'SELECT visiteur.id AS id, visiteur.nom AS nom, '
             . 'visiteur.prenom AS prenom, visiteur.email AS email '

@@ -90,7 +90,10 @@ class PdoGsb
      *
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
-
+<<<<<<< HEAD
+    public function getInfosVisiteur($login, $mdp): array|bool
+    {
+=======
     public function getInfosVisiteur($login): array | bool
     {        
         if (password_verify(':unMdp', 'visiteur.mdp') !== false) {
@@ -98,9 +101,10 @@ class PdoGsb
         } else {
             echo "Password is invalid";
         }
+>>>>>>> origin/branch_Adrien
         $requetePrepare = $this->connexion->prepare(
             'SELECT visiteur.id AS id, visiteur.nom AS nom, '
-            . 'visiteur.prenom AS prenom, visiteur.email AS email '
+            . 'visiteur.prenom AS prenom '
             . 'FROM visiteur '
             . 'WHERE visiteur.login = :unLogin'
         );
@@ -109,24 +113,6 @@ class PdoGsb
         return $requetePrepare->fetch();
     }
 
-    /**
-     * Retourne le code d'authentification à 2 facteurs
-     * de l'utilisateur concerné lors de sa connexion.
-     * 
-     * @param type $id
-     * @return type
-     */
-    public function getCodeVisiteur($id) {
-        $requetePrepare = $this->connexion->prepare(
-            'SELECT visiteur.codea2f AS codea2f '
-          . 'FROM visiteur '
-          . 'WHERE visiteur.id = :unId'
-        );
-        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
-        $requetePrepare->execute();
-        return $requetePrepare->fetch()['codea2f'];
-    }
-    
     public function getMdpVisiteur($login) {
         $requetePrepare = $this->connexion->prepare(
             'SELECT mdp '
@@ -320,24 +306,6 @@ class PdoGsb
         return $boolReturn;
     }
 
-    /**
-     * Créé le code d'authentification à 2 facteurs,
-     * l'implémente dans la base en fonction de l'utilisateur.
-     * 
-     * @param type $id
-     * @param type $code
-     */
-    public function setCodeA2f($id, $code) {
-        $requetePrepare = $this->connexion->prepare(
-            'UPDATE visiteur '
-          . 'SET codea2f = :unCode '
-          . 'WHERE visiteur.id = :unIdVisiteur '
-        );
-        $requetePrepare->bindParam(':unCode', $code, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unIdVisiteur', $id, PDO::PARAM_STR);
-        $requetePrepare->execute();
-    }
-    
     /**
      * Retourne le dernier mois en cours d'un visiteur
      *
