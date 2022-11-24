@@ -92,12 +92,7 @@ class PdoGsb
      */
 
     public function getInfosVisiteur($login): array | bool
-    {        
-        if (password_verify(':unMdp', 'visiteur.mdp') !== false) {
-            echo "Password is valid";
-        } else {
-            echo "Password is invalid";
-        }
+    {
         $requetePrepare = $this->connexion->prepare(
             'SELECT visiteur.id AS id, visiteur.nom AS nom, '
             . 'visiteur.prenom AS prenom, visiteur.email AS email '
