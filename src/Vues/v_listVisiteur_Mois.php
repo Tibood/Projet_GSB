@@ -1,8 +1,6 @@
-
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <div>
     <br><!--this.form.submit()"-->
-    <script src = "public/js/testajax.js"></script>
+    <script src = "/public/js/testajax.js"></script>
     <script src = "//code.jquery.com/jquery-1.12.0.min.js"></script>
     <form action="index.php?uc=validerFicheFrais&action=afficherLigneFrais" method="post" role="form">
             <label for ='listVisiteur'>Choisir le visiteur :</label>
