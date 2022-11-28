@@ -20,7 +20,7 @@ if ($_SESSION['metier'] === 'Comptable' ) {
     switch ($action) {
         case 'saisirInfo':
             $visiteurs = getLesVisiteurs($pdo2);
-            include PATH_VIEWS . 'v_listVisiteur_Mois.php';
+            include PATH_VIEWS . 'v_validerFicheFrais.php';
             break;
         case 'getMois':
             $idVisiteurSelectionner = filter_input(INPUT_GET, 'idVisiteur', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -30,7 +30,6 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             break;
         case 'afficherLigneFrais':
             $visiteurs = getLesVisiteurs($pdo2);
-            include PATH_VIEWS . 'v_listVisiteur_Mois.php';
             include PATH_VIEWS . 'v_validerFicheFrais.php';
             break;
     }
