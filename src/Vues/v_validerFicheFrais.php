@@ -14,12 +14,13 @@
 
 <!--SELECTION-->
 <div>
-    <br><!--this.form.submit()"-->
+    <br><!--this.form.submit()"
+    onchange="getMois(this.value);-->
     <link href="styles/styleComptable.css" rel="stylesheet" type="text/css">
-    <script src = "public/asset/js/testajax.js"></script>
+    <script src = "assets/js/testajax.js"></script>
     <script src = "//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <form action="index.php?uc=validerFicheFrais&action=afficherLigneFrais" method="post" role="form">
-            <label for ='listVisiteur'>Choisir le visiteur :</label>
+    <!--<form action="index.php?uc=validerFicheFrais&action=afficherLigneFrais" method="post" role="form">-->
+            <label for ='listVisiteur'>Choisir le visiteur ooo:</label>
             <select class="form-control" name="listVisiteur" id='listVisiteur' onchange="getMois(this.value);" >
                 <?php
                 foreach ($visiteurs as $unVisiteur) {
@@ -74,6 +75,10 @@
 
 <h1>Valider la fiche de frais</h1>
 <div class='container'>
+    <div class="input-group" id="retour">
+    </div>
+    
+    
     <div class="input-group">
         <h2>Eléments forfaitisé</h2>
         <label>Fofait Etape</label>
@@ -107,12 +112,13 @@
                 <th></th>
             </tr>
             <tr>
-                <td>Cell3</td>
-                <td>Cell4</td>
-                <td>Cell4</td>
+                <td><div id="date"></div>test</td>
+                <td><div id="Libelle"></div>Cell4</td>
+                <td><div id="Montant"></div>Cell4</td>
                 <td>
                 <button type="button" class="btn btn-success">Corriger</button>
-                <button type="button" class="btn btn-danger">Reinitialiser</button></td>
+                <button type="button" class="btn btn-danger">Reinitialiser</button>
+                </td>
             </tr>
         </tbody>
     </table>

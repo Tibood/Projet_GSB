@@ -23,10 +23,11 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             include PATH_VIEWS . 'v_validerFicheFrais.php';
             break;
         case 'getMois':
-            $idVisiteurSelectionner = filter_input(INPUT_GET, 'idVisiteur', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $lesMois = $pdo->getLesMoisDisponibles($idVisiteurSelectionner);
             $lesCles = array_keys($lesMois);
-            $moisASelectionner = $lesCles[0];
+            //$moisASelectionner = $lesCles[0];
+            echo $lesMois;
             break;
         case 'afficherLigneFrais':
             $visiteurs = getLesVisiteurs($pdo2);
