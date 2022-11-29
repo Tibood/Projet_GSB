@@ -20,7 +20,8 @@ a:hover, a:focus {
 }
 
 h1 {
-    color: orange
+    color: orange;
+    justify-content: center;
 }
 .panel-info > .panel-heading {
     color: #fff;
