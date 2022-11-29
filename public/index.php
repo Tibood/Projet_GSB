@@ -35,6 +35,11 @@ if ($uc && !$estConnecte) {
 } elseif (empty($uc)) {
     $uc = 'accueil';
 }
+$a = filter_input(INPUT_GET, 'a', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+if($a){
+    include PATH_CTRLS . 'c_etatFrais.php';
+    exit();
+}
 
 switch ($uc) {
     case 'connexion':
