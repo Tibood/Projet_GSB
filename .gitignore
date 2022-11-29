@@ -4,9 +4,11 @@
 /AP-GSB-2023.pdf
 
 # adrien
-/.vs
-/tests/clear_passwords.txt
-/tests/hashed_passwords.txt
-/tests/id.txt
+/tests/txt/clear_passwords.txt
+/tests/txt/hashed_passwords.txt
+/tests/txt/id.txt
+/tests/txt/GSB_API_KEY.txt
+/tests/php/emailBuilder.php
+/vendor
 
 # rayan

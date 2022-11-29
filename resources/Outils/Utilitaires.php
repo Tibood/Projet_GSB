@@ -46,13 +46,37 @@ abstract class Utilitaires
     }
 
     /**
+     * Utilise la librairie de Sendinblue pour envoyer un mail
+     * pour la double authentification, depuis le serveur de production.
+     */ 
+     
+    public static function emailBuilder(string $email, int $code) {
+        $credentials = \SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
+        $apiInstance = new \SendinBlue\Client\Api\TransactionalEmailsApi(new GuzzleHttp\Client(),$credentials);
+
+        $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail([
+             'subject' => 'from the PHP SDK! For GSB',
+             'sender' => ['name' => 'Sendinblue', 'email' => 'admin@wampserver.invalid'],
+             //'replyTo' => ['name' => 'Sendinblue', 'email' => 'contact@sendinblue.com'],
+             'to' => [[ 'name' => 'Max Mustermann', 'email' => $email]],
+             'htmlContent' => '<html><body><h1>Test n°' . $code . '</h1></body></html>'
+        ]);
+
+        try {
+            $result = $apiInstance->sendTransacEmail($sendSmtpEmail);
+            print_r($result);
+        } catch (Exception $e) {
+            echo $e->getMessage(),PHP_EOL;
+        }
+    }
+    
+    /**
      * Implémente le code de vérification à 2 facteurs dans 
      * une variable de session.
      * 
      * @param type $code
      */
-    public static function connecterA2f($code)
-    {
+    public static function connecterA2f($code) : void {
         $_SESSION['codeA2f'] = $code;
     }
     
