@@ -17,7 +17,6 @@
 
 use Outils\Utilitaires;
 
-
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $idVisiteur = $_SESSION['idVisiteur'];
 switch ($action) {
@@ -45,4 +44,9 @@ switch ($action) {
         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
         $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
         include PATH_VIEWS . 'v_etatFrais.php';
+        break;
+    case 'genererPdf':  
+        $test = filter_input(INPUT_POST, 'moisSelectionner_pdf');
+        include PATH_VIEWS .'v_genererPdf.php';
+        break;
 }

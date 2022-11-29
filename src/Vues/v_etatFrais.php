@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Vue État de Frais
  *
@@ -14,12 +13,11 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-
 ?>
 <hr>
 <div class="panel panel-primary">
     <div class="panel-heading">Fiche de frais du mois 
-        <?php echo $numMois . '-' . $numAnnee ?> : </div>
+<?php echo $numMois . '-' . $numAnnee ?> : </div>
     <div class="panel-body">
         <strong><u>Etat :</u></strong> <?php echo $libEtat ?>
         depuis le <?php echo $dateModif ?> <br> 
@@ -30,9 +28,10 @@
     <div class="panel-heading">Eléments forfaitisés</div>
     <table class="table table-bordered table-responsive">
         <tr>
-            <?php
-            foreach ($lesFraisForfait as $unFraisForfait) {
-                $libelle = $unFraisForfait['libelle']; ?>
+<?php
+foreach ($lesFraisForfait as $unFraisForfait) {
+    $libelle = $unFraisForfait['libelle'];
+    ?>
                 <th> <?php echo htmlspecialchars($libelle) ?></th>
                 <?php
             }
@@ -41,7 +40,8 @@
         <tr>
             <?php
             foreach ($lesFraisForfait as $unFraisForfait) {
-                $quantite = $unFraisForfait['quantite']; ?>
+                $quantite = $unFraisForfait['quantite'];
+                ?>
                 <td class="qteForfait"><?php echo $quantite ?> </td>
                 <?php
             }
@@ -62,7 +62,8 @@
         foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
             $date = $unFraisHorsForfait['date'];
             $libelle = htmlspecialchars($unFraisHorsForfait['libelle']);
-            $montant = $unFraisHorsForfait['montant']; ?>
+            $montant = $unFraisHorsForfait['montant'];
+            ?>
             <tr>
                 <td><?php echo $date ?></td>
                 <td><?php echo $libelle ?></td>
@@ -73,4 +74,18 @@
         ?>
     </table>
 </div>
-<button class="btn btn-success" type="submit">Generer un pdf</button>
+
+<div class="col-md-4">
+    <form method ="post"
+          action= "index.php?uc=etatFrais&action=genererPdf"
+          role="form">
+        <fieldset>       
+            <input type="hidden" id="moisSelectionner_pdf" 
+                   name="moisSelectionner_pdf"
+                   value="<?php $mois ?>" 
+                   class="form-control"
+                   hidden>   
+            <button class="btn btn-success" type="submit">Générer un pdf</button>
+        </fieldset>
+    </form>
+</div>
