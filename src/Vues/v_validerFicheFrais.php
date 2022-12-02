@@ -16,63 +16,62 @@
 
 <!--SELECTION-->
 <div>
-    <br><!--this.form.submit()"
-    onchange="getMois(this.value);-->
-            <label for ='listVisiteur'>Choisir le visiteur:</label>
-            <select class="form-control" name="listVisiteur" id='listVisiteur' onchange="getMois(this.value);" >
+    <br>
+        <label for ='listVisiteur'>Choisir le visiteur:</label>
+        <select class="form-control" name="listVisiteur" id='listVisiteur' onchange="getMois(this.value);" >
+            <?php
+            foreach ($visiteurs as $unVisiteur) {
+                $id = $unVisiteur['id'];
+                $nom = $unVisiteur['nom'];
+                $prenom = $unVisiteur['prenom'];
+                if ($id == $_POST['listVisiteur']) {
+                ?>
+                    <option selected value="<?php echo $id ?>">
+                        <?php echo $nom . ' ' . $prenom ?> </option>
                 <?php
-                foreach ($visiteurs as $unVisiteur) {
-                    $id = $unVisiteur['id'];
-                    $nom = $unVisiteur['nom'];
-                    $prenom = $unVisiteur['prenom'];
-                    if ($id == $_POST['listVisiteur']) {
+                } else {
+                ?>
+                    <option value="<?php echo $id ?>">
+                        <?php echo $nom .' '. $prenom ?>
+                    </option>
+                <?php
+                }
+            }
+            ?>
+        </select>
+        &nbsp;
+        <label for="listMois">Mois :</label>
+        <select class="form-control" name="listMois" id="listMois">
+            <?php
+            /*
+            foreach ($lesMois as $unMois) {
+                $mois = $unMois['mois'];
+                $numAnnee = $unMois['numAnnee'];
+                $numMois = $unMois['numMois'];
+                if ($mois == $_POST['listMois']) {
                     ?>
-                        <option selected value="<?php echo $id ?>">
-                            <?php echo $nom . ' ' . $prenom ?> </option>
+                    <option selected value="<?php echo $mois ?>">
+                        <?php echo $numMois . '/' . $numAnnee ?> </option>
                     <?php
-                    } else {
+                } else {
                     ?>
-                        <option value="<?php echo $id ?>">
-                            <?php echo $nom .' '. $prenom ?>
-                        </option>
+                    <option value="<?php echo $mois ?>">
+                        <?php echo $numMois . '/' . $numAnnee ?> </option>
                     <?php
-                    }
+                }
                 }
                 ?>
-            </select>
-            &nbsp;
-            <label for="listMois">Mois :</label>
-            <select class="form-control" name="listMois" id="listMois">
-                <?php
-                /*
-                foreach ($lesMois as $unMois) {
-                    $mois = $unMois['mois'];
-                    $numAnnee = $unMois['numAnnee'];
-                    $numMois = $unMois['numMois'];
-                    if ($mois == $_POST['listMois']) {
-                        ?>
-                        <option selected value="<?php echo $mois ?>">
-                            <?php echo $numMois . '/' . $numAnnee ?> </option>
-                        <?php
-                    } else {
-                        ?>
-                        <option value="<?php echo $mois ?>">
-                            <?php echo $numMois . '/' . $numAnnee ?> </option>
-                        <?php
-                    }
-                    }
-                    ?>
-                    */
-                    ?>
-            </select>
+                */
+                ?>
+        </select>
         </div>
     </form>
 </div>
-
+<br>
 <!--AFFICHAGE-->
-
-<h1>Valider la fiche de frais</h1>
 <div class='container'>
+<h1>Valider la fiche de frais</h1>
+
     <div class="input-group" id="retour">
     </div>
 
