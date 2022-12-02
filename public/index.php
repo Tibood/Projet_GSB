@@ -26,7 +26,11 @@ session_start();
 $pdo = PdoGsb::getPdoGsb();
 $estConnecte = Utilitaires::estConnecte();
 
-require PATH_VIEWS . 'v_entete.php';
+$Requeteajax = filter_input(INPUT_GET, 'a', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+if(!$Requeteajax){
+    require PATH_VIEWS . 'v_entete.php';
+}
 
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -34,11 +38,6 @@ if ($uc && !$estConnecte) {
     $uc = 'connexion';
 } elseif (empty($uc)) {
     $uc = 'accueil';
-}
-$a = filter_input(INPUT_GET, 'a', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-if($a){
-    include PATH_CTRLS . 'c_etatFrais.php';
-    exit();
 }
 
 switch ($uc) {
