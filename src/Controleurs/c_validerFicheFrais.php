@@ -28,6 +28,7 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             $lesCles = array_keys($lesMois);
             //$moisASelectionner = $lesCles[0];
             echo $lesMois;
+            exit();
             break;
         case 'afficherLigneFrais':
             $visiteurs = getLesVisiteurs($pdo2);
