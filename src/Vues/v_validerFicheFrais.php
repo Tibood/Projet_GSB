@@ -10,17 +10,15 @@
  * @author    BROUILLET THIBAUD
  */
 ?>
-
+<script src = "assets/js/requetesAjax.js"></script>
+<script src = "//code.jquery.com/jquery-1.12.0.min.js"></script>
+<link href="styles/styleComptable.css" rel="stylesheet" type="text/css">
 
 <!--SELECTION-->
 <div>
     <br><!--this.form.submit()"
     onchange="getMois(this.value);-->
-    <link href="styles/styleComptable.css" rel="stylesheet" type="text/css">
-    <script src = "assets/js/testajax.js"></script>
-    <script src = "//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!--<form action="index.php?uc=validerFicheFrais&action=afficherLigneFrais" method="post" role="form">-->
-            <label for ='listVisiteur'>Choisir le visiteur ooo:</label>
+            <label for ='listVisiteur'>Choisir le visiteur:</label>
             <select class="form-control" name="listVisiteur" id='listVisiteur' onchange="getMois(this.value);" >
                 <?php
                 foreach ($visiteurs as $unVisiteur) {
@@ -77,8 +75,8 @@
 <div class='container'>
     <div class="input-group" id="retour">
     </div>
-    
-    
+
+
     <div class="input-group">
         <h2>Eléments forfaitisé</h2>
         <label>Fofait Etape</label>
