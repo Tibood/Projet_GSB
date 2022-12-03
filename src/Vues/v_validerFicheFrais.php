@@ -40,7 +40,7 @@
         </select>
         &nbsp;
         <label for="listMois">Mois :</label>
-        <select class="form-control" name="listMois" id="listMois">
+        <select class="form-control" name="listMois" id="listMois" onchange="getInfo(this.value,$_POST['listVisiteur']);" >
             <?php
             foreach ($lesMois as $unMois) {
                 $mois = $unMois['mois'];
