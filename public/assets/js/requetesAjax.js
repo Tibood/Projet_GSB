@@ -42,6 +42,7 @@ function corrigerFraisForfait(){
 
 function getMois(idvisiteur)
 {
+    if (!document.getElementById("listMois").value) {
     $.ajax({
         type: "POST",
         url: "index.php?uc=validerFicheFrais&action=getMois&a=ajax",
@@ -53,6 +54,9 @@ function getMois(idvisiteur)
             $("#listMois").html(retour);
         }
     });
+    } else {
+        getInfo(idvisiteur, document.getElementById("listMois").value);
+    }
 }
 
 function getInfo(idvisiteur, mois)
