@@ -48,6 +48,9 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             echo json_encode($reponse);
             exit();
             break;
+        case 'corrigerFraisForfait':
+            exit();
+            break;
     }
 } else {
     Utilitaires::ajouterErreur("Vous n'êtes pas comptable");

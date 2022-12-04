@@ -64,19 +64,19 @@
         <h3>Eléments forfaitisé</h3>
         <label>Fofait Etape</label>
         <br/>
-        <input type="number" class='form-control' value='' id="Fofait_Etape" name="Fofait_Etape" required>
+        <input type="number" class='form-control' id="Fofait_Etape" name="ETP" required>
         <br/>
         <label>Frais Kilometrique</label>
         <br/>
-        <input type="number" class='form-control' value='' id="Frais_Kilometrique" name="Frais_Kilometrique" required>
+        <input type="number" class='form-control' id="Frais_Kilometrique" name="KM" required>
         <br/>
         <label>Nuitée Hôtel</label>
         <br/>
-        <input type="number" class='form-control' value='' id="Nuitee_Hotel" name="Nuitee_Hotel" required>
+        <input type="number" class='form-control' id="Nuitee_Hotel" name="NUI" required>
         <br/>
         <label>Repas Restaurant</label>
         <br/>
-        <input type="number" class='form-control' value='' id="Repas_Restaurant" name="Repas_Restaurant" required>
+        <input type="number" class='form-control' value='' id="Repas_Restaurant" name="REP" required>
     </div>
     <br/>
     <input type="button" value="Corriger"class="btn btn-success"></input>
