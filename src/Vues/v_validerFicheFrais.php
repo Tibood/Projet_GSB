@@ -80,7 +80,7 @@
         <br/>
     <br/>
     <br/>
-    <input type="button" value="Corriger"class="btn btn-success"></input>
+    <input type="button" value="Corriger"class="btn btn-success" onclick="reset()"></input>
     &nbsp;
     <input type="reset" value="Reinitialiser" class="btn btn-danger"></input>
 </div>
