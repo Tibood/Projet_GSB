@@ -25,7 +25,7 @@ if ($_SESSION['metier'] === 'Comptable' ) {
         case 'getMois':
             $idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $lesMois = $pdo->getLesMoisDisponibles($idVisiteurSelectionner);
-            echo "<option selected value=''> --Selectionner un mois-- </option>";
+            echo "<option selected value='0'> --Selectionner un mois-- </option>";
             foreach ($lesMois as $unMois) {
                 $mois = $unMois['mois'];
                 $numAnnee = $unMois['numAnnee'];

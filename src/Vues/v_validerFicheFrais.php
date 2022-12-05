@@ -18,7 +18,7 @@
 <div>
         <label for ='listVisiteur'>Choisir le visiteur:</label>
         <select class="form-control" name="listVisiteur" id='listVisiteur' onchange="getMois(this.value);" >
-        <option selected value="">-- Selectionner un visiteur --</option>
+        <option selected value="0">-- Selectionner un visiteur --</option>
             <?php
             foreach ($visiteurs as $unVisiteur) {
                 $id = $unVisiteur['id'];
