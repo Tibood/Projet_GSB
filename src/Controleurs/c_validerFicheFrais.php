@@ -55,6 +55,16 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             $pdo->majFraisForfait($idVisiteurSelectionner,$moisSelectionner,$lesFrais);
             exit();
             break;
+        case 'corrigerFraisHorsForfait':
+            exit();
+            break;
+        case 'corrigerNbJustificatif':
+            $idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $nbJustificatif = filter_input(INPUT_POST, 'nbJustificatif', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $pdo->majNbJustificatifs($idVisiteurSelectionner,$moisSelectionner,$nbJustificatif);
+            exit();
+            break;
     }
 } else {
     Utilitaires::ajouterErreur("Vous n'êtes pas comptable");
