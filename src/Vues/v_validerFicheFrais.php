@@ -24,19 +24,12 @@
                 $id = $unVisiteur['id'];
                 $nom = $unVisiteur['nom'];
                 $prenom = $unVisiteur['prenom'];
-                if ($id == $_POST['listVisiteur']) {
-                ?>
-                    <option selected value="<?php echo $id ?>">
-                        <?php echo $nom . ' ' . $prenom ?> </option>
-                <?php
-                } else {
                 ?>
                     <option value="<?php echo $id ?>">
                         <?php echo $nom .' '. $prenom ?>
                     </option>
                 <?php
                 }
-            }
             ?>
         </select>
         &nbsp;

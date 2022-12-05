@@ -54,6 +54,31 @@ function ajoutLigne(date,libelle,montant)
     cell4.innerHTML = "<input type='button' value='Corriger' class='btn btn-success'>&nbsp</input><input type='reset' value='Reinitialiser' class='btn btn-danger'></input>";
 }
 
+function corrigerNbJustificatif()
+{
+    let nbJustificatif = document.getElementById("Nb_justificatif");
+    let moisSelectionner = document.getElementById("listMois");
+    let idVisiteurSelectionner = document.getElementById("listVisiteur");
+    let nomVisiteur = idVisiteurSelectionner.options[idVisiteurSelectionner.selectedIndex].text;
+    let nomMois = moisSelectionner.options[moisSelectionner.selectedIndex].text;
+    if(confirm("souhaiter vous mettre à jour le nombre de justificatif à " + nbJustificatif.value + " pour " + nomVisiteur +" le "
+    + nomMois + "?" ))
+    {
+    $.ajax({
+        type: "POST",
+        url: "index.php?uc=validerFicheFrais&action=corrigerNbJustificatif&a=ajax",
+        data: {
+            id: idVisiteurSelectionner.value,
+            mois: moisSelectionner.value,
+            nbJustificatif: nbJustificatif.value,
+        },
+        success: function(retour){
+            alert('La modification a bien été prise en compte');
+        }
+    });
+    };
+}
+
 // function corrigerFraisForfait(idvisiteur,mois,fraisForfait){
 //     alert("Fofait_Etape =" + document.getElementById("Fofait_Etape").value + document.getElementById("Fofait_Etape").name
 //     + "\nFrais_Kilometrique =" + document.getElementById("Frais_Kilometrique").value + document.getElementById("Frais_Kilometrique").name
