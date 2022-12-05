@@ -77,7 +77,7 @@ function ajoutLigne(date,libelle,montant)
     let cell3 = row.insertCell(2);
     let cell4 = row.insertCell(3);
     cell1.innerHTML = "<input type='date' class='form-control' value=" + date + " name='date' required>";
-    cell2.innerHTML = "<input type='text' class='form-control' value='" + libelle + "' name='libelle' size='30' required>";
+    cell2.innerHTML = '<input type="text" class="form-control" value="' + libelle + '" name="libelle" size="30" required>';
     cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant' step='.01' required>";
     cell4.innerHTML = "<input type='button' value='Corriger' class='btn btn-success'>&nbsp</input><input type='button' value='Reinitialiser' class='btn btn-danger'></input>";
 }
