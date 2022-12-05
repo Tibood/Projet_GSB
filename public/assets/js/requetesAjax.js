@@ -5,21 +5,8 @@
 //     getMois(value)
 // })
 
-// let listMois = document.getElementById("listMois");
-// listVisiteur.addEventListener("onchange", () => {
-//     if(getComputedStyle(d1).display != "none"){
-//         listMois.style.display = "none";
-//     } else {
-//         listMois.style.display = "block";
-//     }
-// })
-
-// function reset()
-// {
-//     document.getElementsByClassName("fraisForfait").reset();
-//     document.getElementsByClassName("fraisHorsForfait").reset();
-// }
-function corrigerFraisForfait(){
+function corrigerFraisForfait()
+{
     let Fofait_Etape = document.getElementById("Fofait_Etape").value;
     let Frais_Kilometrique = document.getElementById("Frais_Kilometrique").value;
     let Nuitee_Hotel = document.getElementById("Nuitee_Hotel").value;
@@ -49,7 +36,6 @@ function getMois(idvisiteur)
         data: {
             id: idvisiteur
         },
-        //dataType: 'text',
         success: function(retour){
             $("#listMois").html(retour);
         }
@@ -74,7 +60,7 @@ function getInfo(idvisiteur, mois)
             $("#Frais_Kilometrique").val(retour['fraisForfait'][1]['quantite']);
             $("#Nuitee_Hotel").val(retour['fraisForfait'][2]['quantite']);
             $("#Repas_Restaurant").val(retour['fraisForfait'][3]['quantite']);
-            $("#tablo_fraisHorsForfait tr").remove(); 
+            $("#tablo_fraisHorsForfait tr").remove();
             retour['fraisHorsForfait'].forEach(element => ajoutLigne(element[4],element['libelle'],element['montant']));
             $("#Nb_justificatif").val(retour['nbJustificatif']);
         }
