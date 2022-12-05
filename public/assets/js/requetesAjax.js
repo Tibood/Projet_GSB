@@ -1,6 +1,7 @@
 function getMois(idvisiteur)
 {
-    if (!document.getElementById("listMois").value) {
+    let listMois = document.getElementById("listMois");
+    if (!listMois.value) {
     $.ajax({
         type: "POST",
         url: "index.php?uc=validerFicheFrais&action=getMois&a=ajax",
@@ -12,7 +13,7 @@ function getMois(idvisiteur)
         }
     });
     } else {
-        getInfo(idvisiteur, document.getElementById("listMois").value);
+        getInfo(idvisiteur, listMois.value);
     }
 }
 
@@ -53,29 +54,28 @@ function ajoutLigne(date,libelle,montant)
     cell4.innerHTML = "<input type='button' value='Corriger' class='btn btn-success'>&nbsp</input><input type='reset' value='Reinitialiser' class='btn btn-danger'></input>";
 }
 
-function corrigerFraisForfait(idvisiteur,mois,fraisForfait){
-    alert("Fofait_Etape =" + document.getElementById("Fofait_Etape").value + document.getElementById("Fofait_Etape").name
-    + "\nFrais_Kilometrique =" + document.getElementById("Frais_Kilometrique").value + document.getElementById("Frais_Kilometrique").name
-    + "\nNuitee_Hotel =" + document.getElementById("Nuitee_Hotel").value + document.getElementById("Nuitee_Hotel").name
-    + "\nRepas_Restaurant =" + document.getElementById("Repas_Restaurant").value + document.getElementById("Repas_Restaurant").name);
-    $.ajax({
-        type: "POST",
-        url: "index.php?uc=validerFicheFrais&action=corrigerFraisForfait&a=ajax",
-        data: {
-            id: idvisiteur,
-            mois: mois,
-            lesFrais: fraisForfait
-        },
-        dataType: 'json',
-        success: function(retour){
-            $("#Fofait_Etape").val(retour['fraisForfait'][0]['quantite']);
-            $("#Frais_Kilometrique").val(retour['fraisForfait'][1]['quantite']);
-            $("#Nuitee_Hotel").val(retour['fraisForfait'][2]['quantite']);
-            $("#Repas_Restaurant").val(retour['fraisForfait'][3]['quantite']);
-            $("#tablo_fraisHorsForfait tr").remove();
-            retour['fraisHorsForfait'].forEach(element => ajoutLigne(element[4],element['libelle'],element['montant']));
-            $("#Nb_justificatif").val(retour['nbJustificatif']);
-        }
-    });
-}
+// function corrigerFraisForfait(idvisiteur,mois,fraisForfait){
+//     alert("Fofait_Etape =" + document.getElementById("Fofait_Etape").value + document.getElementById("Fofait_Etape").name
+//     + "\nFrais_Kilometrique =" + document.getElementById("Frais_Kilometrique").value + document.getElementById("Frais_Kilometrique").name
+//     + "\nNuitee_Hotel =" + document.getElementById("Nuitee_Hotel").value + document.getElementById("Nuitee_Hotel").name
+//     + "\nRepas_Restaurant =" + document.getElementById("Repas_Restaurant").value + document.getElementById("Repas_Restaurant").name);
+//     $.ajax({
+//         type: "POST",
+//         url: "index.php?uc=validerFicheFrais&action=corrigerFraisForfait&a=ajax",
+//         data: {
+//             id: idvisiteur,
+//             mois: mois,
+//             lesFrais: fraisForfait
+//         },
+//         success: function(retour){
+//             $("#Fofait_Etape").val(retour['fraisForfait'][0]['quantite']);
+//             $("#Frais_Kilometrique").val(retour['fraisForfait'][1]['quantite']);
+//             $("#Nuitee_Hotel").val(retour['fraisForfait'][2]['quantite']);
+//             $("#Repas_Restaurant").val(retour['fraisForfait'][3]['quantite']);
+//             $("#tablo_fraisHorsForfait tr").remove();
+//             retour['fraisHorsForfait'].forEach(element => ajoutLigne(element[4],element['libelle'],element['montant']));
+//             $("#Nb_justificatif").val(retour['nbJustificatif']);
+//         }
+//     });
+// }
 
