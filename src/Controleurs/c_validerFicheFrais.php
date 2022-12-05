@@ -56,6 +56,8 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             exit();
             break;
         case 'corrigerFraisHorsForfait':
+            $idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             exit();
             break;
         case 'corrigerNbJustificatif':
