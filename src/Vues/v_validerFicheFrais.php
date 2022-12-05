@@ -80,7 +80,7 @@
         <br/>
     <br/>
     <br/>
-    <input type="button" value="Corriger"class="btn btn-success" onclick="reset()"></input>
+    <input type="button" value="Corriger"class="btn btn-success"></input>
     &nbsp;
     <input type="reset" value="Reinitialiser" class="btn btn-danger"></input>
     </div>
@@ -100,9 +100,9 @@
         </table>
     </div>
     <label for="Nb_justificatif">Nombre de justificatifs :</label>
-    <input type="number" value='' id="Nb_justificatif" name="Nb_justificatif" class='form-control' required>
+    <input type="number" value='' id="Nb_justificatif" name="Nb_justificatif" class='form-control'required>
     <br/>
     <br/>
-    <input type="button" value="Valider" class="btn btn-success"></input>
+    <input type="button" value="Valider" class="btn btn-success" onclick="corrigerNbJustificatif()"></input>
     <input type="button" value="Reinitialiser" class="btn btn-danger"></input>
 </div>
