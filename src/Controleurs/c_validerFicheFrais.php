@@ -49,6 +49,10 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             exit();
             break;
         case 'corrigerFraisForfait':
+            $idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+            $pdo->majFraisForfait($idVisiteurSelectionner,$moisSelectionner,$lesFrais);
             exit();
             break;
     }
