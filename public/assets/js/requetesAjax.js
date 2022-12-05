@@ -74,6 +74,7 @@ function getInfo(idvisiteur, mois)
             $("#Frais_Kilometrique").val(retour['fraisForfait'][1]['quantite']);
             $("#Nuitee_Hotel").val(retour['fraisForfait'][2]['quantite']);
             $("#Repas_Restaurant").val(retour['fraisForfait'][3]['quantite']);
+            $("#tablo_fraisHorsForfait tr").remove(); 
             retour['fraisHorsForfait'].forEach(element => ajoutLigne(element[4],element['libelle'],element['montant']));
             $("#Nb_justificatif").val(retour['nbJustificatif']);
         }
