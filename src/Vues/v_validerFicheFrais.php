@@ -60,7 +60,7 @@
 <!--AFFICHAGE-->
 <div class='container'>
     <h1>Valider la fiche de frais</h1>
-    <div class="input-group" class='fraisForfait'>
+    <div class="input-group fraisForfait">
         <h3>Eléments forfaitisé</h3>
         <label>Fofait Etape</label>
         <br/>
@@ -83,7 +83,7 @@
     <input type="button" value="Corriger"class="btn btn-success" onclick="reset()"></input>
     &nbsp;
     <input type="reset" value="Reinitialiser" class="btn btn-danger"></input>
-</div>
+    </div>
     <br/>
     <div class='panel panel-info'>
         <div class="panel-heading">Descriptif des éléments hors forfait</div>
