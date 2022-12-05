@@ -5,27 +5,27 @@
 //     getMois(value)
 // })
 
-function corrigerFraisForfait()
-{
-    let Fofait_Etape = document.getElementById("Fofait_Etape").value;
-    let Frais_Kilometrique = document.getElementById("Frais_Kilometrique").value;
-    let Nuitee_Hotel = document.getElementById("Nuitee_Hotel").value;
-    let Repas_Restaurant = document.getElementById("Repas_Restaurant").value;
-    $.ajax({
-        type: "POST",
-        url: "index.php?uc=validerFicheFrais&action=corrigerFraisForfait&a=ajax",
-        data: {
-            Fofait_Etape: Fofait_Etape,
-            Frais_Kilometrique: Frais_Kilometrique,
-            Nuitee_Hotel: Nuitee_Hotel,
-            Repas_Restaurant: Repas_Restaurant,
-        },
-        dataType: 'text',
-        success: function(retour){
-            console.log(retour);
-        }
-    });
-}
+// function corrigerFraisForfait()
+// {
+//     let Fofait_Etape = document.getElementById("Fofait_Etape").value;
+//     let Frais_Kilometrique = document.getElementById("Frais_Kilometrique").value;
+//     let Nuitee_Hotel = document.getElementById("Nuitee_Hotel").value;
+//     let Repas_Restaurant = document.getElementById("Repas_Restaurant").value;
+//     $.ajax({
+//         type: "POST",
+//         url: "index.php?uc=validerFicheFrais&action=corrigerFraisForfait&a=ajax",
+//         data: {
+//             Fofait_Etape: Fofait_Etape,
+//             Frais_Kilometrique: Frais_Kilometrique,
+//             Nuitee_Hotel: Nuitee_Hotel,
+//             Repas_Restaurant: Repas_Restaurant,
+//         },
+//         dataType: 'text',
+//         success: function(retour){
+//             console.log(retour);
+//         }
+//     });
+// }
 
 function getMois(idvisiteur)
 {
@@ -79,7 +79,11 @@ function ajoutLigne(date,libelle,montant)
     cell1.innerHTML = "<input type='date' class='form-control' value=" + date + " name='date' required>";
     cell2.innerHTML = '<input type="text" class="form-control" value="' + libelle + '" name="libelle" size="30" required>';
     cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant' step='.01' required>";
-    cell4.innerHTML = "<input type='button' value='Corriger' class='btn btn-success'>&nbsp</input><input type='button' value='Reinitialiser' class='btn btn-danger'></input>";
+    cell4.innerHTML = "<input type='button' value='Corriger' class='btn btn-success'>&nbsp</input><input type='reset' value='Reinitialiser' class='btn btn-danger'></input>";
 }
 
 
+function reset(){
+    let FEP = document.getElementById("Fofait_Etape")
+    FEP.reset();
+}

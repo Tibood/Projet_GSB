@@ -77,12 +77,13 @@
         <label>Repas Restaurant</label>
         <br/>
         <input type="number" class='form-control' value='' id="Repas_Restaurant" name="REP" required>
-    </div>
+        <br/>
+    <br/>
     <br/>
     <input type="button" value="Corriger"class="btn btn-success"></input>
-    <input type="button" value="Reinitialiser"class="btn btn-danger"></input>
-    <br/>
-    <br/>
+    &nbsp;
+    <input type="reset" value="Reinitialiser" class="btn btn-danger"></input>
+</div>
     <br/>
     <div class='panel panel-info'>
         <div class="panel-heading">Descriptif des éléments hors forfait</div>
