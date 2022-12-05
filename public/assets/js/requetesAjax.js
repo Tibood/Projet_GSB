@@ -82,8 +82,3 @@ function ajoutLigne(date,libelle,montant)
     cell4.innerHTML = "<input type='button' value='Corriger' class='btn btn-success'>&nbsp</input><input type='reset' value='Reinitialiser' class='btn btn-danger'></input>";
 }
 
-
-function reset(){
-    let FEP = document.getElementById("Fofait_Etape")
-    FEP.reset();
-}
