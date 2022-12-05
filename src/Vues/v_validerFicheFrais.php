@@ -18,7 +18,7 @@
 <div>
         <label for ='listVisiteur'>Choisir le visiteur:</label>
         <select class="form-control" name="listVisiteur" id='listVisiteur' onchange="getMois(this.value);" >
-        <option selected value="0">-- Selectionner un visiteur --</option>
+        <option selected value="0">-- Sélectionner un visiteur --</option>
             <?php
             foreach ($visiteurs as $unVisiteur) {
                 $id = $unVisiteur['id'];
@@ -80,7 +80,7 @@
     <br/>
     <div class='panel panel-info'>
         <div class="panel-heading">Descriptif des éléments hors forfait</div>
-        <table class='table table-bordered table-responsive' id="tablo_fraisHorsForfait">
+        <table class='table table-bordered table-responsive table-hover border-warning' id="tablo_fraisHorsForfait">
             <tbody>
                 <tr>
                     <th>Date</th>
@@ -93,7 +93,7 @@
         </table>
     </div>
     <label for="Nb_justificatif">Nombre de justificatifs :</label>
-    <input type="number" value='' id="Nb_justificatif" name="Nb_justificatif" class='form-control' patern=[0-9]* required>
+    <input type="number" id="Nb_justificatif" name="Nb_justificatif" class='form-control' patern=[0-9]* required>
     <br/>
     <br/>
     <input type="button" value="Valider" class="btn btn-success" onclick="corrigerNbJustificatif()"></input>

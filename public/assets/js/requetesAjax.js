@@ -48,6 +48,7 @@ function ajoutLigne(date,libelle,montant)
     let cell2 = row.insertCell(1);
     let cell3 = row.insertCell(2);
     let cell4 = row.insertCell(3);
+    row.className = "table-light";
     cell1.innerHTML = "<input type='date' class='form-control' value=" + date + " name='date' required>";
     cell2.innerHTML = '<input type="text" class="form-control" value="' + libelle + '" name="libelle" size="30" required>';
     cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant' step='.01' required>";
