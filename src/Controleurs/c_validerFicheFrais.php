@@ -15,6 +15,8 @@ $pdo2 = new PDO('mysql:host=localhost;dbname=gsb_frais', 'userGsb', 'secret');
 $pdo2->query('SET CHARACTER SET utf8');
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 if ($_SESSION['metier'] === 'Comptable' ) {
     switch ($action) {
@@ -23,7 +25,6 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             include PATH_VIEWS . 'v_validerFicheFrais.php';
             break;
         case 'getMois':
-            $idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $lesMois = $pdo->getLesMoisDisponibles($idVisiteurSelectionner);
             echo "<option selected value='0'> -- Sélectionner un mois -- </option>";
             foreach ($lesMois as $unMois) {
@@ -35,8 +36,6 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             exit();
             break;
         case 'getInfo':
-            $idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $fraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionner,$moisSelectionner);
             $fraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionner,$moisSelectionner);
             $nbJustificatif = $pdo->getNbjustificatifs($idVisiteurSelectionner,$moisSelectionner);
@@ -49,20 +48,14 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             exit();
             break;
         case 'corrigerFraisForfait':
-            $idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
             //$pdo->majFraisForfait($idVisiteurSelectionner,$moisSelectionner,$lesFrais);
             exit();
             break;
         case 'corrigerFraisHorsForfait':
-            $idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             exit();
             break;
         case 'corrigerNbJustificatif':
-            $idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $nbJustificatif = filter_input(INPUT_POST, 'nbJustificatif', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $pdo->majNbJustificatifs($idVisiteurSelectionner,$moisSelectionner,$nbJustificatif);
             exit();
