@@ -101,7 +101,7 @@ function ajoutLigne(date,libelle,montant)
 // -------------------------------------------------------------------------------------------------------
 
 function corrigerFraisForfait(){
-    if (confirm("toto")){
+    if (confirm("Vous etes sur le point de corriger les frais forfaitisés. Voulez-vous continuer ?")){
     let moisSelectionner = document.getElementById("listMois").value;
     let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     let fraisForfait = {};
@@ -117,10 +117,16 @@ function corrigerFraisForfait(){
             lesFrais: fraisForfait
         },
         success: function(){
-            console.log('ça marche');
+            alert('Les modifications ont bien été enregistrées');
         }
     });
     }
+}
+
+function corrigerFicheFraisAll(){
+    corrigerFraisForfait();
+    corrigerFraisHorsForfait();
+    corrigerNbJustificatif();
 }
 
 //function corrigerNbJustificatif()
