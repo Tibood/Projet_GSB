@@ -27,7 +27,7 @@ function getInfo()
         url: "index.php?uc=validerFicheFrais&action=getInfo&a=ajax",
         data: {
             id: idVisiteurSelectionner,
-            mois: moisSelectionner,
+            mois: moisSelectionner
         },
         dataType: 'json',
         success: function(retour){
@@ -88,22 +88,16 @@ function ajoutLigne(date,libelle,montant)
 
 ////const
  function corrigerFraisForfait(){
-    let moisSelectionner = document.getElementById("listMois");
-    let idVisiteurSelectionner = document.getElementById("listVisiteur");
-    let toto = document.getElementById("fraisForfait").getElementsByTagName('input');
-    console.log(toto);
-    let fraisForfait = 
-      {
-        libelle: element.id,
-        quantité: element.value
-      };
-    let Fofait_Etape = document.getElementById("Fofait_Etape").value.name;
-    let Frais_Kilometrique = document.getElementById("Frais_Kilometrique").value.name;
-    let Nuitee_Hotel = document.getElementById("Nuitee_Hotel").value.name;
-    let Repas_Restaurant = document.getElementById("Repas_Restaurant").value.name;
-    
-    
-    
+    if (confirm("toto")){
+    let fraisForfait = [];
+    $('#fraisForfait :input[type="number"]').each(function(e){
+        fraisForfait.push({
+            idfrais:this.name,
+            quantite:this.value
+        });
+    });  
+    let moisSelectionner = document.getElementById("listMois").value;
+    let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     $.ajax({
         type: "POST",
         url: "index.php?uc=validerFicheFrais&action=corrigerFraisForfait&a=ajax",
@@ -113,7 +107,9 @@ function ajoutLigne(date,libelle,montant)
             lesFrais: fraisForfait
         },
         success: function(){
+            alert('ça marche');
         }
     });
 }
+ }
 
