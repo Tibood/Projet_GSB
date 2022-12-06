@@ -10,6 +10,8 @@
 - Hashage de mot de passe : "echo password_hash('password', PASSWORD_BCRYPT, ['cost' => 12]);"
 - Pour mail depuis serveur : composer require sendinblue/api-v3-sdk "8.3.1"
 	(mettre dans composer.json puis "composer update sendinblue/api-v3-sdk")
+- Déplacer fichier resources/cacert.pem et spécifier son chemin dans wamp64/bin/apache/apachexxx/bin/php.ini
+	(curl.cainfo et openssl.cafile)
 
 
 # Documents principaux :
