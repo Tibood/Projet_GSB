@@ -100,15 +100,34 @@ function ajoutLigne(date,libelle,montant)
 
 // -------------------------------------------------------------------------------------------------------
 
-function resetFraisForfait()
-{
-    let fraisForfait = document.getElementById("fraisForfait");
-    fraisForfait.reset();
+function corrigerFraisForfait(){
+    if (confirm("toto")){
+    let fraisForfait={};
+    $('#fraisForfait :input[type="number"]').each(function(e){
+        fraisForfait.push({
+            idfrais:this.name,
+            quantite:this.value
+        });
+
+    });
+    let fraisForfaitJSON = JSON.parse(fraisForfait);
+    let moisSelectionner = document.getElementById("listMois").value;
+    let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
+    $.ajax({
+        type: "POST",
+        url: "index.php?uc=validerFicheFrais&action=corrigerFraisForfait&a=ajax",
+        data: {
+            id: idVisiteurSelectionner,
+            mois: moisSelectionner,
+            lesFrais: fraisForfaitJSON
+        },
+        success: function(){
+            alert('ça marche');
+        }
+    });
 }
+ }
 
-
-
-// -------------------------------------------------------------------------------------------------------
 //function corrigerNbJustificatif()
 //{
 //    let nbJustificatif = document.getElementById("Nb_justificatif");
@@ -136,31 +155,6 @@ function resetFraisForfait()
 
 
 //const
- function corrigerFraisForfait(){
-    if (confirm("toto")){
-    let fraisForfait = [];
-    $('#fraisForfait :input[type="number"]').each(function(e){
-        fraisForfait.push({
-            idfrais:this.name,
-            quantite:this.value
-        });
-    });
-    let moisSelectionner = document.getElementById("listMois").value;
-    let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
-    $.ajax({
-        type: "POST",
-        url: "index.php?uc=validerFicheFrais&action=corrigerFraisForfait&a=ajax",
-        data: {
-            id: idVisiteurSelectionner,
-            mois: moisSelectionner,
-            lesFrais: fraisForfait
-        },
-        success: function(){
-            alert('ça marche');
-        }
-    });
-}
- }
 
 
 
