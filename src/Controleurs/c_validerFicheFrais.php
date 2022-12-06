@@ -53,7 +53,9 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             break;
         case 'corrigerFraisForfait':
             $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
-            //$pdo->majFraisForfait($idVisiteurSelectionner,$moisSelectionner,$lesFrais);
+            foreach ($lesFrais as $key => $unFrais) {
+                $pdo->majFraisForfait($idVisiteurSelectionner,$moisSelectionner,$lesFrais);
+            }
             exit();
             break;
         case 'corrigerFraisHorsForfait':
