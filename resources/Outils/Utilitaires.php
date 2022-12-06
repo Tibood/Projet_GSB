@@ -80,7 +80,8 @@ abstract class Utilitaires
     
     /**
      * Implémente le code de vérification à 2 facteurs dans 
-     * une variable de session.
+     * une variable de session. Le code sera ensuite envoyé 
+     * avec un mail transactionnel via l'API de SendinBlue
      * 
      * @param type $code
      */
