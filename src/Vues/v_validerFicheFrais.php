@@ -75,7 +75,7 @@
     <br/>
     <input type="button" value="Corriger"class="btn btn-success" onclick="corrigerFraisForfait()"></input>
     &nbsp;
-    <input type="reset" value="Reinitialiser" onclick="getInfo()" class="btn btn-danger"></input>
+    <input type="reset" value="Reinitialiser" onclick="getFraisForfait()" class="btn btn-danger"></input>
     </div>
     <br/>
     <div class='panel panel-info'>
