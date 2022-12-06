@@ -51,6 +51,11 @@ abstract class Utilitaires
     /**
      * Utilise la librairie de SendinBlue pour envoyer un mail
      * pour la double authentification, depuis le serveur de production.
+     * Il est nécessaire de spécifier le chemin d'un fichier .pem (clef privé) 
+     * pour que ça fonctionne. Et corriger la dépréciation de SendinBlue envers PHP 8.1
+     * (Spécifier le type de retour des fonctions dans 2 fichiers dans le dossier vendor)
+     * 
+     * @return null
      */ 
      
     public static function emailBuilder(string $email, int $code) : void {
