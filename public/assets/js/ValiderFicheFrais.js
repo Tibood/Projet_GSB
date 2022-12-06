@@ -86,7 +86,7 @@ function ajoutLigne(date,libelle,montant)
 //}
 
 
-////const
+//const
  function corrigerFraisForfait(){
     if (confirm("toto")){
     let fraisForfait = [];
@@ -95,7 +95,7 @@ function ajoutLigne(date,libelle,montant)
             idfrais:this.name,
             quantite:this.value
         });
-    });  
+    });
     let moisSelectionner = document.getElementById("listMois").value;
     let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     $.ajax({
