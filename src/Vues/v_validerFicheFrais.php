@@ -10,7 +10,7 @@
  * @author    BROUILLET THIBAUD
  */
 ?>
-<script src = "assets/js/requetesAjax.js"></script>
+<script src = "assets/js/ValiderFicheFrais.js"></script>
 <script src = "//code.jquery.com/jquery-1.12.0.min.js"></script>
 <link href="styles/styleComptable.css" rel="stylesheet" type="text/css">
 
@@ -53,7 +53,7 @@
 <!--AFFICHAGE-->
 <div class='container'>
     <h1>Valider la fiche de frais</h1>
-    <div class="input-group fraisForfait">
+    <div class="input-group' id='fraisForfait'>
         <h3>Eléments forfaitisé</h3>
         <label>Fofait Etape</label>
         <br/>
@@ -73,7 +73,7 @@
         <br/>
     <br/>
     <br/>
-    <input type="button" value="Corriger"class="btn btn-success"></input>
+    <input type="button" value="Corriger"class="btn btn-success" onclick="corrigerFraisForfait()"></input>
     &nbsp;
     <input type="reset" value="Reinitialiser" class="btn btn-danger"></input>
     </div>
