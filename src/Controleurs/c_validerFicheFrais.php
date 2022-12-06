@@ -15,6 +15,7 @@ $pdo2 = new PDO('mysql:host=localhost;dbname=gsb_frais', 'userGsb', 'secret');
 $pdo2->query('SET CHARACTER SET utf8');
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
 $idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -33,6 +34,21 @@ if ($_SESSION['metier'] === 'Comptable' ) {
                 $numMois = $unMois['numMois'];
                 echo "<option value='$mois'> $numMois/$numAnnee </option>";
             };
+            exit();
+            break;
+        case 'getFraisForfait':
+            $fraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionner,$moisSelectionner);
+            echo json_encode($fraisForfait);
+            exit();
+            break;
+        case 'getFraisHorsForfait':
+            $fraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionner,$moisSelectionner);
+            echo json_encode($fraisHorsForfait);
+            exit();
+            break;
+        case 'getNbJustificatif':
+            $nbJustificatif = $pdo->getNbjustificatifs($idVisiteurSelectionner,$moisSelectionner);
+            echo $nbJustificatif;
             exit();
             break;
         case 'getInfo':
