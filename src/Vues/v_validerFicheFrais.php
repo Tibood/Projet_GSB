@@ -34,7 +34,7 @@
         </select>
         &nbsp;
         <label for="listMois">Mois :</label>
-        <select class="form-control" name="listMois" id="listMois" onchange="getInfo(document.getElementById('listVisiteur').value,this.value);" >
+        <select class="form-control" name="listMois" id="listMois" onchange="getInfo();" >
             <?php
             if (!$lesMois)
             {
@@ -53,7 +53,7 @@
 <!--AFFICHAGE-->
 <div class='container'>
     <h1>Valider la fiche de frais</h1>
-    <div class="input-group' id='fraisForfait'>
+    <div class="input-group" id='fraisForfait'>
         <h3>Eléments forfaitisé</h3>
         <label>Fofait Etape</label>
         <br/>
@@ -96,6 +96,6 @@
     <input type="number" id="Nb_justificatif" name="Nb_justificatif" class='form-control' patern=[0-9]* required>
     <br/>
     <br/>
-    <input type="button" value="Valider" class="btn btn-success" onclick="corrigerNbJustificatif()"></input>
-    <input type="button" value="Reinitialiser" class="btn btn-danger"></input>
+    <input type="button" value="Valider" class="btn btn-success" onclick=""></input>
+    <input type="button" value="Reinitialiser" class="btn btn-danger" onclick="getInfo()"></input>
 </div>
