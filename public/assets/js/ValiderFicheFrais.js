@@ -102,31 +102,26 @@ function ajoutLigne(date,libelle,montant)
 
 function corrigerFraisForfait(){
     if (confirm("toto")){
-    let fraisForfait={};
-    $('#fraisForfait :input[type="number"]').each(function(e){
-        fraisForfait.push({
-            idfrais:this.name,
-            quantite:this.value
-        });
-
-    });
-    let fraisForfaitJSON = JSON.parse(fraisForfait);
     let moisSelectionner = document.getElementById("listMois").value;
     let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
+    let fraisForfait = {};
+    $('#fraisForfait :input[type="number"]').each(function(e){
+        fraisForfait[this.name] = this.value;
+    });
     $.ajax({
         type: "POST",
         url: "index.php?uc=validerFicheFrais&action=corrigerFraisForfait&a=ajax",
         data: {
             id: idVisiteurSelectionner,
             mois: moisSelectionner,
-            lesFrais: fraisForfaitJSON
+            lesFrais: fraisForfait
         },
         success: function(){
-            alert('ça marche');
+            console.log('ça marche');
         }
     });
+    }
 }
- }
 
 //function corrigerNbJustificatif()
 //{
@@ -169,3 +164,14 @@ function corrigerFraisForfait(){
 
 
 
+// $('#someInput').bind('input', function() {
+//     $(this).val() // get the current value of the input field.
+// });
+
+// $('#someInput').on('input', function() {
+//     $(this).val() // get the current value of the input field.
+// });
+
+// $('#someInput').keyup(function() {
+//     $(this).val() // get the current value of the input field.
+// });
