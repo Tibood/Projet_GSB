@@ -71,11 +71,11 @@
         <br/>
         <input type="number" class='form-control' value='' id="Repas_Restaurant" name="REP" required>
         <br/>
-    <br/>
-    <br/>
-    <input type="button" value="Corriger"class="btn btn-success" onclick="corrigerFraisForfait()"></input>
-    &nbsp;
-    <input type="reset" value="Reinitialiser" onclick="getFraisForfait()" class="btn btn-danger"></input>
+        <br/>
+        <br/>
+        <input type="button" value="Corriger"class="btn btn-success" onclick="corrigerFraisForfait()"></input>
+        &nbsp;
+        <input type="reset" value="Reinitialiser" class="btn btn-danger" onclick="getFraisForfait()"></input>
     </div>
     <br/>
     <div class='panel panel-info'>
