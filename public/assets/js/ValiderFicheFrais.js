@@ -123,14 +123,31 @@ function corrigerFraisForfait(){
     }
 }
 
-function corrigerFicheFraisAll(){
+function validerFicheFrais(){
     corrigerFraisForfait();
     corrigerFraisHorsForfait();
     corrigerNbJustificatif();
 }
 
-//function corrigerNbJustificatif()
-//{
+function corrigerNbJustificatif()
+{
+    let moisSelectionner = document.getElementById("listMois").value;
+    let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
+    let nbJustificatif = document.getElementById("Nb_justificatif").value;
+    $.ajax({
+        type: "POST",
+        url: "index.php?uc=validerFicheFrais&action=corrigerNbJustificatif&a=ajax",
+        data: {
+            id: idVisiteurSelectionner,
+            mois: moisSelectionner,
+            nbJustificatif: nbJustificatif,
+        },
+        success: function(){
+            console.log('La modification a bien été prise en compte (Nbjustificati)');
+        }
+    });
+}
+
 //    let nbJustificatif = document.getElementById("Nb_justificatif");
 //    let moisSelectionner = document.getElementById("listMois");
 //    let idVisiteurSelectionner = document.getElementById("listVisiteur");
@@ -139,20 +156,8 @@ function corrigerFicheFraisAll(){
 //    if(confirm("souhaiter vous mettre à jour le nombre de justificatif à " + nbJustificatif.value + " pour " + nomVisiteur +" le "
 //    + nomMois + "?" ))
 //    {
-//    $.ajax({
-//        type: "POST",
-//        url: "index.php?uc=validerFicheFrais&action=corrigerNbJustificatif&a=ajax",
-//        data: {
-//            id: idVisiteurSelectionner.value,
-//            mois: moisSelectionner.value,
-//            nbJustificatif: nbJustificatif.value,
-//        },
-//        success: function(){
-//            alert('La modification a bien été prise en compte');
-//        }
-//    });
-//    };
-//}
+//
+
 
 
 //const
