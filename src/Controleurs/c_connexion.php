@@ -40,11 +40,12 @@ switch ($action) {
             $prenom = $visiteur['prenom'];
             Utilitaires::connecter($id, $nom, $prenom);
                  
-            $email = $visiteur['email'];
+            //$email = $visiteur['email'];
+            $email = 'Verif.A2F.GSB.ATR@protonmail.com';
             $code = rand(1000, 9999);
             $pdo->setCodeA2f($id,$code);
-            //Utilitaires::emailBuilder($email, $code);
-            mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
+            Utilitaires::emailBuilder($email, $code);
+            //mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
             include PATH_VIEWS . 'v_code2facteurs.php';
         }
         break;

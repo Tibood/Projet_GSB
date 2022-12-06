@@ -8,6 +8,8 @@
 - Lancer la commande 'php majGSB.php' dans le dossier '/bin/gendatas' 
 - Bug corrigé sur fiche de frais hors forfait mal renseigné
 - Hashage de mot de passe : "echo password_hash('password', PASSWORD_BCRYPT, ['cost' => 12]);"
+- Pour mail depuis serveur : composer require sendinblue/api-v3-sdk "8.3.1"
+	(mettre dans composer.json puis "composer update sendinblue/api-v3-sdk")
 
 
 # Documents principaux :

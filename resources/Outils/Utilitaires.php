@@ -16,6 +16,9 @@
  */
 
 namespace Outils;
+//require_once(PATH_VENDOR . 'autoload.php');
+//use SendinBlue\Client\Configuration;
+//use SendinBlue\Client\Api\TransactionalEmailsApi;
 
 abstract class Utilitaires
 {
@@ -51,22 +54,23 @@ abstract class Utilitaires
      */ 
      
     public static function emailBuilder(string $email, int $code) {
-        $credentials = \SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
-        $apiInstance = new \SendinBlue\Client\Api\TransactionalEmailsApi(new GuzzleHttp\Client(),$credentials);
-
-        $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail([
-             'subject' => 'from the PHP SDK! For GSB',
-             'sender' => ['name' => 'Sendinblue', 'email' => 'admin@wampserver.invalid'],
-             //'replyTo' => ['name' => 'Sendinblue', 'email' => 'contact@sendinblue.com'],
-             'to' => [[ 'name' => 'Max Mustermann', 'email' => $email]],
-             'htmlContent' => '<html><body><h1>Test n°' . $code . '</h1></body></html>'
-        ]);
-
+        $config = \SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
+        $apiInstance = new \SendinBlue\Client\Api\TransactionalEmailsApi(
+            new \GuzzleHttp\Client(),
+            $config
+        );
+        $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail();
+        $sendSmtpEmail['subject'] = "Code d'authentification à 2 facteurs";
+        $sendSmtpEmail['htmlContent'] = '<html><body><h1>Votre code : ' . $code . '</h1></body></html>';
+        $sendSmtpEmail['sender'] = array('name' => 'Verification GSB', 'email' => 'adrien.dodero@gmail.com');
+        $sendSmtpEmail['to'] = array(
+            array('email' => $email, 'name' => 'Utilisateur GSB')
+        );
         try {
             $result = $apiInstance->sendTransacEmail($sendSmtpEmail);
             print_r($result);
         } catch (Exception $e) {
-            echo $e->getMessage(),PHP_EOL;
+            echo 'Exception when calling TransactionalEmailsApi->sendTransacEmail: ', $e->getMessage(), PHP_EOL;
         }
     }
     
