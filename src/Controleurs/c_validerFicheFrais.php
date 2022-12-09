@@ -36,6 +36,18 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             };
             exit();
             break;
+        case 'getInfo':
+            $fraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionner,$moisSelectionner);
+            $fraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionner,$moisSelectionner);
+            $nbJustificatif = $pdo->getNbjustificatifs($idVisiteurSelectionner,$moisSelectionner);
+            $reponse = array(
+                'fraisForfait' => $fraisForfait,
+                'fraisHorsForfait' => $fraisHorsForfait,
+                'nbJustificatif' => $nbJustificatif
+            );
+            echo json_encode($reponse);
+            exit();
+            break;
         case 'getFraisForfait':
             $fraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionner,$moisSelectionner);
             echo json_encode($fraisForfait);

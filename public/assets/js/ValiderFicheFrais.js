@@ -18,13 +18,6 @@ function getMois(idvisiteur)
     }
 }
 
-function getInfo()
-{
-    getFraisForfait();
-    getFraisHorsForfait();
-    getNbJustificatif();
-
-}
 
 function getFraisForfait()
 {
@@ -97,6 +90,34 @@ function ajoutLigne(date,libelle,montant)
     cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant' step='.01' required>";
     cell4.innerHTML = "<input type='button' value='Corriger' class='btn btn-success'>&nbsp</input><input type='reset' value='Reinitialiser' class='btn btn-danger' onclick='getInfo()'></input>";
 }
+
+function getInfo()
+{
+    let moisSelectionner = document.getElementById("listMois").value;
+    let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
+    $.ajax({
+        type: "POST",
+        url: "index.php?uc=validerFicheFrais&action=getInfo&a=ajax",
+        data: {
+            id: idVisiteurSelectionner,
+            mois: moisSelectionner,
+            mois: moisSelectionner
+        },
+        dataType: 'json',
+        success: function(retour){
+            $("#Fofait_Etape").val(retour['fraisForfait'][0]['quantite']);
+            $("#Frais_Kilometrique").val(retour['fraisForfait'][1]['quantite']);
+            $("#Nuitee_Hotel").val(retour['fraisForfait'][2]['quantite']);
+            $("#Repas_Restaurant").val(retour['fraisForfait'][3]['quantite']);
+            $("#tablo_fraisHorsForfait tr").remove();
+            retour['fraisHorsForfait'].forEach(element => ajoutLigne(element[4],element['libelle'],element['montant']));
+            $("#Nb_justificatif").val(retour['nbJustificatif']);
+        }
+    });
+}
+
+
+
 
 // -------------------------------------------------------------------------------------------------------
 
