@@ -81,8 +81,8 @@ foreach ($lesFraisForfait as $unFraisForfait) {
           role="form">
         <fieldset>       
             <input type="hidden" id="moisSelectionner_pdf" 
-                   name="moisSelectionner_pdf"
-                   value="<?php $mois ?>" 
+                   name="moisSelectionner_pdf_name"
+                   value="202209" 
                    class="form-control"
                    hidden>   
             <button class="btn btn-success" type="submit">Générer un pdf</button>
