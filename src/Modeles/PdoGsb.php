@@ -120,6 +120,11 @@ class PdoGsb
         return $requetePrepare->fetch()['codea2f'];
     }
     
+    /**
+     * Retourne le mot de passe de l'utilisateur souhaitant se connecter.
+     * @param type $login
+     * @return type
+    */
     public function getMdpVisiteur($login) {
         $requetePrepare = $this->connexion->prepare(
             'SELECT mdp '

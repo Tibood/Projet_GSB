@@ -69,7 +69,7 @@ abstract class Utilitaires
         );
         $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail();
         $sendSmtpEmail['subject'] = "Code d'authentification : " . $code;
-        $sendSmtpEmail['htmlContent'] = '<html><body><h1>Le code : ' . $code . 'vous permet de vous connecter à GSB.</h1></body></html>';
+        $sendSmtpEmail['htmlContent'] = '<html><body><h1>Le code : ' . $code . ' vous permettra de vous connecter à GSB.</h1></body></html>';
         $sendSmtpEmail['sender'] = array('name' => 'Verification GSB', 'email' => 'EnvoiMail.ATR@yahoo.com');
         $sendSmtpEmail['to'] = array(
             array('email' => $email, 'name' => 'Utilisateur GSB')
