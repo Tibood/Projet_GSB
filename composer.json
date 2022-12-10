@@ -18,6 +18,11 @@
             "role": "Developer"
         }
     ],
+    
+    "require": {
+        "sendinblue/api-v3-sdk": "8.3.1"
+    },
+    
     "autoload": {
         "psr-4": {
             "App\\": "src",

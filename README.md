@@ -9,6 +9,8 @@
 - Bug corrigé sur fiche de frais hors forfait mal renseigné
 - Hashage de mot de passe : "echo password_hash('password', PASSWORD_BCRYPT, ['cost' => 12]);"
 - Pour mail depuis serveur : composer require sendinblue/api-v3-sdk "8.3.1"
+- Spécifier chemin du fichier resources/cacert.pem dans wamp64/bin/apache/apachexxx/bin/php.ini
+	(curl.cainfo="Chemin/Vers/cacert.pem" et openssl.cafile="Chemin/Vers/cacert.pem" (décommenté))
 
 
 # Documents principaux :

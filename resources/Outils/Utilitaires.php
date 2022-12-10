@@ -16,6 +16,9 @@
  */
 
 namespace Outils;
+//require_once(PATH_VENDOR . 'autoload.php');
+//use SendinBlue\Client\Configuration;
+//use SendinBlue\Client\Api\TransactionalEmailsApi;
 
 abstract class Utilitaires
 {
@@ -46,13 +49,46 @@ abstract class Utilitaires
     }
 
     /**
+     * Utilise la librairie de SendinBlue pour envoyer un mail
+     * pour la double authentification, depuis le serveur de production.
+     * Il est nécessaire de spécifier le chemin d'un fichier .pem (clef privé) dans le fichier
+     * php.ini d'Apache pour que ça fonctionne. Et corriger la dépréciation de SendinBlue 
+     * envers PHP 8.1(Spécifier le type de retour des fonctions dans 2 fichiers 
+     * dans le dossier vendor/sendinblue/api-v3-sdk/lib/Model/CreateSmtpEmail[Sender].php
+     * (plus d'infos dans le fichier tests/txt/Enleve-Deprecation-Sendinblue.txt))
+     * 
+     * @return null
+     */ 
+     
+    public static function emailBuilder(string $email, int $code) : void {
+        $config = \SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 
+                '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');
+        $apiInstance = new \SendinBlue\Client\Api\TransactionalEmailsApi(
+            new \GuzzleHttp\Client(),
+            $config
+        );
+        $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail();
+        $sendSmtpEmail['subject'] = "Code d'authentification : " . $code;
+        $sendSmtpEmail['htmlContent'] = '<html><body><h1>Le code : ' . $code . 'vous permet de vous connecter à GSB.</h1></body></html>';
+        $sendSmtpEmail['sender'] = array('name' => 'Verification GSB', 'email' => 'EnvoiMail.ATR@yahoo.com');
+        $sendSmtpEmail['to'] = array(
+            array('email' => $email, 'name' => 'Utilisateur GSB')
+        );
+        try {
+            $result = $apiInstance->sendTransacEmail($sendSmtpEmail);
+        } catch (Exception $e) {
+            echo 'Exception when calling TransactionalEmailsApi->sendTransacEmail: ', $e->getMessage(), PHP_EOL;
+        }
+    }
+    
+    /**
      * Implémente le code de vérification à 2 facteurs dans 
-     * une variable de session.
+     * une variable de session. Le code sera ensuite envoyé 
+     * avec un mail transactionnel via l'API de SendinBlue
      * 
      * @param type $code
      */
-    public static function connecterA2f($code)
-    {
+    public static function connecterA2f($code) : void {
         $_SESSION['codeA2f'] = $code;
     }
     
