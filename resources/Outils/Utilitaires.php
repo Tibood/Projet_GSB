@@ -61,15 +61,16 @@ abstract class Utilitaires
      */ 
      
     public static function emailBuilder(string $email, int $code) : void {
-        $config = \SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
+        $config = \SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 
+                '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');
         $apiInstance = new \SendinBlue\Client\Api\TransactionalEmailsApi(
             new \GuzzleHttp\Client(),
             $config
         );
         $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail();
-        $sendSmtpEmail['subject'] = "Code d'authentification à 2 facteurs";
-        $sendSmtpEmail['htmlContent'] = '<html><body><h1>Votre code : ' . $code . '</h1></body></html>';
-        $sendSmtpEmail['sender'] = array('name' => 'Verification GSB', 'email' => 'adrien.dodero@gmail.com');
+        $sendSmtpEmail['subject'] = "Code d'authentification : " . $code;
+        $sendSmtpEmail['htmlContent'] = '<html><body><h1>Le code : ' . $code . 'vous permet de vous connecter à GSB.</h1></body></html>';
+        $sendSmtpEmail['sender'] = array('name' => 'Verification GSB', 'email' => 'EnvoiMail.ATR@yahoo.com');
         $sendSmtpEmail['to'] = array(
             array('email' => $email, 'name' => 'Utilisateur GSB')
         );
