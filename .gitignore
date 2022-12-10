@@ -8,8 +8,9 @@
 /tests/txt/hashed_passwords.txt
 /tests/txt/id.txt
 /tests/txt/GSB_API_KEY.txt
+/tests/txt/passwords_and_hashes.txt
 /tests/php/emailBuilder.php
 /vendor
 /nbproject
 
-# rayan
+# rayane
