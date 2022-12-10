@@ -40,10 +40,10 @@ function getFraisForfait()
     });
 }
 
-function getFraisHorsForfait()
+function ReinitiliserleFraisHorsForfait(indexLigneReinitialiser)
 {
-    let moisSelectionner = document.getElementById("listMois").value;
-    let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
+    const moisSelectionner = document.getElementById("listMois").value;
+    const idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     $.ajax({
         type: "POST",
         url: "index.php?uc=validerFicheFrais&action=getFraisHorsForfait&a=ajax",
@@ -51,9 +51,18 @@ function getFraisHorsForfait()
             id: idVisiteurSelectionner,
             mois: moisSelectionner
         },
-        success: function(retour){
-            $("#tablo_fraisHorsForfait tr").remove();
-            retour.forEach(element => ajoutLigne(element[4],element['libelle'],element['montant']));
+        dataType: 'json',
+        success: function(retour) {
+            retour.forEach(function(element) {
+                if (retour.indexOf(element) === indexLigneReinitialiser) {
+                    cell1 = "<input type='date' class='form-control' value=" + element[4] + " name='date' required>";
+                    cell2 = '<input type="text" class="form-control" value="' + element['libelle'] + '" name="libelle" size="30" required>';
+                    cell3 = "<input type='number' class='form-control' value=" + element['montant'] + " name='montant' step='.01' required>";
+                    cell4 = '<input type="button" value="Corriger" class="btn btn-success">&nbsp</input><input type="button" value="Reinitialiser" class="btn btn-danger" onclick="ReinitiliséleFraisHorsForfait('+indexLigneReinitialiser+')"></input>';
+                    newRow = "<tr class='table-light'id='"+indexLigneReinitialiser+"'><td>"+cell1+"</td><td>"+cell2+"</td><td>"+cell3+"</td><td>"+cell4+"</td></tr>"
+                    $('#' + indexLigneReinitialiser).replaceWith(newRow)
+                }
+            });
         }
     });
 }
@@ -88,7 +97,7 @@ function ajoutLigne(date,libelle,montant)
     cell1.innerHTML = "<input type='date' class='form-control' value=" + date + " name='date' required>";
     cell2.innerHTML = '<input type="text" class="form-control" value="' + libelle + '" name="libelle" size="30" required>';
     cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant' step='.01' required>";
-    cell4.innerHTML = '<input type="button" value="Corriger" class="btn btn-success">&nbsp</input><input type="button" value="Reinitialiser" class="btn btn-danger" onclick="getFraisHorsForfait()"></input>';
+    cell4.innerHTML = '<input type="button" value="Corriger" class="btn btn-success">&nbsp</input><input type="button" value="Reinitialiser" class="btn btn-danger" onclick="ReinitiliserleFraisHorsForfait('+row.rowIndex+')"></input>';
 }
 
 function getInfo()
