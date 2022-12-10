@@ -85,10 +85,11 @@ function ajoutLigne(date,libelle,montant)
     let cell3 = row.insertCell(2);
     let cell4 = row.insertCell(3);
     row.className = "table-light";
+    row.id = row.rowIndex;
     cell1.innerHTML = "<input type='date' class='form-control' value=" + date + " name='date' required>";
     cell2.innerHTML = '<input type="text" class="form-control" value="' + libelle + '" name="libelle" size="30" required>';
     cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant' step='.01' required>";
-    cell4.innerHTML = "<input type='button' value='Corriger' class='btn btn-success'>&nbsp</input><input type='reset' value='Reinitialiser' class='btn btn-danger' onclick='getInfo()'></input>";
+    cell4.innerHTML = '<input type="button" value="Corriger" class="btn btn-success">&nbsp</input><input type="btn" value="Reinitialiser" class="btn btn-danger" onclick="getFraisHorsForfait()"></input>';
 }
 
 function getInfo()
