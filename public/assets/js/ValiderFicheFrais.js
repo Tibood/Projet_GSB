@@ -18,7 +18,6 @@ function getMois(idvisiteur)
     }
 }
 
-
 function getFraisForfait()
 {
     let moisSelectionner = document.getElementById("listMois").value;
@@ -40,32 +39,6 @@ function getFraisForfait()
     });
 }
 
-function ReinitiliserleFraisHorsForfait(indexLigneReinitialiser)
-{
-    const moisSelectionner = document.getElementById("listMois").value;
-    const idVisiteurSelectionner = document.getElementById("listVisiteur").value;
-    $.ajax({
-        type: "POST",
-        url: "index.php?uc=validerFicheFrais&action=getFraisHorsForfait&a=ajax",
-        data: {
-            id: idVisiteurSelectionner,
-            mois: moisSelectionner
-        },
-        dataType: 'json',
-        success: function(retour) {
-            retour.forEach(function(element) {
-                if (retour.indexOf(element) === indexLigneReinitialiser) {
-                    cell1 = "<input type='date' class='form-control' value=" + element[4] + " name='date' required>";
-                    cell2 = '<input type="text" class="form-control" value="' + element['libelle'] + '" name="libelle" size="30" required>';
-                    cell3 = "<input type='number' class='form-control' value=" + element['montant'] + " name='montant' step='.01' required>";
-                    cell4 = '<input type="button" value="Corriger" class="btn btn-success">&nbsp</input><input type="button" value="Reinitialiser" class="btn btn-danger" onclick="ReinitiliséleFraisHorsForfait('+indexLigneReinitialiser+')"></input>';
-                    newRow = "<tr class='table-light'id='"+indexLigneReinitialiser+"'><td>"+cell1+"</td><td>"+cell2+"</td><td>"+cell3+"</td><td>"+cell4+"</td></tr>"
-                    $('#' + indexLigneReinitialiser).replaceWith(newRow)
-                }
-            });
-        }
-    });
-}
 
 function getNbJustificatif()
 {
@@ -126,9 +99,50 @@ function getInfo()
 }
 
 
+function ReinitiliserleFraisHorsForfait(indexLigneReinitialiser)
+{
+    const moisSelectionner = document.getElementById("listMois").value;
+    const idVisiteurSelectionner = document.getElementById("listVisiteur").value;
+    $.ajax({
+        type: "POST",
+        url: "index.php?uc=validerFicheFrais&action=getFraisHorsForfait&a=ajax",
+        data: {
+            id: idVisiteurSelectionner,
+            mois: moisSelectionner
+        },
+        dataType: 'json',
+        success: function(retour) {
+            retour.forEach(function(element) {
+                if (retour.indexOf(element) === indexLigneReinitialiser) {
+                    cell1 = "<input type='date' class='form-control' value=" + element[4] + " name='date' required>";
+                    cell2 = '<input type="text" class="form-control" value="' + element['libelle'] + '" name="libelle" size="30" required>';
+                    cell3 = "<input type='number' class='form-control' value=" + element['montant'] + " name='montant' step='.01' required>";
+                    cell4 = '<input type="button" value="Corriger" class="btn btn-success">&nbsp</input><input type="button" value="Reinitialiser" class="btn btn-danger" onclick="ReinitiliséleFraisHorsForfait('+indexLigneReinitialiser+')"></input>';
+                    newRow = "<tr class='table-light'id='"+indexLigneReinitialiser+"'><td>"+cell1+"</td><td>"+cell2+"</td><td>"+cell3+"</td><td>"+cell4+"</td></tr>"
+                    $('#' + indexLigneReinitialiser).replaceWith(newRow)
+                }
+            });
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // -------------------------------------------------------------------------------------------------------
+
+
 
 function corrigerFraisForfait(){
     if (confirm("Vous etes sur le point de corriger les frais forfaitisés. Voulez-vous continuer ?")){
