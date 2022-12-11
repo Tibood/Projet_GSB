@@ -40,27 +40,32 @@ function getFraisForfait()
 }
 
 
-function getNbJustificatif()
-{
-    let moisSelectionner = document.getElementById("listMois").value;
-    let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
-    $.ajax({
-        type: "POST",
-        url: "index.php?uc=validerFicheFrais&action=getNbJustificatif&a=ajax",
-        data: {
-            id: idVisiteurSelectionner,
-            mois: moisSelectionner
-        },
-        success: function(retour){
-            $("#Nb_justificatif").val(retour);
-        }
-    });
-}
+// function getNbJustificatif()
+// {
+//     let moisSelectionner = document.getElementById("listMois").value;
+//     let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
+//     $.ajax({
+//         type: "POST",
+//         url: "index.php?uc=validerFicheFrais&action=getNbJustificatif&a=ajax",
+//         data: {
+//             id: idVisiteurSelectionner,
+//             mois: moisSelectionner
+//         },
+//         success: function(retour){
+//             $("#Nb_justificatif").val(retour);
+//         }
+//     });
+// }
 
-function ajoutLigne(date,libelle,montant)
+function ajoutLigne(date,libelle,montant,index = null)
 {
     let tableaufraisHorsForfait = document.getElementById("tablo_fraisHorsForfait")
-    let row = tableaufraisHorsForfait.insertRow();
+    if (index != null) {
+        tableaufraisHorsForfait.deleteRow(index)
+        var row = tableaufraisHorsForfait.insertRow(index)
+    } else {
+        var row = tableaufraisHorsForfait.insertRow();
+    }
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
     let cell3 = row.insertCell(2);
@@ -114,12 +119,7 @@ function ReinitiliserleFraisHorsForfait(indexLigneReinitialiser)
         success: function(retour) {
             retour.forEach(function(element) {
                 if (retour.indexOf(element) === indexLigneReinitialiser) {
-                    cell1 = "<input type='date' class='form-control' value=" + element[4] + " name='date' required>";
-                    cell2 = '<input type="text" class="form-control" value="' + element['libelle'] + '" name="libelle" size="30" required>';
-                    cell3 = "<input type='number' class='form-control' value=" + element['montant'] + " name='montant' step='.01' required>";
-                    cell4 = '<input type="button" value="Corriger" class="btn btn-success">&nbsp</input><input type="button" value="Reinitialiser" class="btn btn-danger" onclick="ReinitiliséleFraisHorsForfait('+indexLigneReinitialiser+')"></input>';
-                    newRow = "<tr class='table-light'id='"+indexLigneReinitialiser+"'><td>"+cell1+"</td><td>"+cell2+"</td><td>"+cell3+"</td><td>"+cell4+"</td></tr>"
-                    $('#' + indexLigneReinitialiser).replaceWith(newRow)
+                    ajoutLigne(element[4],element['libelle'],element['montant'],indexLigneReinitialiser);
                 }
             });
         }
