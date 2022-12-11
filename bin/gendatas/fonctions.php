@@ -14,7 +14,7 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-dqs
+
 /**
  * Fonction qui retourne la liste des visiteurs
  *
