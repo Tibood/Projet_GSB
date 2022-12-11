@@ -57,7 +57,7 @@ function getFraisForfait()
 //     });
 // }
 
-function ajoutLigne(date,libelle,montant,index = null)
+function ajoutLigne(date,libelle,montant,fraisid,index = null)
 {
     let tableaufraisHorsForfait = document.getElementById("tablo_fraisHorsForfait")
     if (index != null) {
@@ -71,7 +71,7 @@ function ajoutLigne(date,libelle,montant,index = null)
     let cell3 = row.insertCell(2);
     let cell4 = row.insertCell(3);
     row.className = "table-light";
-    row.id = row.rowIndex;
+    row.id = fraisid;
     cell1.innerHTML = "<input type='date' class='form-control' value=" + date + " name='date' required>";
     cell2.innerHTML = '<input type="text" class="form-control" value="' + libelle + '" name="libelle" size="30" required>';
     cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant' step='.01' required>";
@@ -97,7 +97,7 @@ function getInfo()
             $("#Nuitee_Hotel").val(retour['fraisForfait'][2]['quantite']);
             $("#Repas_Restaurant").val(retour['fraisForfait'][3]['quantite']);
             $("#tablo_fraisHorsForfait tr").remove();
-            retour['fraisHorsForfait'].forEach(element => ajoutLigne(element[4],element['libelle'],element['montant']));
+            retour['fraisHorsForfait'].forEach(element => ajoutLigne(element[4],element['libelle'],element['montant'],element['id']));
             $("#Nb_justificatif").val(retour['nbJustificatif']);
         }
     });
@@ -119,7 +119,7 @@ function ReinitiliserleFraisHorsForfait(indexLigneReinitialiser)
         success: function(retour) {
             retour.forEach(function(element) {
                 if (retour.indexOf(element) === indexLigneReinitialiser) {
-                    ajoutLigne(element[4],element['libelle'],element['montant'],indexLigneReinitialiser);
+                    ajoutLigne(element[4],element['libelle'],element['montant'],element['id'],indexLigneReinitialiser);
                 }
             });
         }
