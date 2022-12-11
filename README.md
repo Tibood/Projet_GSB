@@ -12,7 +12,6 @@
 - Spécifier chemin du fichier resources/cacert.pem dans wamp64/bin/apache/apachexxx/bin/php.ini
 	(curl.cainfo="Chemin/Vers/cacert.pem" et openssl.cafile="Chemin/Vers/cacert.pem" (décommenté))
 
-
 # Documents principaux :
  
 Fichier PDF :
