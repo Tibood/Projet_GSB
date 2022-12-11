@@ -145,7 +145,7 @@ function ReinitiliserleFraisHorsForfait(indexLigneReinitialiser)
 
 
 function corrigerFraisForfait(){
-    if (confirm("Vous etes sur le point de corriger les frais forfaitisés. Voulez-vous continuer ?")){
+    if (confirm("Vous êtes sur le point de corriger les frais forfaitisés. Voulez-vous continuer ?")){
     let moisSelectionner = document.getElementById("listMois").value;
     let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     let fraisForfait = {};
@@ -191,29 +191,6 @@ function corrigerNbJustificatif()
         }
     });
 }
-
-//    let nbJustificatif = document.getElementById("Nb_justificatif");
-//    let moisSelectionner = document.getElementById("listMois");
-//    let idVisiteurSelectionner = document.getElementById("listVisiteur");
-//    let nomVisiteur = idVisiteurSelectionner.options[idVisiteurSelectionner.selectedIndex].text;
-//    let nomMois = moisSelectionner.options[moisSelectionner.selectedIndex].text;
-//    if(confirm("souhaiter vous mettre à jour le nombre de justificatif à " + nbJustificatif.value + " pour " + nomVisiteur +" le "
-//    + nomMois + "?" ))
-//    {
-//
-
-
-
-//const
-
-
-
-
-
-
-
-
-
 
 
 
