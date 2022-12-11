@@ -58,11 +58,6 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             echo json_encode($fraisHorsForfait);
             exit();
             break;
-        case 'getNbJustificatif':
-            $nbJustificatif = $pdo->getNbjustificatifs($idVisiteurSelectionner,$moisSelectionner);
-            echo $nbJustificatif;
-            exit();
-            break;
         case 'corrigerFraisForfait':
             $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
             foreach ($lesFrais as $key => $unFrais) {
