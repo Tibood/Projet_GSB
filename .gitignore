@@ -1,6 +1,8 @@
 /nbproject
 /vendor
 /vendor/*
+/vendor/composer/autoload_real.php
+/vendor/composer/autoload_static.php
 /AP-GSB-2023.pdf
 
 # thibaud
