@@ -145,10 +145,10 @@ function ReinitiliserleFraisHorsForfait(indexLigneReinitialiser)
 
 
 function corrigerFraisForfait(){
-    if (confirm("Vous êtes sur le point de corriger les frais forfaitisés. Voulez-vous continuer ?")){
     let moisSelectionner = document.getElementById("listMois").value;
     let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     let fraisForfait = {};
+    if (confirm("Vous êtes sur le point de corriger les frais forfaitisés. Voulez-vous continuer ?")){
     $('#fraisForfait :input[type="number"]').each(function(e){
         fraisForfait[this.name] = this.value;
     });
