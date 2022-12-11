@@ -71,7 +71,6 @@ function getInfo()
         data: {
             id: idVisiteurSelectionner,
             mois: moisSelectionner,
-            mois: moisSelectionner
         },
         dataType: 'json',
         success: function(retour){
@@ -151,22 +150,23 @@ function corrigerFraisForfait(){
 }
 
 function corrigerFraisHorsForfait(idfrais){
-    let moisSelectionner = document.getElementById("listMois").value;
-    let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
-    let date = document.getElementById(idfrais).cells[0].children[0].value;
-    let libelle = document.getElementById(idfrais).cells[1].children[0].value;
-    let montant = document.getElementById(idfrais).cells[2].children[0].value;
+    const moisSelectionner = document.getElementById("listMois").value;
+    const idVisiteurSelectionner = document.getElementById("listVisiteur").value;
+    let lefrais = {
+        "date": document.getElementById(idfrais).cells[0].children[0].value,
+        "libelle": document.getElementById(idfrais).cells[1].children[0].value,
+        "montant": document.getElementById(idfrais).cells[2].children[0].value,
+        "idfrais": idfrais,
+    }
     $.ajax({
         type: "POST",
         url: "index.php?uc=validerFicheFrais&action=corrigerFraisHorsForfait&a=ajax",
         data: {
             id: idVisiteurSelectionner,
             mois: moisSelectionner,
-            date: date,
-            libelle: libelle,
-            montant: montant,
-            idfrais: idfrais
+            lefrais: lefrais
             },
+        dataType: 'json',
         success: function(){
             alert('Les modifications ont bien été enregistrées');
         }

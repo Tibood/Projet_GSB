@@ -479,7 +479,7 @@ class PdoGsb
         $requetePrepare->execute();
     }
 
-    public function majFraisHorsForfait($idVisiteur, $mois, $idFrais, $libelle, $date, $montant): void
+    public function majFraisHorsForfait($idVisiteur, $mois,$libelle, $date, $montant, $idFrais): void
     {
         $requetePrepare = $this->connexion->prepare(
             'UPDATE lignefraishorsforfait '
