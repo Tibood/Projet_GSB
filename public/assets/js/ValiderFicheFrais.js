@@ -168,8 +168,8 @@ function corrigerFraisForfait(){
 }
 
 function validerFicheFrais(){
-    corrigerFraisForfait();
-    corrigerFraisHorsForfait();
+    //corrigerFraisForfait();
+    //corrigerFraisHorsForfait();
     corrigerNbJustificatif();
 }
 
