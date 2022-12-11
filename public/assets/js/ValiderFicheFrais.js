@@ -40,23 +40,6 @@ function getFraisForfait()
 }
 
 
-// function getNbJustificatif()
-// {
-//     let moisSelectionner = document.getElementById("listMois").value;
-//     let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
-//     $.ajax({
-//         type: "POST",
-//         url: "index.php?uc=validerFicheFrais&action=getNbJustificatif&a=ajax",
-//         data: {
-//             id: idVisiteurSelectionner,
-//             mois: moisSelectionner
-//         },
-//         success: function(retour){
-//             $("#Nb_justificatif").val(retour);
-//         }
-//     });
-// }
-
 function ajoutLigne(date,libelle,montant,fraisid,index = null)
 {
     let tableaufraisHorsForfait = document.getElementById("tablo_fraisHorsForfait")
@@ -75,7 +58,7 @@ function ajoutLigne(date,libelle,montant,fraisid,index = null)
     cell1.innerHTML = "<input type='date' class='form-control' value=" + date + " name='date' required>";
     cell2.innerHTML = '<input type="text" class="form-control" value="' + libelle + '" name="libelle" size="30" required>';
     cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant' step='.01' required>";
-    cell4.innerHTML = '<input type="button" value="Corriger" class="btn btn-success">&nbsp</input><input type="button" value="Reinitialiser" class="btn btn-danger" onclick="ReinitiliserleFraisHorsForfait('+row.rowIndex+')"></input>';
+    cell4.innerHTML = '<input type="button" value="Corriger" onclick="corrigerFraisHorsForfait('+fraisid+')"class="btn btn-success">&nbsp</input><input type="button" value="Reinitialiser" class="btn btn-danger" onclick="ReinitiliserleFraisHorsForfait('+row.rowIndex+')"></input>';
 }
 
 function getInfo()
@@ -165,6 +148,29 @@ function corrigerFraisForfait(){
         }
     });
     }
+}
+
+function corrigerFraisHorsForfait(idfrais){
+    let moisSelectionner = document.getElementById("listMois").value;
+    let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
+    let date = document.getElementById(idfrais).cells[0].children[0].value;
+    let libelle = document.getElementById(idfrais).cells[1].children[0].value;
+    let montant = document.getElementById(idfrais).cells[2].children[0].value;
+    $.ajax({
+        type: "POST",
+        url: "index.php?uc=validerFicheFrais&action=corrigerFraisHorsForfait&a=ajax",
+        data: {
+            id: idVisiteurSelectionner,
+            mois: moisSelectionner,
+            date: date,
+            libelle: libelle,
+            montant: montant,
+            idfrais: idfrais
+            },
+        success: function(){
+            alert('Les modifications ont bien été enregistrées');
+        }
+        });
 }
 
 function validerFicheFrais(){

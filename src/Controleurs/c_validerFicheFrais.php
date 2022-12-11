@@ -71,7 +71,11 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             exit();
             break;
         case 'corrigerFraisHorsForfait':
-            $lesFraishorsforfait = filter_input(INPUT_POST, 'lesFraishorsforfait', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+            $date = filter_input(INPUT_POST, 'date2', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+            $libelle = filter_input(INPUT_POST, 'libelle2', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+            $montant = filter_input(INPUT_POST, 'montant2', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+            $idfrais = filter_input(INPUT_POST, 'idfrais2', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+            // $pdo->majFraisHorsForfait($idVisiteurSelectionner,$moisSelectionner,$idfrais,$libelle,getmois($date),$montant);
             exit();
             break;
         case 'corrigerNbJustificatif':
