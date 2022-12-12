@@ -57,19 +57,19 @@
         <h3>Eléments forfaitisé</h3>
         <label>Fofait Etape</label>
         <br/>
-        <input type="number" class='form-control' id="Fofait_Etape" name="ETP" required>
+        <input type="number" class='form-control' id="Fofait_Etape" name="ETP" min="0" required>
         <br/>
         <label>Frais Kilometrique</label>
         <br/>
-        <input type="number" class='form-control' id="Frais_Kilometrique" name="KM" required>
+        <input type="number" class='form-control' id="Frais_Kilometrique" name="KM" min="0"required>
         <br/>
         <label>Nuitée Hôtel</label>
         <br/>
-        <input type="number" class='form-control' id="Nuitee_Hotel" name="NUI" required>
+        <input type="number" class='form-control' id="Nuitee_Hotel" name="NUI" min="0"required>
         <br/>
         <label>Repas Restaurant</label>
         <br/>
-        <input type="number" class='form-control' value='' id="Repas_Restaurant" name="REP" required>
+        <input type="number" class='form-control' value='' id="Repas_Restaurant" name="REP" min="0"required>
         <br/>
         <br/>
         <br/>
