@@ -13,15 +13,17 @@
  * @license   Réseau CERTA
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
- */
+*/
 
 use Modeles\PdoGsb;
 use Outils\Utilitaires;
 
+//require '../src/Vues/v_genererPdf.php';
+
 require '../vendor/autoload.php';
 require '../config/define.php';
 //require '../src/Vues/v_test.php';
-//require '../src/Vues/v_genererPdf.php';
+
 
 session_start();
 

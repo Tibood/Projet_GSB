@@ -162,7 +162,14 @@ $pdf->Text(calc_xpos(2) + $xMarge_Texte, $yPos_HorsForfaitTitre - 5, "Montant");
 $yIndex = 0;
 
 foreach ($info_horsForfait as $currentInfo) {
-    CreateFraisHorsForfais($yIndex, date('d-m-Y'), $currentInfo[3], $currentInfo[5]);
+    $moisAnne = $currentInfo[2];
+    
+    $mois = substr($moisAnne, 4, 2);
+    $Anne = substr($moisAnne,0,4);
+    
+    $moisToRender = $mois . " - " . $Anne;
+    
+    CreateFraisHorsForfais($yIndex, $moisToRender, $currentInfo[3], $currentInfo[5]);
     $yIndex++;
     $pourcentActuelUtilisé = 0;
 }
