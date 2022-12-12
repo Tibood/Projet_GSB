@@ -1,5 +1,5 @@
 function getMois(idvisiteur)
-{
+{ // todo redemander les mois quand on change de user
     let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     let listMois = document.getElementById("listMois");
     if (!listMois.value) {
