@@ -55,7 +55,7 @@ switch ($action) {
             Utilitaires::ajouterErreur('Code de vérification incorrect');
             include PATH_VIEWS . 'v_erreurs.php';
             include PATH_VIEWS . 'v_code2facteurs.php';
-        } else {
+	} else { 
             Utilitaires::connecterA2f($code);
             header('Location: index.php');
         }
