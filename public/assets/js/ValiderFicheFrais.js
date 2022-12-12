@@ -58,7 +58,9 @@ function ajoutLigne(date,libelle,montant,fraisid,index = null)
     cell1.innerHTML = "<input type='date' class='form-control' value=" + date + " name='date' required>"; //Todo mettre un restriction de saisie de la date que dans le mois de la fiche
     cell2.innerHTML = '<input type="text" class="form-control" value="' + libelle + '" name="libelle" size="30" required>';
     cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant' step='.01' required>";
-    cell4.innerHTML = '<input type="button" value="Corriger" onclick="corrigerFraisHorsForfait('+fraisid+')"class="btn btn-success">&nbsp</input><input type="button" value="Reinitialiser" class="btn btn-danger" onclick="ReinitiliserleFraisHorsForfait('+row.rowIndex+')"></input>';
+    cell4.innerHTML = '<input type="button" value="Corriger" onclick="corrigerFraisHorsForfait('+fraisid+')"class="btn btn-success"></input>&nbsp\
+                        <input type="button" value="Reinitialiser" class="btn btn-danger" onclick="ReinitiliserleFraisHorsForfait('+row.rowIndex+')"></input>&nbsp\
+                        <input type="button" value="Reporter" onclick="reporterLeFraisHorsForfait('+fraisid+')"class="btn btn-link"></input>';
 }
 
 function getInfo()
