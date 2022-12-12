@@ -54,10 +54,10 @@ function ajoutLigne(date,libelle,montant,fraisid,index = null)
     let cell3 = row.insertCell(2);
     let cell4 = row.insertCell(3);
     row.className = "table-light";
-    row.id = fraisid;
-    cell1.innerHTML = "<input type='date' class='form-control' value=" + date + " name='date' required>"; //Todo mettre un restriction de saisie de la date que dans le mois de la fiche
-    cell2.innerHTML = '<input type="text" class="form-control" value="' + libelle + '" name="libelle" size="30" required>';
-    cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant' step='.01' required>";
+    row.id = fraisid;// <input type='date'
+    cell1.innerHTML = "<input type='text' class='form-control' value=" + date + " name='date' placeholder='Date' required>"; //Todo mettre un restriction de saisie de la date que dans le mois de la fiche
+    cell2.innerHTML = '<input type="text" class="form-control" value="' + libelle + '" name="libelle" placeholder="Description" size="30" required>';
+    cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant'placeholder='Montant' step='.01' required>";
     cell4.innerHTML = '<input type="button" value="Corriger" onclick="corrigerFraisHorsForfait('+fraisid+')"class="btn btn-success"></input>&nbsp\
                         <input type="button" value="Reinitialiser" class="btn btn-danger" onclick="ReinitiliserleFraisHorsForfait('+row.rowIndex+')"></input>&nbsp\
                         <input type="button" value="Reporter" onclick="reporterLeFraisHorsForfait('+fraisid+')"class="btn btn-link"></input>';
@@ -81,7 +81,7 @@ function getInfo()
             $("#Nuitee_Hotel").val(retour['fraisForfait'][2]['quantite']);
             $("#Repas_Restaurant").val(retour['fraisForfait'][3]['quantite']);
             $("#tablo_fraisHorsForfait tr").remove();
-            retour['fraisHorsForfait'].forEach(element => ajoutLigne(element[4],element['libelle'],element['montant'],element['id']));
+            retour['fraisHorsForfait'].forEach(element => ajoutLigne(element['date'],element['libelle'],element['montant'],element['id']));
             $("#Nb_justificatif").val(retour['nbJustificatif']);
         }
     });
@@ -103,7 +103,7 @@ function ReinitiliserleFraisHorsForfait(indexLigneReinitialiser)
         success: function(retour) {
             retour.forEach(function(element) {
                 if (retour.indexOf(element) === indexLigneReinitialiser) {
-                    ajoutLigne(element[4],element['libelle'],element['montant'],element['id'],indexLigneReinitialiser);
+                    ajoutLigne(element['date'],element['libelle'],element['montant'],element['id'],indexLigneReinitialiser);
                 }
             });
         }
@@ -178,14 +178,21 @@ function corrigerFraisForfait(){
             mois: moisSelectionner,
             lesFrais: fraisForfait
         },
-        success: function(){
-            alert('Les modifications ont bien été enregistrées');
-        }
+        success: function(retour)
+        {
+            if(retour){
+                alert(retour);
+            } else {
+                alert('Les modifications ont été enregistrées');
+            }
+        },
+
+
     });
     }
 }
 
-function corrigerFraisHorsForfait(idfrais,reporter = false){
+function corrigerFraisHorsForfait(idfrais,reporter = false) {
     const moisSelectionner = document.getElementById("listMois").value;
     const idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     var libelle = document.getElementById(idfrais).cells[1].children[0].value;
@@ -207,8 +214,12 @@ function corrigerFraisHorsForfait(idfrais,reporter = false){
             lefrais: lefrais
             },
         dataType: 'json',
-        success: function(){
-            alert('Les modifications ont bien été enregistrées');
+        success: function(retour) {
+            if(JSON.stringify(retour) ==='{}'){
+                alert('Les modifications ont été enregistrées');
+            } else {
+                alert((retour));
+            }
         }
         });
 }

@@ -60,7 +60,7 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             break;
         case 'reporterLeFraisHorsForfait':
             $lefrais = filter_input(INPUT_POST, 'lefrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS,FILTER_REQUIRE_ARRAY);
-            $moisSuivant = Utilitaires::getMoisSuivant($moisSelectionner);
+            $moisSuivant = getMoisSuivant($moisSelectionner);
             $testfraishorsforfait = $pdo->getLesInfosFicheFrais($idVisiteurSelectionner,$moisSuivant);
             if (!$testfraishorsforfait){
                 //$pdo->creeNouvellesLignesFrais($idVisiteurSelectionner,$moisSuivant);
@@ -71,14 +71,25 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             break;
         case 'corrigerFraisForfait':
             $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
-            foreach ($lesFrais as $key => $unFrais) {
-                $pdo->majFraisForfait($idVisiteurSelectionner,$moisSelectionner,$lesFrais);
+            if(Utilitaires::lesQteFraisValides($lesFrais)) {
+                foreach ($lesFrais as $key => $unFrais) {
+                    $pdo->majFraisForfait($idVisiteurSelectionner,$moisSelectionner,$lesFrais);
+                exit();
+                }
             }
+            echo ("Les valeurs des champs ne sont pas valides");
             exit();
             break;
         case 'corrigerFraisHorsForfait':
+            error_reporting(0);
             $lefrais = filter_input(INPUT_POST, 'lefrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
-            $pdo->majFraisHorsForfait($idVisiteurSelectionner,$moisSelectionner,$_POST['lefrais']['libelle'],$lefrais['date'],$lefrais['montant'],$lefrais['idfrais']);
+            Utilitaires::valideInfosFrais($lefrais['date'],$_POST['lefrais']['libelle'],$lefrais['montant']);
+            if (!$_REQUEST['erreurs']) {
+                $pdo->majFraisHorsForfait($idVisiteurSelectionner,$moisSelectionner,$_POST['lefrais']['libelle'], Utilitaires::dateFrancaisVersAnglais($lefrais['date']),$lefrais['montant'],$lefrais['idfrais']);
+                echo('{}');
+                exit();
+            }
+            echo(json_encode($_REQUEST['erreurs']));
             exit();
             break;
         case 'corrigerNbJustificatif':
