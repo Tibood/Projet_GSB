@@ -58,6 +58,17 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             echo json_encode($fraisHorsForfait);
             exit();
             break;
+        case 'reporterLeFraisHorsForfait':
+            $lefrais = filter_input(INPUT_POST, 'lefrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS,FILTER_REQUIRE_ARRAY);
+            $moisSuivant = Utilitaires::getMoisSuivant($moisSelectionner);
+            $testfraishorsforfait = $pdo->getLesInfosFicheFrais($idVisiteurSelectionner,$moisSuivant);
+            if (!$testfraishorsforfait){
+                //$pdo->creeNouvellesLignesFrais($idVisiteurSelectionner,$moisSuivant);
+            }
+            //$pdo->creeNouveauFraisHorsForfait($idVisiteurSelectionner,$moisSuivant,$libelle,$date,$montant);
+            //$pdo->supprimerFraisHorsForfait($idFrais);
+            exit();
+            break;
         case 'corrigerFraisForfait':
             $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
             foreach ($lesFrais as $key => $unFrais) {
