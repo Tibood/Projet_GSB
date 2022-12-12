@@ -126,6 +126,40 @@ function ReinitiliserleFraisHorsForfait(indexLigneReinitialiser)
 
 // -------------------------------------------------------------------------------------------------------
 
+function reporterLeFraisHorsForfait(idFraisHorsForfait)
+{
+    if (confirm("Vous êtes sur le point de reporter le frais hors forfait. Voulez-vous continuer ?")){
+        const idVisiteurSelectionner = document.getElementById("listVisiteur").value;
+        const moisSelectionner = document.getElementById("listMois").value;
+        let idfrais = idFraisHorsForfait;
+        //corrigerFraisHorsForfait(idFraisHorsForfait, reporter = true);
+        let libelle = document.getElementById(idfrais).cells[1].children[0].value;
+        let lefrais = {
+            "date": document.getElementById(idfrais).cells[0].children[0].value,
+            "libelle": libelle,
+            "montant": document.getElementById(idfrais).cells[2].children[0].value,
+            "idfrais": idfrais,
+        }
+        $.ajax({
+            type: "POST",
+            url: "index.php?uc=validerFicheFrais&action=reporterLeFraisHorsForfait&a=ajax",
+            data: {
+                id: idVisiteurSelectionner,
+                mois: moisSelectionner,
+                lefrais: lefrais
+            },
+            dataType: 'json',
+            success: function(retour){
+                if (retour['success'] == true) {
+                    alert("Le frais hors forfait a bien été reporter");
+                    getInfo();
+                } else {
+                    alert("Le frais hors forfait n'a pas pu être reporter");
+                }
+            }
+        });
+    }
+}
 
 
 function corrigerFraisForfait(){
@@ -151,12 +185,16 @@ function corrigerFraisForfait(){
     }
 }
 
-function corrigerFraisHorsForfait(idfrais){
+function corrigerFraisHorsForfait(idfrais,reporter = false){
     const moisSelectionner = document.getElementById("listMois").value;
     const idVisiteurSelectionner = document.getElementById("listVisiteur").value;
+    var libelle = document.getElementById(idfrais).cells[1].children[0].value;
+    if (reporter == true) {
+        var libelle = " REFUSE " + document.getElementById(idfrais).cells[1].children[0].value;
+    }
     let lefrais = {
         "date": document.getElementById(idfrais).cells[0].children[0].value,
-        "libelle": document.getElementById(idfrais).cells[1].children[0].value,
+        "libelle": libelle,
         "montant": document.getElementById(idfrais).cells[2].children[0].value,
         "idfrais": idfrais,
     }
