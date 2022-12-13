@@ -71,6 +71,7 @@ https://bitbucket.org/guimotri/debugger-php7-avec-netbeans-8.2-et-xampp/src/mast
 
 # Mise en place :
 
+
 - Execution des scripts sql
 (script -> /ressources/bdd)
  1. gsb_restore.sql
@@ -81,7 +82,7 @@ https://bitbucket.org/guimotri/debugger-php7-avec-netbeans-8.2-et-xampp/src/mast
 - Execution script php
 (script -> /bin)
 
-generation de données
+generation des données
  1. majGSB.php
 
 hashage des mots de passe Visiteur et Comptable
