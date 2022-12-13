@@ -15,6 +15,9 @@
 <link href="styles/styleComptable.css" rel="stylesheet" type="text/css">
 
 <!--SELECTION-->
+<span class="badge badge-primary">Connecté sur le compte de <?php echo($_SESSION['prenom']." ". $_SESSION['nom'])?></span>
+<br>
+<br>
 <div>
         <label for ='listVisiteur'>Choisir le visiteur:</label>
         <select class="form-control" name="listVisiteur" id='listVisiteur' onchange="getMois();" >
