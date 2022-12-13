@@ -1,37 +1,27 @@
 USE gsb_frais;
-DROP TABLE IF EXISTS COMPTABLE;
 
-CREATE TABLE IF NOT EXISTS COMPTABLE (
-    LIBELLE VARCHAR(50) NOT NULL,
-    IDVISITEUR CHAR(4) NOT NULL,
-    CONSTRAINT PK_COMPTABLE PRIMARY KEY (LIBELLE, IDVISITEUR),
-    CONSTRAINT FK_COMPTABLE_VISITEUR FOREIGN KEY (IDVISITEUR)
-		REFERENCES VISITEUR (ID)
+DROP TABLE IF EXISTS Comptable;
+
+CREATE TABLE IF NOT EXISTS Comptable(
+	id INT NOT NULL AUTO_INCREMENT,
+    nom VARCHAR(30) NOT NULL,
+    prenom VARCHAR(30) NOT NULL,
+    login VARCHAR(20) NOT NULL,
+    mdp VARCHAR(255) NOT NULL,
+    email TEXT NOT NULL,
+    codea2f CHAR(4) DEFAULT NULL,
+    PRIMARY KEY (id)
 );
 
-INSERT INTO COMPTABLE VALUES ('Comptable', 'f4');
-INSERT INTO COMPTABLE VALUES ('Comptable', 'f39');
+# mdp = azerty
+INSERT INTO Comptable (id, nom, prenom, login, mdp, email, codea2f) VALUES(
+    1,
+    "Brouillet",
+    "Thibaud",
+    "tbro",
+    "$2y$10$F5LK4IlxbvmfK/WJ15LBIeVAR7wQfNTyLrSB4cK6ekVfJm0U6ltSi",
+    "tbrouillet@swiss-galaxy.com",
+    null
+);
 
-SELECT Visiteur.mdp FROM Visiteur
-INNER JOIN COMPTABLE 
-<<<<<<< HEAD
-ON COMPTABLE.IDVISITEUR = Visiteur.id
-WHERE COMPTABLE.LIBELLE = 'Comptable';
-=======
-ON COMPTABLE.IDVISITEUR = Visiteur.id;
-
-
-SELECT COUNT(*) AS nbPasComptable
-FROM Visiteur
-WHERE Visiteur.id NOT IN 
-(SELECT COMPTABLE.IDVISITEUR FROM COMPTABLE);
-
-SELECT * FROM visiteur;
-
-ALTER TABLE visiteur
-MODIFY COLUMN mdp VARCHAR(255);
-
-UPDATE visiteur 
-SET mdp = '$2y$12$EdJlIhnJ1zpFx6GnVZnrOu4jzuujaJmCrUbEtnNgkPDr.EVkErR/a'
-WHERE id = 'a131';
->>>>>>> origin/branch_Adrien
+SELECT * FROM Comptable;
