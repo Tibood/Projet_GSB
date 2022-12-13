@@ -93,9 +93,9 @@
         </table>
     </div>
     <label for="Nb_justificatif">Nombre de justificatifs :</label>
-    <input type="number" id="Nb_justificatif" name="Nb_justificatif" class='form-control' patern=[0-9]* required>
+    <input type="number" id="Nb_justificatif" name="Nb_justificatif" class='form-control' min="0"patern=[0-9]* required>
     <br/>
     <br/>
-    <input type="button" value="Valider" class="btn btn-success" onclick=""></input>
+    <input type="button" value="Valider" class="btn btn-success" onclick="validerFicheFrais()"></input>
     <input type="button" value="Reinitialiser" class="btn btn-danger" onclick="getInfo()"></input>
 </div>

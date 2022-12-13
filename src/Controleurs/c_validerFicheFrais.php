@@ -97,6 +97,10 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             $pdo->majNbJustificatifs($idVisiteurSelectionner,$moisSelectionner,$nbJustificatif);
             exit();
             break;
+        case 'validerFicheFrais':
+            $pdo->majEtatFicheFrais($idVisiteurSelectionner,$moisSelectionner,'VA');
+            exit();
+            break;
     }
 } else {
     Utilitaires::ajouterErreur("Vous n'êtes pas comptable");
