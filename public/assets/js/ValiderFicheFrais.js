@@ -16,6 +16,25 @@ function getMois(idvisiteur)
     } else {
         getInfo();
     }
+    let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
+    $.ajax({
+        type: "POST",
+        url: "index.php?uc=validerFicheFrais&action=getInfo&a=ajax",
+        data: {
+            id: idVisiteurSelectionner,
+            mois: moisSelectionner,
+        },
+        dataType: 'json',
+        success: function(retour){
+            $("#Fofait_Etape").val(retour['fraisForfait'][0]['quantite']);
+            $("#Frais_Kilometrique").val(retour['fraisForfait'][1]['quantite']);
+            $("#Nuitee_Hotel").val(retour['fraisForfait'][2]['quantite']);
+            $("#Repas_Restaurant").val(retour['fraisForfait'][3]['quantite']);
+            $("#tablo_fraisHorsForfait tr").remove();
+            retour['fraisHorsForfait'].forEach(element => ajoutLigne(element['date'],element['libelle'],element['montant'],element['id']));
+            $("#Nb_justificatif").val(retour['nbJustificatif']);
+        }
+    });
 }
 
 function getFraisForfait()
@@ -63,29 +82,7 @@ function ajoutLigne(date,libelle,montant,fraisid,index = null)
                         <input type="button" value="Reporter" onclick="reporterLeFraisHorsForfait('+fraisid+')"class="btn btn-link"></input>';
 }
 
-function getInfo()
-{
-    let moisSelectionner = document.getElementById("listMois").value;
-    let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
-    $.ajax({
-        type: "POST",
-        url: "index.php?uc=validerFicheFrais&action=getInfo&a=ajax",
-        data: {
-            id: idVisiteurSelectionner,
-            mois: moisSelectionner,
-        },
-        dataType: 'json',
-        success: function(retour){
-            $("#Fofait_Etape").val(retour['fraisForfait'][0]['quantite']);
-            $("#Frais_Kilometrique").val(retour['fraisForfait'][1]['quantite']);
-            $("#Nuitee_Hotel").val(retour['fraisForfait'][2]['quantite']);
-            $("#Repas_Restaurant").val(retour['fraisForfait'][3]['quantite']);
-            $("#tablo_fraisHorsForfait tr").remove();
-            retour['fraisHorsForfait'].forEach(element => ajoutLigne(element['date'],element['libelle'],element['montant'],element['id']));
-            $("#Nb_justificatif").val(retour['nbJustificatif']);
-        }
-    });
-}
+
 
 
 function ReinitiliserleFraisHorsForfait(indexLigneReinitialiser)
@@ -224,10 +221,27 @@ function corrigerFraisHorsForfait(idfrais,reporter = false) {
         });
 }
 
-function validerFicheFrais(){
+function validerFicheFrais()
+{
+    if (confirm("Vous êtes sur le point de valider la fiche de frais. Voulez-vous continuer ?")){
+        let moisSelectionner = document.getElementById("listMois").value;
+        let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     //corrigerFraisForfait();
     //corrigerFraisHorsForfait();
+
     corrigerNbJustificatif();
+    $.ajax({
+        type: "POST",
+        url: "index.php?uc=validerFicheFrais&action=validerFicheFrais&a=ajax",
+        data: {
+            id: idVisiteurSelectionner,
+            mois: moisSelectionner,
+        },
+        success: function(retour){
+            alert("La fiche de frais a bien été validée")
+        }
+    });
+    }
 }
 
 function corrigerNbJustificatif()
@@ -244,7 +258,7 @@ function corrigerNbJustificatif()
             nbJustificatif: nbJustificatif,
         },
         success: function(){
-            console.log('La modification a bien été prise en compte (Nbjustificati)');
+            console.log('Mofiication du nombre de justificatif');
         }
     });
 }
@@ -263,4 +277,4 @@ function corrigerNbJustificatif()
 
 // $('#someInput').keyup(function() {
 //     $(this).val() // get the current value of the input field.
-// });
+// })
