@@ -64,14 +64,21 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             exit();
             break;
         case 'reporterLeFraisHorsForfait':
+            error_reporting(0);
             $lefrais = filter_input(INPUT_POST, 'lefrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS,FILTER_REQUIRE_ARRAY);
             $moisSuivant = getMoisSuivant($moisSelectionner);
-            $testfraishorsforfait = $pdo->getLesInfosFicheFrais($idVisiteurSelectionner,$moisSuivant);
-            if (!$testfraishorsforfait){
-                //$pdo->creeNouvellesLignesFrais($idVisiteurSelectionner,$moisSuivant);
+            $libelle = "REFUSE " . $_POST['lefrais']['libelle'];
+            $haveFichceFrais = $pdo->getLesInfosFicheFrais($idVisiteurSelectionner,$moisSuivant);
+            $reponse = [];
+            if ($haveFichceFrais == false)
+            {
+                $pdo->creeNouvellesLignesFrais($idVisiteurSelectionner,$moisSuivant);
+                array_push($reponse,'creation nouvelle fiche');
             }
-            //$pdo->creeNouveauFraisHorsForfait($idVisiteurSelectionner,$moisSuivant,$libelle,$date,$montant);
-            //$pdo->supprimerFraisHorsForfait($idFrais);
+            $pdo->creeNouveauFraisHorsForfait($idVisiteurSelectionner,$moisSuivant,$libelle,$lefrais['date'],$lefrais['montant']);
+            $pdo->supprimerFraisHorsForfait($lefrais['idfrais']);
+            array_push($reponse,$moisSuivant);
+            echo (json_encode($reponse));
             exit();
             break;
         case 'corrigerFraisForfait':

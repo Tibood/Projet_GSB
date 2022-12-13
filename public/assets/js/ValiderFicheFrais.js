@@ -1,16 +1,21 @@
-function getMois(idvisiteur)
-{ // todo redemander les mois quand on change de user
+function getMois(affichemois = null)
+{
     let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     let listMois = document.getElementById("listMois");
-    if (listMois.value) {
+    if (listMois.value && affichemois != null) {
+        getInfo(affichemois);
+         var moisSelect =affichemois
+    }
+    else if (listMois.value) {
         getInfo(listMois.value);
+        var moisSelect=listMois.value
     }
     $.ajax({
         type: "POST",
         url: "index.php?uc=validerFicheFrais&action=getMois&a=ajax",
         data: {
             id: idVisiteurSelectionner,
-            moisDejaSeclection: listMois.value
+            moisDejaSeclection: moisSelect
         },
         success: function(retour){
             $("#listMois").html(retour);
@@ -18,11 +23,11 @@ function getMois(idvisiteur)
     });
 }
 
-function getInfo(moisDejaSeclection = null)
+function getInfo(moisDejaSelectioner = null)
 {
     let moisSelectionner = document.getElementById("listMois").value;
-    if (moisDejaSeclection != null) {
-        moisSelectionner = moisDejaSeclection;
+    if (moisDejaSelectioner != null) {
+        moisSelectionner = moisDejaSelectioner;
     }
     let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     $.ajax({
@@ -137,7 +142,6 @@ function reporterLeFraisHorsForfait(idFraisHorsForfait)
         const idVisiteurSelectionner = document.getElementById("listVisiteur").value;
         const moisSelectionner = document.getElementById("listMois").value;
         let idfrais = idFraisHorsForfait;
-        //corrigerFraisHorsForfait(idFraisHorsForfait, reporter = true);
         let libelle = document.getElementById(idfrais).cells[1].children[0].value;
         let lefrais = {
             "date": document.getElementById(idfrais).cells[0].children[0].value,
@@ -153,17 +157,18 @@ function reporterLeFraisHorsForfait(idFraisHorsForfait)
                 mois: moisSelectionner,
                 lefrais: lefrais
             },
-            dataType: 'json',
+            dataType:"json",
             success: function(retour){
-                if (retour['success'] == true) {
-                    alert("Le frais hors forfait a bien été reporter");
-                    getInfo();
+                if(retour.length == 2)
+                {
+                    getMois(retour[1])
                 } else {
-                    alert("Le frais hors forfait n'a pas pu être reporter");
+                    getMois(retour[0])
                 }
+                    alert("Le frais hors forfait a bien été reporter ");
             }
-        });
-    }
+    })
+}
 }
 
 
@@ -220,11 +225,13 @@ function corrigerFraisHorsForfait(idfrais,reporter = false) {
             },
         dataType: 'json',
         success: function(retour) {
+          if (reporter == true) {
             if(JSON.stringify(retour) ==='{}'){
                 alert('Les modifications ont été enregistrées');
             } else {
                 alert((retour));
-            }
+            };
+          }
         }
         });
 }
@@ -270,19 +277,3 @@ function corrigerNbJustificatif()
         }
     });
 }
-
-
-
-
-
-// $('#someInput').bind('input', function() {
-//     $(this).val() // get the current value of the input field.
-// });
-
-// $('#someInput').on('input', function() {
-//     $(this).val() // get the current value of the input field.
-// });
-
-// $('#someInput').keyup(function() {
-//     $(this).val() // get the current value of the input field.
-// })
