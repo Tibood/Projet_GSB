@@ -14,10 +14,5 @@ CREATE TABLE IF NOT EXISTS comptable (
 
 INSERT INTO COMPTABLE VALUES ('F3d7', 'ralie','leo','leoralie','azerty','test.mail@gmail.com',NULL);
 
-select * from comptable;
--- --------------------------------
-
-SELECT * FROM visiteur;
-
 
 
