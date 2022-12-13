@@ -54,12 +54,9 @@ class PdoGsb {
      * 
      * @return null
      */
-<<<<<<< HEAD
-    private function __construct() 
-    {
-=======
+
+
     private function __construct() {
->>>>>>> dev
         $this->connexion = new PDO(DB_DSN, DB_USER, DB_PWD);
         $this->connexion->query('SET CHARACTER SET utf8');
     }
@@ -70,12 +67,8 @@ class PdoGsb {
      * 
      * @return null
      */
-<<<<<<< HEAD
-    public function __destruct() 
-    {
-=======
+
     public function __destruct() {
->>>>>>> dev
         $this->connexion = null;
     }
 
