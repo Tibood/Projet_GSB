@@ -70,7 +70,7 @@ if ($_SESSION['metier'] === 'Comptable'){
                                 </a>
                             </li>
                             <li <?php if ($uc == 'suivrePaiementFicheFrais') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=suivrePaiementFicheFrais">
+                                <a href="index.php?uc=suivrePaiementFiche">
                                     <span class="glyphicon glyphicon-euro"></span>
                                     Suivre le paiement des fiches de frais
                                 </a>
