@@ -68,6 +68,7 @@ foreach ($lesFraisForfait as $unFraisForfait) {
                 <td><?php echo $date ?></td>
                 <td><?php echo $libelle ?></td>
                 <td><?php echo $montant ?></td>
+                
             </tr>
             <?php
         }
@@ -82,7 +83,7 @@ foreach ($lesFraisForfait as $unFraisForfait) {
         <fieldset>       
             <input type="hidden" id="moisSelectionner_pdf" 
                    name="moisSelectionner_pdf_name"
-                   value="202209" 
+                   value="202209" <?php $_SESSION["date"] = $moisASelectionner ?>
                    class="form-control"
                    hidden>   
             <button class="btn btn-success" type="submit">Générer un pdf</button>

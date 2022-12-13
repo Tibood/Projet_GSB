@@ -1,6 +1,7 @@
 <?php
 
-ob_start();
+//ob_start();
+ob_clean();
 
 require('../vendor/fpdf184/fpdf.php');
 
@@ -28,27 +29,34 @@ $pdf->Text($marge + 10, 220, utf8_decode("REMBOURSEMENT DE FRAIS ENGAGÉS"));
 //RECT_CORPS
 $pdf->Rect($marge, 230, $rect_size, 500);
 
+$nom = $_SESSION["nom"];
+$prenom = $_SESSION["prenom"];
+
+//SELECT * FROM gsb_frais.fraisforfait;
+
 //Presentation visiteur
-$pdf->text($marge * 2, 230 + $marge,         "Visiteur          NRD/A-131           SEBASTIEN");
+$pdf->text($marge * 2, 230 + $marge,         "Visiteur          NRD/A-131           " . $prenom . " " . $nom);
 
 //Mois 
-$pdf->Text($marge * 2, 230 + $marge * 1.5,   "Mois              Juillet 2022");
+$pdf->Text($marge * 2, 230 + $marge * 1.5,   "Mois              " . $_SESSION["date"]);
 
 //FRAIS FORFAIT
+
+$montantUnitaire = $pdo->getMontantUnitaire();
 
 //RECUPERE INFOS VISITEUR
 $info = $pdo->getLesFraisForfait($_SESSION["idVisiteur"],$_SESSION["date"]);
 $info_ForfaitEtape = $info[0][2];
-$info_ForfaitEtape_MontantUnitaire = 110;
+$info_ForfaitEtape_MontantUnitaire = (float)($montantUnitaire[0][0]);
 
 $info_FraisKilometrique = $info[1][2];
-$info_FraisKilometrique_MontantUnitaire = 0.62;
+$info_FraisKilometrique_MontantUnitaire = (float)($montantUnitaire[1][0]);
 
 $info_NuiteeHotel = $info[2][2];
-$info_NuiteeHotel_MontantUnitaire = 80;
+$info_NuiteeHotel_MontantUnitaire = (float)($montantUnitaire[2][0]);
 
 $info_RepasRestaurant = $info[3][2];
-$info_RepasRestaurant_MontantUnitaire = 25;
+$info_RepasRestaurant_MontantUnitaire = (float)($montantUnitaire[3][0]);
 
 //Les fonctions
 function CreateRow_Forfait ($txt,$xIndex,$yIndex) {
@@ -177,7 +185,7 @@ foreach ($info_horsForfait as $currentInfo) {
 //Text -> Fait le ... a Toulon
 //setlocale(LC_TIME, "fr_FR");
 
-$pdf->text($pdf_xSize - 200,$pdf_ySize - 150,"Fait le " .date('d'). " " .date('F') ." a Toulon");
+$pdf->text($pdf_xSize - 200,$pdf_ySize - 150,"Fait le " . date('d'). " " . date('F') ." a Toulon");
 
 //SIGNATURE
 $signature = '../resources/signatureComptable.png';
@@ -187,5 +195,5 @@ $pdf->Image($signature, $xpos_signature - $marge, $pdf_ySize - $signature_size[1
 
 $pdf->Output();
 
-ob_end_flush();
+//ob_end_flush();
 

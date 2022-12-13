@@ -46,9 +46,6 @@ switch ($action) {
         include PATH_VIEWS . 'v_etatFrais.php';
         break;
     case 'genererPdf':  
-        $test = filter_input(INPUT_POST, 'moisSelectionner_pdf_name');
-        $_SESSION['date'] = $test;
-        $moiSelect = $_SESSION['date'];        
         include PATH_VIEWS .'v_genererPdf.php';
         break;
 }
