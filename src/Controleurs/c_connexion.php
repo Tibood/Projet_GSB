@@ -38,6 +38,7 @@ switch ($action) {
             $id = $visiteur['id'];
             $nom = $visiteur['nom'];
             $prenom = $visiteur['prenom'];
+            $_SESSION['metier'] = $pdo->getRole($id);
             Utilitaires::connecter($id, $nom, $prenom);
                  
             //$email = $visiteur['email'];

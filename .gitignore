@@ -1,3 +1,4 @@
+#gitignore group
 /nbproject
 /vendor
 /vendor/*
@@ -5,6 +6,9 @@
 /vendor/composer/autoload_static.php
 /AP-GSB-2023.pdf
 
+
+
+#gitignore personal
 # thibaud
 /doc_projet
 /.vscode

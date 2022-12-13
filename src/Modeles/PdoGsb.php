@@ -102,7 +102,7 @@ class PdoGsb {
     /**
      * Retourne le code d'authentification à 2 facteurs
      * de l'utilisateur concerné lors de sa connexion.
-     * 
+     *
      * @param type $id
      * @return type
      */
@@ -116,7 +116,7 @@ class PdoGsb {
         $requetePrepare->execute();
         return $requetePrepare->fetch()['codea2f'];
     }
-    
+
     /**
      * Retourne le mot de passe de l'utilisateur souhaitant se connecter.
      * @param type $login
@@ -132,7 +132,7 @@ class PdoGsb {
         $requetePrepare->execute();
         return $requetePrepare->fetch(PDO::FETCH_OBJ)->mdp;
     }
-    
+
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais
      * hors forfait concernées par les deux arguments.
@@ -319,7 +319,7 @@ class PdoGsb {
     /**
      * Créé le code d'authentification à 2 facteurs,
      * l'implémente dans la base en fonction de l'utilisateur.
-     * 
+     *
      * @param type $id
      * @param type $code
      */
@@ -333,7 +333,7 @@ class PdoGsb {
         $requetePrepare->bindParam(':unIdVisiteur', $id, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
-    
+
     /**
      * Retourne le dernier mois en cours d'un visiteur
      *
@@ -478,7 +478,8 @@ class PdoGsb {
      * @return un tableau avec des champs de jointure entre une fiche de frais
      *         et la ligne d'état
      */
-    public function getLesInfosFicheFrais($idVisiteur, $mois): array {
+    public function getLesInfosFicheFrais($idVisiteur, $mois): array | bool
+    {
         $requetePrepare = $this->connexion->prepare(
                 'SELECT fichefrais.idetat as idEtat, '
                 . 'fichefrais.datemodif as dateModif,'
@@ -520,4 +521,45 @@ class PdoGsb {
         $requetePrepare->execute();
     }
 
+    public function majFraisHorsForfait($idVisiteur, $mois,$libelle, $date, $montant, $idFrais): void
+    {
+        $requetePrepare = $this->connexion->prepare(
+            'UPDATE lignefraishorsforfait '
+            . 'SET libelle = :unLibelle, date = :uneDate, montant = :unMontant '
+            . 'WHERE lignefraishorsforfait.idvisiteur = :unIdVisiteur '
+            . 'AND lignefraishorsforfait.mois = :unMois '
+            . 'AND lignefraishorsforfait.id = :unIdFrais'
+        );
+        $requetePrepare->bindParam(':unLibelle', $libelle, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':uneDate', $date, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMontant', $montant, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
+
+
+    /**
+     * Retourne le role d'un visiteur
+     *
+     * @param String $idVisiteur ID du visiteur
+     *
+     * @return String le role du visiteur
+     */
+    public function getRole($idVisiteur): string
+    {
+        $requetePrepare = $this->connexion->prepare(
+            'select roles.libelle '
+            .   'from roles '
+            .   'where roles.IdVisiteur = :unIdVisiteur '
+        );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $laLigne = $requetePrepare->fetch();
+        if ($laLigne){
+                return $laLigne['libelle'];
+        }
+        return 'visiteur';
+    }
 }

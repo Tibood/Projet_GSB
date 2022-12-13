@@ -1,0 +1,38 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/*
+    Created on : 18 oct. 2022, 11:54:53
+    Author     : thibaud.brouillet
+*/
+
+a {
+    color : orange
+}
+
+a:hover, a:focus {
+  color: orange;
+  text-decoration: underline;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    background-color: #ffad00;
+}
+
+h1 {
+    color: orange;
+}
+.panel-info > .panel-heading {
+    color: #fff;
+    background-color: orange;
+    border-color: orange;
+}
+
+.panel-info {
+    border-color: orange;
+}
+
+.form-control{
+    display: inline;
+    width: fit-content
+}
