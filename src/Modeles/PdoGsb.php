@@ -99,6 +99,18 @@ class PdoGsb {
         return $requetePrepare->fetch();
     }
 
+    public function getInfosComptable($login): array | bool {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT comptable.id AS id, comptable.nom AS nom, '
+            . 'comptable.prenom AS prenom, comptable.email AS email '
+            . 'FROM comptable '
+            . 'WHERE comptable.login = :unLogin'
+        );
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch();
+    }
+
     /**
      * Retourne le code d'authentification à 2 facteurs
      * de l'utilisateur concerné lors de sa connexion.
@@ -117,6 +129,17 @@ class PdoGsb {
         return $requetePrepare->fetch()['codea2f'];
     }
 
+    public function getCodeComptable($id) {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT comptable.codea2f AS codea2f '
+          . 'FROM comptable '
+          . 'WHERE comptable.id = :unId'
+        );
+        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch()['codea2f'];
+    }
+
     /**
      * Retourne le mot de passe de l'utilisateur souhaitant se connecter.
      * @param type $login
@@ -127,6 +150,17 @@ class PdoGsb {
             'SELECT mdp '
             . 'FROM visiteur '
             . 'WHERE visiteur.login = :unLogin'
+        );
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch(PDO::FETCH_OBJ)->mdp;
+    }
+
+    public function getMdpComptable($login) {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT mdp '
+            . 'FROM comptable '
+            . 'WHERE comptable.login = :unLogin'
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->execute();
