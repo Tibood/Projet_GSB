@@ -1,6 +1,6 @@
 <?php
 
-require '../../bin/gendatas/fonctions.php';
+require 'gendatas/fonctions.php';
 
 
 $pdo = new PDO('mysql:host=localhost;dbname=gsb_frais', 'userGsb', 'secret');
