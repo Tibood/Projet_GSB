@@ -8,8 +8,6 @@
 /.vscode
 
 # adrien
-/tests/sql
-/tests/php
 /tests/txt
 
 # rayane
