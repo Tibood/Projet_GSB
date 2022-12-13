@@ -27,6 +27,7 @@ switch ($action) {
         include PATH_VIEWS . 'v_connexion.php';
         break;
     case 'valideConnexion':
+
         $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ($visiteur = $pdo->getInfosVisiteur($login)) {
@@ -34,20 +35,23 @@ switch ($action) {
                 Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
                 include PATH_VIEWS . 'v_erreurs.php';
                 include PATH_VIEWS . 'v_connexion.php';
-            }
+            } else {
             $id = $visiteur['id'];
             $nom = $visiteur['nom'];
             $prenom = $visiteur['prenom'];
+            $_SESSION['metier'] = 'Visiteur';
+            }
         } elseif ($comptable = $pdo->getInfosComptable($login)) {
             if (!password_verify($mdp, $pdo->getMdpComptable($login))) {
                 Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
                 include PATH_VIEWS . 'v_erreurs.php';
                 include PATH_VIEWS . 'v_connexion.php';
-            }
+            } else {
             $id = $comptable['id'];
             $nom = $comptable['nom'];
             $prenom = $comptable['prenom'];
             $_SESSION['metier'] = 'Comptable';
+            }
         }
         Utilitaires::connecter($id, $nom, $prenom);
         //$email = $visiteur['email'];
@@ -68,14 +72,17 @@ switch ($action) {
             } else {
                 Utilitaires::connecterA2f($code);
                 header('Location: index.php');
+            };
+        }
+        if ($_SESSION['metier'] === 'Visiteur') {
+            if($pdo->getCodeVisiteur($_SESSION['idVisiteur']) !== $code) {
+                Utilitaires::ajouterErreur('Code de vérification incorrect');
+                include PATH_VIEWS . 'v_erreurs.php';
+                include PATH_VIEWS . 'v_code2facteurs.php';
+            } else {
+                Utilitaires::connecterA2f($code);
+                header('Location: index.php');
             }
-        } elseif ($pdo->getCodeVisiteur($_SESSION['idVisiteur']) !== $code) {
-            Utilitaires::ajouterErreur('Code de vérification incorrect');
-            include PATH_VIEWS . 'v_erreurs.php';
-            include PATH_VIEWS . 'v_code2facteurs.php';
-        } else {
-            Utilitaires::connecterA2f($code);
-            header('Location: index.php');
         }
         break;
     default:
