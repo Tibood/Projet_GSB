@@ -36,3 +36,7 @@ h1 {
     display: inline;
     width: fit-content
 }
+
+.badge {
+    background-color: orange;
+}

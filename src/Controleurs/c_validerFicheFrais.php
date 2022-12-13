@@ -28,7 +28,7 @@ if ($_SESSION['metier'] === 'Comptable' ) {
         case 'getMois':
             $lesMois = $pdo->getLesMoisDisponibles($idVisiteurSelectionner);
             $moisDejaselectionner = filter_input(INPUT_POST, 'moisDejaSeclection', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            echo "<option selected value='0'> -- Sélectionner un mois -- </option>";
+            echo "<option selected value='0' disabled> -- Sélectionner un mois -- </option>";
             foreach ($lesMois as $unMois) {
                 $mois = $unMois['mois'];
                 $numAnnee = $unMois['numAnnee'];
@@ -45,7 +45,9 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             $fraisForfait = $pdo->getLesFraisForfait($idVisiteurSelectionner,$moisSelectionner);
             $fraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteurSelectionner,$moisSelectionner);
             $nbJustificatif = $pdo->getNbjustificatifs($idVisiteurSelectionner,$moisSelectionner);
+            $fichefrais = $pdo->getLesInfosFicheFrais($idVisiteurSelectionner,$moisSelectionner);
             $reponse = array(
+                'fichefraisetat' => $fichefrais['idEtat'],
                 'fraisForfait' => $fraisForfait,
                 'fraisHorsForfait' => $fraisHorsForfait,
                 'nbJustificatif' => $nbJustificatif
@@ -67,7 +69,7 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             error_reporting(0);
             $lefrais = filter_input(INPUT_POST, 'lefrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS,FILTER_REQUIRE_ARRAY);
             $moisSuivant = getMoisSuivant($moisSelectionner);
-            $libelle = "REFUSE " . $_POST['lefrais']['libelle'];
+            $libelle = "REFUSE/" . $_POST['lefrais']['libelle'];
             if (!strlen($libelle) >= 100){
                 $diff = strlen($libelle) -100 ;
                 $libelle = substr($libelle,0,$diff);
@@ -112,7 +114,7 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             error_reporting(0);
             $nbJustificatif = filter_input(INPUT_POST, 'nbJustificatif', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $etat = $pdo->getLesInfosFicheFrais($idVisiteurSelectionner,$moisSelectionner);
-            if($etat['id']=== "CL"){
+            if($etat['idEtat']=== "CL"){
                 $pdo->majNbJustificatifs($idVisiteurSelectionner,$moisSelectionner,$nbJustificatif);
                 //$pdo->majEtatFicheFrais($idVisiteurSelectionner,$moisSelectionner,'VA');
                 echo("Fiche frait valider et mise en attente de payement");

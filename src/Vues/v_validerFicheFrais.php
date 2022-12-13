@@ -15,6 +15,9 @@
 <link href="styles/styleComptable.css" rel="stylesheet" type="text/css">
 
 <!--SELECTION-->
+<span class="badge badge-primary">Connecté sur le compte de <?php echo($_SESSION['prenom']." ". $_SESSION['nom'])?></span>
+<br>
+<br>
 <div>
         <label for ='listVisiteur'>Choisir le visiteur:</label>
         <select class="form-control" name="listVisiteur" id='listVisiteur' onchange="getMois();" >
@@ -57,25 +60,25 @@
         <h3>Eléments forfaitisé</h3>
         <label>Fofait Etape</label>
         <br/>
-        <input type="number" class='form-control' id="Fofait_Etape" name="ETP" min="0" required>
+        <input type="number" class='form-control' id="Fofait_Etape" name="ETP" min="0" disabled required>
         <br/>
         <label>Frais Kilometrique</label>
         <br/>
-        <input type="number" class='form-control' id="Frais_Kilometrique" name="KM" min="0"required>
+        <input type="number" class='form-control' id="Frais_Kilometrique" name="KM" min="0" disabled required>
         <br/>
         <label>Nuitée Hôtel</label>
         <br/>
-        <input type="number" class='form-control' id="Nuitee_Hotel" name="NUI" min="0"required>
+        <input type="number" class='form-control' id="Nuitee_Hotel" name="NUI" min="0" disabled required>
         <br/>
         <label>Repas Restaurant</label>
         <br/>
-        <input type="number" class='form-control' value='' id="Repas_Restaurant" name="REP" min="0"required>
+        <input type="number" class='form-control' value='' id="Repas_Restaurant" name="REP" min="0" disabled required>
         <br/>
         <br/>
         <br/>
-        <input type="button" value="Corriger"class="btn btn-success" onclick="corrigerFraisForfait()"></input>
+        <input type="button" value="Corriger"class="btn btn-success" onclick="corrigerFraisForfait()" disabled></input>
         &nbsp;
-        <input type="reset" value="Reinitialiser" class="btn btn-danger" onclick="getFraisForfait()"></input>
+        <input type="reset" value="Reinitialiser" class="btn btn-danger" onclick="getFraisForfait()" disabled></input>
     </div>
     <br/>
     <div class='panel panel-info'>
@@ -93,9 +96,9 @@
         </table>
     </div>
     <label for="Nb_justificatif">Nombre de justificatifs :</label>
-    <input type="number" id="Nb_justificatif" name="Nb_justificatif" class='form-control' min="0"patern=[0-9]* required>
+    <input type="number" id="Nb_justificatif" name="Nb_justificatif" class='form-control' min="0"patern=[0-9]* disabled required>
     <br/>
     <br/>
-    <input type="button" value="Valider" class="btn btn-success" onclick="validerFicheFrais()"></input>
-    <input type="button" value="Reinitialiser" class="btn btn-danger" onclick="getInfo()"></input>
+    <input type="button" value="Valider" class="btn btn-success" onclick="validerFicheFrais()" disabled></input>
+    <input type="button" value="Reinitialiser" class="btn btn-danger" onclick="getInfo()" disabled></input>
 </div>

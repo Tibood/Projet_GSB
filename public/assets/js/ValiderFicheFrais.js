@@ -39,6 +39,7 @@ function getInfo(moisDejaSelectioner = null)
         },
         dataType: 'json',
         success: function(retour){
+            $($("input").attr("disabled", true));
             $("#Fofait_Etape").val(retour['fraisForfait'][0]['quantite']);
             $("#Frais_Kilometrique").val(retour['fraisForfait'][1]['quantite']);
             $("#Nuitee_Hotel").val(retour['fraisForfait'][2]['quantite']);
@@ -46,6 +47,9 @@ function getInfo(moisDejaSelectioner = null)
             $("#tablo_fraisHorsForfait tr").remove();
             retour['fraisHorsForfait'].forEach(element => ajoutLigne(element['date'],element['libelle'],element['montant'],element['id']));
             $("#Nb_justificatif").val(retour['nbJustificatif']);
+            if (retour['fichefraisetat'] === "CL" || retour['fichefraisetat'] === "CR") {
+                $("input:disabled").removeAttr('disabled')
+            }
         }
     });
 }
@@ -87,12 +91,12 @@ function ajoutLigne(date,libelle,montant,fraisid,index = null)
     let cell4 = row.insertCell(3);
     row.className = "table-light";
     row.id = fraisid;// <input type='date'
-    cell1.innerHTML = "<input type='text' class='form-control' value=" + date + " name='date' placeholder='Date' required>"; //Todo mettre un restriction de saisie de la date que dans le mois de la fiche
-    cell2.innerHTML = '<input type="text" class="form-control" value="' + libelle + '" name="libelle" placeholder="Description" size="30" required>';
-    cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant'placeholder='Montant' step='.01' required>";
-    cell4.innerHTML = '<input type="button" value="Corriger" onclick="corrigerFraisHorsForfait('+fraisid+')"class="btn btn-success"></input>&nbsp\
-                        <input type="button" value="Reinitialiser" class="btn btn-danger" onclick="ReinitiliserleFraisHorsForfait('+row.rowIndex+')"></input>&nbsp\
-                        <input type="button" value="Reporter" onclick="reporterLeFraisHorsForfait('+fraisid+')"class="btn btn-link"></input>';
+    cell1.innerHTML = "<input type='text' class='form-control' value=" + date + " name='date' placeholder='Date' disabled required>"; //Todo mettre un restriction de saisie de la date que dans le mois de la fiche
+    cell2.innerHTML = '<input type="text" class="form-control" value="' + libelle + '" name="libelle" placeholder="Description" size="30" disabled required>';
+    cell3.innerHTML = "<input type='number' class='form-control' value=" + montant + " name='montant'placeholder='Montant' step='.01' disabled required>";
+    cell4.innerHTML = '<input type="button" value="Corriger" onclick="corrigerFraisHorsForfait('+fraisid+')"class="btn btn-success" disabled></input>&nbsp\
+                        <input type="button" value="Reinitialiser" class="btn btn-danger" onclick="ReinitiliserleFraisHorsForfait('+row.rowIndex+')" disabled></input>&nbsp\
+                        <input type="button" value="Reporter" onclick="reporterLeFraisHorsForfait('+fraisid+')"class="btn btn-link" disabled></input>';
 }
 
 

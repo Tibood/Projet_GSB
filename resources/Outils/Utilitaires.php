@@ -16,6 +16,9 @@
  */
 
 namespace Outils;
+//require_once(PATH_VENDOR . 'autoload.php');
+//use SendinBlue\Client\Configuration;
+//use SendinBlue\Client\Api\TransactionalEmailsApi;
 
 abstract class Utilitaires
 {
@@ -26,7 +29,7 @@ abstract class Utilitaires
      */
     public static function estConnecte(): bool
     {
-        return isset($_SESSION['idVisiteur']);
+        return isset($_SESSION['idVisiteur']) && isset($_SESSION['codeA2f']);
     }
 
     /**
@@ -45,6 +48,50 @@ abstract class Utilitaires
         $_SESSION['prenom'] = $prenom;
     }
 
+    /**
+     * Utilise la librairie de SendinBlue pour envoyer un mail
+     * pour la double authentification, depuis le serveur de production.
+     * Il est nécessaire de spécifier le chemin d'un fichier .pem (clef privé) dans le fichier
+     * php.ini d'Apache pour que ça fonctionne. Et corriger la dépréciation de SendinBlue 
+     * envers PHP 8.1(Spécifier le type de retour des fonctions dans 2 fichiers 
+     * dans le dossier vendor/sendinblue/api-v3-sdk/lib/Model/CreateSmtpEmail[Sender].php
+     * (plus d'infos dans le fichier tests/txt/Enleve-Deprecation-Sendinblue.txt))
+     * 
+     * @return null
+     */ 
+     
+    public static function emailBuilder(string $email, int $code) : void {
+        $config = \SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 
+                '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');
+        $apiInstance = new \SendinBlue\Client\Api\TransactionalEmailsApi(
+            new \GuzzleHttp\Client(),
+            $config
+        );
+        $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail();
+        $sendSmtpEmail['subject'] = "Code d'authentification : " . $code;
+        $sendSmtpEmail['htmlContent'] = '<html><body><h1>Le code : ' . $code . ' vous permettra de vous connecter à GSB.</h1></body></html>';
+        $sendSmtpEmail['sender'] = array('name' => 'Verification GSB', 'email' => 'EnvoiMail.ATR@yahoo.com');
+        $sendSmtpEmail['to'] = array(
+            array('email' => $email, 'name' => 'Utilisateur GSB')
+        );
+        try {
+            $result = $apiInstance->sendTransacEmail($sendSmtpEmail);
+        } catch (Exception $e) {
+            echo 'Exception when calling TransactionalEmailsApi->sendTransacEmail: ', $e->getMessage(), PHP_EOL;
+        }
+    }
+    
+    /**
+     * Implémente le code de vérification à 2 facteurs dans 
+     * une variable de session. Le code sera ensuite envoyé 
+     * avec un mail transactionnel via l'API de SendinBlue
+     * 
+     * @param type $code
+     */
+    public static function connecterA2f($code) : void {
+        $_SESSION['codeA2f'] = $code;
+    }
+    
     /**
      * Détruit la session active
      *
@@ -66,7 +113,7 @@ abstract class Utilitaires
     public static function dateFrancaisVersAnglais($maDate): string
     {
         @list($jour, $mois, $annee) = explode('/', $maDate);
-        return date('Y-m-d', mktime(0, 0, 0, $mois, $jour, $annee));
+        return date('Y-m-d', mktime(0, 0, 0, (int)$mois, (int)$jour, (int)$annee));
     }
 
     /**
@@ -167,7 +214,7 @@ abstract class Utilitaires
             if (!self::estTableauEntiers($tabDate)) {
                 $dateOK = false;
             } else {
-                if (!checkdate($tabDate[1], $tabDate[0], $tabDate[2])) {
+                if (!checkdate((int)$tabDate[1], (int)$tabDate[0], (int)$tabDate[2])) {
                     $dateOK = false;
                 }
             }
@@ -213,12 +260,10 @@ abstract class Utilitaires
             }
         }
         if ($libelle == '') {
-            self::ajouterErreur('Le champ description ne peut pas être vide');
+            self::ajouterErreur('Le champ libellé ne peut pas être vide');
         }
         if ($montant == '') {
-            self::ajouterErreur('Le champ montant ne peut pas être vide');
-        } elseif (!is_numeric($montant)) {
-            self::ajouterErreur('Le champ montant doit être numérique');
+            self::ajouterErreur('Le champ montant est obligatoire et doit être un nombre');
         }
     }
 
