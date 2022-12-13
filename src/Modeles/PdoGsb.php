@@ -167,6 +167,35 @@ class PdoGsb {
         return $requetePrepare->fetch(PDO::FETCH_OBJ)->mdp;
     }
 
+        /**
+     * Créé le code d'authentification à 2 facteurs,
+     * l'implémente dans la base en fonction de l'utilisateur.
+     *
+     * @param type $id
+     * @param type $code
+     */
+    public function setCodeA2f($id, $code) {
+        $requetePrepare = $this->connexion->prepare(
+            'UPDATE visiteur '
+          . 'SET codea2f = :unCode '
+          . 'WHERE visiteur.id = :unIdVisiteur '
+        );
+        $requetePrepare->bindParam(':unCode', $code, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdVisiteur', $id, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
+
+    public function setCodeA2fComptable($id, $code) {
+        $requetePrepare = $this->connexion->prepare(
+            'UPDATE comptable '
+          . 'SET codea2f = :unCode '
+          . 'WHERE comptable.id = :unIdcomptable '
+        );
+        $requetePrepare->bindParam(':unCode', $code, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdcomptable', $id, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
+
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais
      * hors forfait concernées par les deux arguments.
@@ -348,24 +377,6 @@ class PdoGsb {
             $boolReturn = true;
         }
         return $boolReturn;
-    }
-
-    /**
-     * Créé le code d'authentification à 2 facteurs,
-     * l'implémente dans la base en fonction de l'utilisateur.
-     *
-     * @param type $id
-     * @param type $code
-     */
-    public function setCodeA2f($id, $code) {
-        $requetePrepare = $this->connexion->prepare(
-            'UPDATE visiteur '
-          . 'SET codea2f = :unCode '
-          . 'WHERE visiteur.id = :unIdVisiteur '
-        );
-        $requetePrepare->bindParam(':unCode', $code, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unIdVisiteur', $id, PDO::PARAM_STR);
-        $requetePrepare->execute();
     }
 
     /**
