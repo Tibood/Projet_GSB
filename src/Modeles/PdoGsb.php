@@ -86,21 +86,12 @@ class PdoGsb {
      *
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
-<<<<<<< HEAD
     public function getInfosVisiteur($login): array | bool {
         $requetePrepare = $this->connexion->prepare(
             'SELECT visiteur.id AS id, visiteur.nom AS nom, '
             . 'visiteur.prenom AS prenom, visiteur.email AS email '
             . 'FROM visiteur '
             . 'WHERE visiteur.login = :unLogin'
-=======
-    public function getInfosVisiteur($login, $mdp): array|bool {
-        $requetePrepare = $this->connexion->prepare(
-                'SELECT visiteur.id AS id, visiteur.nom AS nom, '
-                . 'visiteur.prenom AS prenom '
-                . 'FROM visiteur '
-                . 'WHERE visiteur.login = :unLogin AND visiteur.mdp = :unMdp'
->>>>>>> branch_rayane
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->execute();
