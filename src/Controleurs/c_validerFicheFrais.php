@@ -72,9 +72,9 @@ if ($_SESSION['metier'] === 'Comptable' ) {
                 $diff = strlen($libelle) -100 ;
                 $libelle = substr($libelle,0,$diff);
             }
-            $haveFichceFrais = $pdo->getLesInfosFicheFrais($idVisiteurSelectionner,$moisSuivant);
+            $haveFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteurSelectionner,$moisSuivant);
             $reponse = [];
-            if ($haveFichceFrais == false)
+            if ($haveFicheFrais == false)
             {
                 $pdo->creeNouvellesLignesFrais($idVisiteurSelectionner,$moisSuivant);
                 array_push($reponse,'creation nouvelle fiche');
@@ -108,13 +108,17 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             echo(json_encode($_REQUEST['erreurs']));
             exit();
             break;
-        case 'corrigerNbJustificatif':
-            $nbJustificatif = filter_input(INPUT_POST, 'nbJustificatif', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $pdo->majNbJustificatifs($idVisiteurSelectionner,$moisSelectionner,$nbJustificatif);
-            exit();
-            break;
         case 'validerFicheFrais':
-            $pdo->majEtatFicheFrais($idVisiteurSelectionner,$moisSelectionner,'VA');
+            error_reporting(0);
+            $nbJustificatif = filter_input(INPUT_POST, 'nbJustificatif', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $etat = $pdo->getLesInfosFicheFrais($idVisiteurSelectionner,$moisSelectionner);
+            if($etat['id']=== "CL"){
+                $pdo->majNbJustificatifs($idVisiteurSelectionner,$moisSelectionner,$nbJustificatif);
+                //$pdo->majEtatFicheFrais($idVisiteurSelectionner,$moisSelectionner,'VA');
+                echo("Fiche frait valider et mise en attente de payement");
+                exit();
+            }
+            echo("La fiche a déjà été traiter");
             exit();
             break;
     }

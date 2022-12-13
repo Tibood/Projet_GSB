@@ -241,39 +241,19 @@ function validerFicheFrais()
     if (confirm("Vous êtes sur le point de valider la fiche de frais. Voulez-vous continuer ?")){
         let moisSelectionner = document.getElementById("listMois").value;
         let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
-    //corrigerFraisForfait();
-    //corrigerFraisHorsForfait();
-
-    corrigerNbJustificatif();
+        let nbJustificatif = document.getElementById("Nb_justificatif").value;
     $.ajax({
         type: "POST",
         url: "index.php?uc=validerFicheFrais&action=validerFicheFrais&a=ajax",
         data: {
             id: idVisiteurSelectionner,
             mois: moisSelectionner,
+            nbJustificatif:nbJustificatif,
         },
-        success: function(retour){
-            alert("La fiche de frais a bien été validée")
+        datatype:'Text',
+        success: function(reponse){
+            alert(reponse)
         }
     });
     }
-}
-
-function corrigerNbJustificatif()
-{
-    let moisSelectionner = document.getElementById("listMois").value;
-    let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
-    let nbJustificatif = document.getElementById("Nb_justificatif").value;
-    $.ajax({
-        type: "POST",
-        url: "index.php?uc=validerFicheFrais&action=corrigerNbJustificatif&a=ajax",
-        data: {
-            id: idVisiteurSelectionner,
-            mois: moisSelectionner,
-            nbJustificatif: nbJustificatif,
-        },
-        success: function(){
-            console.log('Mofiication du nombre de justificatif');
-        }
-    });
 }
