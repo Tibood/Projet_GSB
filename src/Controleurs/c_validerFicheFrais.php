@@ -116,7 +116,7 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             $etat = $pdo->getLesInfosFicheFrais($idVisiteurSelectionner,$moisSelectionner);
             if($etat['idEtat']=== "CL"){
                 $pdo->majNbJustificatifs($idVisiteurSelectionner,$moisSelectionner,$nbJustificatif);
-                //$pdo->majEtatFicheFrais($idVisiteurSelectionner,$moisSelectionner,'VA');
+                $pdo->majEtatFicheFrais($idVisiteurSelectionner,$moisSelectionner,'VA');
                 echo("Fiche frait valider et mise en attente de payement");
                 exit();
             }
