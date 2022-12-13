@@ -1,17 +1,3 @@
-# Avancée :
-
-- Planifier les tâches avec Trello
-- Mettre à jour PHP > 8 (click sur logo Wamp en barre des tâches => PHP => Version => Sélectionner PHP 8)
-- Mettre le PATH de PHP 8.1 dans variable d'environnement windows
-- Créer un virtualhost avec le chemin du projet pointant sur le répertoire 'public'
-- Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / MySQL Workbench
-- Lancer la commande 'php majGSB.php' dans le dossier '/bin/gendatas' 
-- Bug corrigé sur fiche de frais hors forfait mal renseigné
-- Hashage de mot de passe : "echo password_hash('password', PASSWORD_BCRYPT, ['cost' => 12]);"
-- Pour mail depuis serveur : composer require sendinblue/api-v3-sdk "8.3.1"
-- Spécifier chemin du fichier resources/cacert.pem dans wamp64/bin/apache/apachexxx/bin/php.ini
-	(curl.cainfo="Chemin/Vers/cacert.pem" et openssl.cafile="Chemin/Vers/cacert.pem" (décommenté))
-
 # Documents principaux :
  
 Fichier PDF :
@@ -59,6 +45,18 @@ mais aussi redonner confiance aux équipes malmenées par les fusions récentes.
 - Ne générer qu’une seule fois les fichiers PDF.
 - Utiliser un serveur web et développer sous PHP.
 - Coder la partie comptable en respectant le cas d’utilisation correspondant.
+
+# Astuces :
+
+- Mettre à jour PHP > 8 (click sur logo Wamp en barre des tâches => PHP => Version => Sélectionner PHP 8)
+- Mettre le PATH de PHP 8.1 dans variable d'environnement windows
+- Créer un virtualhost avec le chemin du projet pointant sur le répertoire 'public'
+- Importer et lancer le script 'resources\bdd\gsb_restore.sql' dans PHPMyAdmin / MySQL Workbench
+- Lancer la commande 'php majGSB.php' dans le dossier '/bin/gendatas' 
+- Hashage de mot de passe : "echo password_hash('password', PASSWORD_BCRYPT, ['cost' => 12]);"
+- Pour mail depuis serveur : composer require sendinblue/api-v3-sdk "8.3.1"
+- Spécifier chemin du fichier resources/cacert.pem dans wamp64/bin/apache/apachexxx/bin/php.ini
+	(curl.cainfo="Chemin/Vers/cacert.pem" et openssl.cafile="Chemin/Vers/cacert.pem" (décommenté))
 
 # OUTILS :
 - IDE NetBeans
@@ -114,3 +112,9 @@ Get-ChildItem -Recurse nomFichier
 
 #Trouver un fichier contenant un texte recherché :
 Get-ChildItem -Recurse | Select-String "Ici le texte à chercher" -List | Select Path
+
+# Enlever un dossier versionné Git
+
+git rm -r --cached nomDuDossier
+git add .
+git commit -m "Enlèvement d'un dossier versionné indésirable (comme vendor, nbproject, .vscode...)"
