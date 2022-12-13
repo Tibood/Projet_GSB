@@ -15,8 +15,9 @@ $pdo2 = new PDO('mysql:host=localhost;dbname=gsb_frais', 'userGsb', 'secret');
 $pdo2->query('SET CHARACTER SET utf8');
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+$visiteurFicheFrais = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$moisFicheFrais = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 
 if ($_SESSION['metier'] === 'Comptable' ) {
@@ -26,8 +27,16 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             include PATH_VIEWS . 'v_suivrePaiementFiche.php';
             break;
         case 'getInfo':
-            $fichefrais = $pdo->getLesInfosFicheFrais($idVisiteurSelectionner,$moisSelectionner);
-            echo json_encode($fichefrais);
+            $fichefrais = $pdo->getLesInfosFicheFrais($visiteurFicheFrais,$moisFicheFrais);
+            $fraisForfait = $pdo->getLesFraisForfait($visiteurFicheFrais,$moisFicheFrais);
+            $fraisHorsForfait = $pdo->getLesFraisHorsForfait($visiteurFicheFrais,$moisFicheFrais);
+            echo json_encode(
+                array(
+                'fichefrais' => $fichefrais,
+                'fraisForfait' => $fraisForfait,
+                'fraisHorsForfait' => $fraisHorsForfait
+                )
+            );
             exit();
             break;
         case 'miseEnPaiement':

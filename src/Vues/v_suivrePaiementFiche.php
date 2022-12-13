@@ -10,7 +10,7 @@
  * @author    BROUILLET THIBAUD
  */
 ?>
-
+<script src = "assets/js/SuivrePaiement.js"></script>
 <script src = "//code.jquery.com/jquery-1.12.0.min.js"></script>
 <link href="styles/styleComptable.css" rel="stylesheet" type="text/css">
 
@@ -20,7 +20,7 @@
 
 <div>
     <label for ='listFiche'>Choisir la Fiche Frais:</label>
-    <select class="form-control" name="listFiche" id='listFiche' onchange="" >
+    <select class="form-control" name="listFiche" id='listFiche' onchange="getInfo()" >
     <option selected value="0">-- Sélectionner une fiche frais --</option>
         <?php
         foreach ($lesfichesfrrais as $uneFicheFrais) {
