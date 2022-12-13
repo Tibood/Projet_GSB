@@ -27,12 +27,17 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             break;
         case 'getMois':
             $lesMois = $pdo->getLesMoisDisponibles($idVisiteurSelectionner);
+            $moisDejaselectionner = filter_input(INPUT_POST, 'moisDejaSeclection', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             echo "<option selected value='0'> -- Sélectionner un mois -- </option>";
             foreach ($lesMois as $unMois) {
                 $mois = $unMois['mois'];
                 $numAnnee = $unMois['numAnnee'];
                 $numMois = $unMois['numMois'];
-                echo "<option value='$mois'> $numMois/$numAnnee </option>";
+                if($moisDejaselectionner === $mois){
+                    echo "<option selected value='$moisDejaselectionner'>$numMois/$numAnnee</option>";
+                } else {
+                    echo "<option value='$mois'> $numMois/$numAnnee </option>";
+                }
             };
             exit();
             break;
