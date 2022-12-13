@@ -1,20 +1,12 @@
 -- Script de restauration de l'application "GSB Frais"
 
 -- Administration de la base de données
-<<<<<<< HEAD
 DROP DATABASE IF EXISTS gsb_frais;
 CREATE DATABASE IF NOT EXISTS gsb_frais;
-CREATE USER 'userGsb'@'localhost' IDENTIFIED BY 'secret';
+-- CREATE USER 'userGsb'@'localhost' IDENTIFIED BY 'secret';
 GRANT SHOW DATABASES ON *.* TO 'userGsb'@'localhost';
 GRANT ALL PRIVILEGES ON `gsb_frais`.* TO 'userGsb'@'localhost';
-=======
--- <<<<<<< Updated upstream:Ressources2023/GSB_AppliMVC/resources/bdd/gsb_restore.sql
- CREATE DATABASE gsb_frais;
- GRANT SHOW DATABASES ON *.* TO userGsb@localhost;
 
-
-GRANT ALL PRIVILEGES ON `gsb_frais`.* TO userGsb@localhost;
->>>>>>> branch_rayane
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 USE gsb_frais ;
 
