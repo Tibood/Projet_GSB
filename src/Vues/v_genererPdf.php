@@ -32,13 +32,16 @@ $pdf->Rect($marge, 230, $rect_size, 500);
 $nom = $_SESSION["nom"];
 $prenom = $_SESSION["prenom"];
 
-//SELECT * FROM gsb_frais.fraisforfait;
+$mois_pdf = (int)substr($_SESSION["date"], 4, 2);
+$Annee_pdf = substr($_SESSION["date"],0,4);
+
+//$Date_Objet =  DateTime::createFrom("M",$_SESSION["date"]);
 
 //Presentation visiteur
-$pdf->text($marge * 2, 230 + $marge,         "Visiteur          NRD/A-131           " . $prenom . " " . $nom);
+$pdf->text($marge * 2, 230 + $marge,         "Visiteur          ".$_SESSION["idVisiteur"] ."           " . $prenom . " " . $nom);
 
 //Mois 
-$pdf->Text($marge * 2, 230 + $marge * 1.5,   "Mois              " . $_SESSION["date"]);
+$pdf->Text($marge * 2, 230 + $marge * 1.5,   "Date               " . utf8_decode (dateToFrench ( date("F",mktime(0,0,0,$mois_pdf)),"F"))." ". $Annee_pdf);
 
 //FRAIS FORFAIT
 
@@ -185,7 +188,7 @@ foreach ($info_horsForfait as $currentInfo) {
 //Text -> Fait le ... a Toulon
 //setlocale(LC_TIME, "fr_FR");
 
-$pdf->text($pdf_xSize - 200,$pdf_ySize - 150,"Fait le " . date('d'). " " . date('F') ." a Toulon");
+$pdf->text($pdf_xSize - 200,$pdf_ySize - 150,"Fait le ". date("j") ." ". utf8_decode (dateToFrench ( date("F"),"F")). " a Toulon");
 
 //SIGNATURE
 $signature = '../resources/signatureComptable.png';
@@ -197,3 +200,12 @@ $pdf->Output();
 
 //ob_end_flush();
 
+// Convertit une date ou un timestamp en français
+function dateToFrench($date, $format) 
+{
+    $english_days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+    $french_days = array('lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche');
+    $english_months = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+    $french_months = array('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre');
+    return str_replace($english_months, $french_months, str_replace($english_days, $french_days, date($format, strtotime($date) ) ) );
+}
