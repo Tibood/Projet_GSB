@@ -2,19 +2,27 @@ function getMois(idvisiteur)
 { // todo redemander les mois quand on change de user
     let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     let listMois = document.getElementById("listMois");
-    if (!listMois.value) {
+    if (listMois.value) {
+        getInfo(listMois.value);
+    }
     $.ajax({
         type: "POST",
         url: "index.php?uc=validerFicheFrais&action=getMois&a=ajax",
         data: {
-            id: idVisiteurSelectionner
+            id: idVisiteurSelectionner,
+            moisDejaSeclection: listMois.value
         },
         success: function(retour){
             $("#listMois").html(retour);
         }
     });
-    } else {
-        getInfo();
+}
+
+function getInfo(moisDejaSeclection = null)
+{
+    let moisSelectionner = document.getElementById("listMois").value;
+    if (moisDejaSeclection != null) {
+        moisSelectionner = moisDejaSeclection;
     }
     let idVisiteurSelectionner = document.getElementById("listVisiteur").value;
     $.ajax({
