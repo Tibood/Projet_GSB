@@ -68,6 +68,10 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             $lefrais = filter_input(INPUT_POST, 'lefrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS,FILTER_REQUIRE_ARRAY);
             $moisSuivant = getMoisSuivant($moisSelectionner);
             $libelle = "REFUSE " . $_POST['lefrais']['libelle'];
+            if (!strlen($libelle) >= 100){
+                $diff = strlen($libelle) -100 ;
+                $libelle = substr($libelle,0,$diff);
+            }
             $haveFichceFrais = $pdo->getLesInfosFicheFrais($idVisiteurSelectionner,$moisSuivant);
             $reponse = [];
             if ($haveFichceFrais == false)
