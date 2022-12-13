@@ -21,7 +21,7 @@ use Outils\Utilitaires;
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $idVisiteur = $_SESSION['idVisiteur'];
 switch ($action) {
-    case 'selectionnerMois':
+    case 'selectionnerMois':  
         $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
         // Afin de sélectionner par défaut le dernier mois dans la zone de liste
         // on demande toutes les clés, et on prend la première,
@@ -45,4 +45,8 @@ switch ($action) {
         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
         $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
         include PATH_VIEWS . 'v_etatFrais.php';
+        break;
+    case 'genererPdf':  
+        include PATH_VIEWS .'v_genererPdf.php';
+        break;
 }
