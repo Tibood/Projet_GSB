@@ -4,8 +4,8 @@
 DROP DATABASE IF EXISTS gsb_frais;
 CREATE DATABASE IF NOT EXISTS gsb_frais;
 -- CREATE USER 'userGsb'@'localhost' IDENTIFIED BY 'secret';
-GRANT SHOW DATABASES ON *.* TO 'userGsb'@'localhost';
-GRANT ALL PRIVILEGES ON `gsb_frais`.* TO 'userGsb'@'localhost';
+GRANT SHOW DATABASES ON *.* TO 'userGsb'@'localhost' IDENTIFIED BY 'secret';
+GRANT ALL PRIVILEGES ON `gsb_frais`.* TO 'userGsb'@'localhost' IDENTIFIED BY 'secret';
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 USE gsb_frais ;
