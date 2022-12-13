@@ -20,7 +20,8 @@
     ],
     
     "require": {
-        "sendinblue/api-v3-sdk": "8.3.1"
+        "sendinblue/api-v3-sdk": "8.3.1",
+        "fpdf/fpdf": "^1.85"
     },
     
     "autoload": {

@@ -6,7 +6,6 @@ Fichier PDF :
 - Partie 3 = Infos sur les missions à réaliser
 - Partie 4 = Documents pour les missions
 
-
 # PRESENTATION DU CONTEXTE :
 
 Galaxy Swiss Bourdin (GSB) = Laboratoire médical / Conglomérat international / fusion de plusieurs organismes = Mélange diforme (Galaxy + Swiss-Bourdin).
