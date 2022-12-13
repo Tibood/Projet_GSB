@@ -37,3 +37,5 @@
         }
         ?>
     </select>
+</div>
+    <input type="button" value="Valider" class="btn btn-success" onclick="" ></input>
