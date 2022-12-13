@@ -19,8 +19,5 @@ select * from comptable;
 
 SELECT * FROM visiteur;
 
-ALTER TABLE visiteur
-MODIFY COLUMN mdp VARCHAR(255);
-
 
 
