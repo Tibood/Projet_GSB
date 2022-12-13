@@ -14,7 +14,7 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-// Pointe vers fichier resources/Outils/Utilitaires.php
+
 use Outils\Utilitaires;
 
 $idVisiteur = $_SESSION['idVisiteur'];
@@ -37,7 +37,6 @@ switch ($action) {
             include PATH_VIEWS . 'v_erreurs.php';
         }
         break;
-        
     case 'validerCreationFrais':
         $dateFrais = Utilitaires::dateAnglaisVersFrancais(
             filter_input(INPUT_POST, 'dateFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS)
@@ -53,7 +52,6 @@ switch ($action) {
             $pdo->creeNouveauFraisHorsForfait($idVisiteur, $mois, $libelle, $dateFrais, $montant);
         }
         break;
-    
     case 'supprimerFrais':
         $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $pdo->supprimerFraisHorsForfait($idFrais);
