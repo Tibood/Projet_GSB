@@ -15,7 +15,6 @@
 <link href="styles/styleComptable.css" rel="stylesheet" type="text/css">
 
 <!--SELECTION-->
-<span class="badge badge-primary">Connecté sur le compte de <?php echo($_SESSION['prenom']." ". $_SESSION['nom'])?></span>
 <br>
 <br>
 
@@ -28,10 +27,10 @@
             $mois = $uneFicheFrais['mois'];
             $idvisiteur = $uneFicheFrais['idvisiteur'];
             $etat = $uneFicheFrais['idetat'];
-            if($etat === 'VA' || $etat === 'CL'){
+            if($etat === 'VA'){
                 ?>
                 <option value="<?php echo $mois ?>">
-                    <?php echo $mois . $etat ?>
+                    <?php echo $mois .' '. $etat .' '. $idvisiteur?>
                 </option>
             <?php
             }

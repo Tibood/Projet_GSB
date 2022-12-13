@@ -116,6 +116,7 @@ if ($_SESSION['metier'] === 'Comptable'){
                     </div>
                 </div>
             </div>
+            <span class="badge text-bg-warning">Connecté sur le compte de <?php echo($_SESSION['prenom']." ". $_SESSION['nom'])?></span>
             <?php
             } else {
                 ?>
