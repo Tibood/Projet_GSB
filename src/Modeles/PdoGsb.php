@@ -539,27 +539,4 @@ class PdoGsb {
         $requetePrepare->execute();
     }
 
-
-    /**
-     * Retourne le role d'un visiteur
-     *
-     * @param String $idVisiteur ID du visiteur
-     *
-     * @return String le role du visiteur
-     */
-    public function getRole($idVisiteur): string
-    {
-        $requetePrepare = $this->connexion->prepare(
-            'select roles.libelle '
-            .   'from roles '
-            .   'where roles.IdVisiteur = :unIdVisiteur '
-        );
-        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
-        $requetePrepare->execute();
-        $laLigne = $requetePrepare->fetch();
-        if ($laLigne){
-                return $laLigne['libelle'];
-        }
-        return 'visiteur';
-    }
 }
