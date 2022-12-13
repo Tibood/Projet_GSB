@@ -57,7 +57,11 @@ switch ($action) {
         //$email = $visiteur['email'];
         $email = 'Verif.A2F.GSB.ATR@protonmail.com';
         $code = rand(1000, 9999);
-        $pdo->setCodeA2f($id,$code);
+        if ($_SESSION['metier'] === 'Comptable') {
+            $pdo->setCodeA2fComptable($id,$code);
+        } else {
+            $pdo->setCodeA2f($id,$code);
+        }
         Utilitaires::emailBuilder($email, $code);
         //mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
         include PATH_VIEWS . 'v_code2facteurs.php';
