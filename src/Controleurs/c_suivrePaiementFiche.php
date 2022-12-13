@@ -11,6 +11,9 @@
 use Outils\Utilitaires;
 require '..\bin\gendatas\fonctions.php';
 
+$pdo2 = new PDO('mysql:host=localhost;dbname=gsb_frais', 'userGsb', 'secret');
+$pdo2->query('SET CHARACTER SET utf8');
+
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -19,7 +22,7 @@ $moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIA
 if ($_SESSION['metier'] === 'Comptable' ) {
     switch ($action) {
         case 'saisirInfo':
-            $visiteurs = getLesVisiteurs($pdo);
+            $lesfichesfrrais = getLesFichesFrais($pdo2);
             include PATH_VIEWS . 'v_suivrePaiementFiche.php';
             break;
         case 'getInfo':
