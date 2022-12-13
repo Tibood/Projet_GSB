@@ -12,6 +12,9 @@ use Outils\Utilitaires;
 require '..\bin\gendatas\fonctions.php';
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$idVisiteurSelectionner = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$moisSelectionner = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
 
 if ($_SESSION['metier'] === 'Comptable' ) {
     switch ($action) {
