@@ -52,8 +52,10 @@ class PdoGsb
     /**
      * Constructeur privé, crée l'instance de PDO qui sera sollicitée
      * pour toutes les méthodes de la classe
+     * 
+     * @return null
      */
-    private function __construct()
+    private function __construct() 
     {
         $this->connexion = new PDO(DB_DSN, DB_USER, DB_PWD);
         $this->connexion->query('SET CHARACTER SET utf8');
@@ -62,8 +64,10 @@ class PdoGsb
     /**
      * Méthode destructeur appelée dès qu'il n'y a plus de référence sur un
      * objet donné, ou dans n'importe quel ordre pendant la séquence d'arrêt.
+     * 
+     * @return null
      */
-    public function __destruct()
+    public function __destruct() 
     {
         $this->connexion = null;
     }
@@ -83,14 +87,14 @@ class PdoGsb
     }
 
     /**
-     * Retourne les informations d'un visiteur
+     * Retourne les informations d'un visiteur depuis
+     * la base de données.
      *
      * @param String $login Login du visiteur
-     * @param String $mdp   Mot de passe du visiteur
      *
-     * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
+     * @return array ou bool l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
-    public function getInfosVisiteur($login): array | bool {
+    public function getInfosVisiteur(string $login): array | bool {
         $requetePrepare = $this->connexion->prepare(
             'SELECT visiteur.id AS id, visiteur.nom AS nom, '
             . 'visiteur.prenom AS prenom, visiteur.email AS email '
@@ -106,10 +110,10 @@ class PdoGsb
      * Retourne le code d'authentification à 2 facteurs
      * de l'utilisateur concerné lors de sa connexion.
      * 
-     * @param type $id
-     * @return type
+     * @param string $id
+     * @return string 
      */
-    public function getCodeVisiteur($id) {
+    public function getCodeVisiteur(string $id) : string {
         $requetePrepare = $this->connexion->prepare(
             'SELECT visiteur.codea2f AS codea2f '
           . 'FROM visiteur '
@@ -122,10 +126,11 @@ class PdoGsb
     
     /**
      * Retourne le mot de passe de l'utilisateur souhaitant se connecter.
-     * @param type $login
-     * @return type
+     * 
+     * @param string $login
+     * @return string
     */
-    public function getMdpVisiteur($login) {
+    public function getMdpVisiteur(string $login) : string {
         $requetePrepare = $this->connexion->prepare(
             'SELECT mdp '
             . 'FROM visiteur '
@@ -148,7 +153,7 @@ class PdoGsb
      * @return tous les champs des lignes de frais hors forfait sous la forme
      * d'un tableau associatif
      */
-    public function getLesFraisHorsForfait($idVisiteur, $mois): array
+    public function getLesFraisHorsForfait(string $idVisiteur, string $mois): array
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT * FROM lignefraishorsforfait '
@@ -173,9 +178,9 @@ class PdoGsb
      * @param String $idVisiteur ID du visiteur
      * @param String $mois       Mois sous la forme aaaamm
      *
-     * @return le nombre entier de justificatifs
+     * @return int le nombre entier de justificatifs
      */
-    public function getNbjustificatifs($idVisiteur, $mois): int
+    public function getNbjustificatifs(string $idVisiteur, string $mois): int
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT fichefrais.nbjustificatifs as nb FROM fichefrais '
@@ -199,7 +204,7 @@ class PdoGsb
      * @return l'id, le libelle et la quantité sous la forme d'un tableau
      * associatif
      */
-    public function getLesFraisForfait($idVisiteur, $mois): array
+    public function getLesFraisForfait(string $idVisiteur, string $mois): array
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT fraisforfait.id as idfrais, '
@@ -245,7 +250,7 @@ class PdoGsb
      *
      * @return null
      */
-    public function majFraisForfait($idVisiteur, $mois, $lesFrais): void
+    public function majFraisForfait(string $idVisiteur, string $mois, array $lesFrais): void
     {
         $lesCles = array_keys($lesFrais);
         foreach ($lesCles as $unIdFrais) {
@@ -275,7 +280,7 @@ class PdoGsb
      *
      * @return null
      */
-    public function majNbJustificatifs($idVisiteur, $mois, $nbJustificatifs): void
+    public function majNbJustificatifs(string $idVisiteur, string $mois, int $nbJustificatifs): void
     {
         $requetePrepare = $this->connexion->prepare(
             'UPDATE fichefrais '
@@ -301,7 +306,7 @@ class PdoGsb
      *
      * @return vrai ou faux
      */
-    public function estPremierFraisMois($idVisiteur, $mois): bool
+    public function estPremierFraisMois(string $idVisiteur, string $mois): bool
     {
         $boolReturn = false;
         $requetePrepare = $this->connexion->prepare(
@@ -322,10 +327,10 @@ class PdoGsb
      * Créé le code d'authentification à 2 facteurs,
      * l'implémente dans la base en fonction de l'utilisateur.
      * 
-     * @param type $id
-     * @param type $code
+     * @param string $id
+     * @param id $code
      */
-    public function setCodeA2f($id, $code) {
+    public function setCodeA2f(string $id, int $code) : void {
         $requetePrepare = $this->connexion->prepare(
             'UPDATE visiteur '
           . 'SET codea2f = :unCode '
