@@ -3,7 +3,7 @@
 //ob_start();
 ob_clean();
 
-require('../vendor/fpdf184/fpdf.php');
+require('../resources/fpdf184/fpdf.php');
 
 $pdf = new FPDF('P', 'pt', 'A4');
 $pdf->AddPage();
