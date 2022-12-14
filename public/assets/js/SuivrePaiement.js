@@ -54,6 +54,7 @@ function miseEnPaiement(){
                 id: idvisiteurFicheFrais
             },
             success: function(retour){
+                document.getElementById(values).remove();
                 $("#btn_valider").attr("disabled", true);
                 alert("L'état de la fiche a été mis à remboursé");
             }
