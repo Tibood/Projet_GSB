@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-            <title>GSB</title>
+            <title>Documentation</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
@@ -24,7 +24,7 @@
     </head>
 <body id="top">
     <header class="phpdocumentor-header phpdocumentor-section">
-    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">GSB</a></h1>
+    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">Documentation</a></h1>
     <input class="phpdocumentor-header__menu-button" type="checkbox" id="menu-button" name="menu-button" />
     <label class="phpdocumentor-header__menu-icon" for="menu-button">
         <i class="fas fa-bars"></i>
@@ -73,6 +73,62 @@
             </li>
             </ul>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/fpdf.html" class="">Fpdf</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/fpdf-traits.html" class="">Traits</a>
+                
+            </li>
+            </ul>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/guzzlehttp.html" class="">GuzzleHttp</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/guzzlehttp-cookie.html" class="">Cookie</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/guzzlehttp-exception.html" class="">Exception</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/guzzlehttp-handler.html" class="">Handler</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/guzzlehttp-promise.html" class="">Promise</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/guzzlehttp-psr7.html" class="">Psr7</a>
+                
+            </li>
+            </ul>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/psr.html" class="">Psr</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/psr-http.html" class="">Http</a>
+                
+            </li>
+            </ul>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/sendinblue.html" class="">SendinBlue</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/sendinblue-client.html" class="">Client</a>
+                
+            </li>
+            </ul>
+
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
@@ -83,6 +139,16 @@
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Application.html" class="">Application</a>
 </h4>
+
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/SendinBlue.html" class="">SendinBlue</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="packages/SendinBlue-Client.html" class="">Client</a>
+                
+            </li>
+            </ul>
 
                         </section>
             
@@ -150,7 +216,23 @@
 <dd>Ajoute le libellé d&#039;une erreur au tableau des erreurs</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Outils-Utilitaires.html#method_connecter">connecter()</a>
+    <a href="classes/Outils-Utilitaires.html#method_connecterA2f">connecterA2f()</a>
+    <span>
+                                &nbsp;: null    </span>
+</dt>
+<dd>Implémente le code de vérification à 2 facteurs dans
+une variable de session. Le code sera ensuite envoyé
+avec un mail transactionnel via l&#039;API de SendinBlue</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Outils-Utilitaires.html#method_connecterComptable">connecterComptable()</a>
+    <span>
+                                &nbsp;: null    </span>
+</dt>
+<dd>Enregistre dans une variable session les infos d&#039;un comptable</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Outils-Utilitaires.html#method_connecterVisiteur">connecterVisiteur()</a>
     <span>
                                 &nbsp;: null    </span>
 </dt>
@@ -178,6 +260,14 @@ aaaa-mm-jj</dd>
                                 &nbsp;: null    </span>
 </dt>
 <dd>Détruit la session active</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Outils-Utilitaires.html#method_emailBuilder">emailBuilder()</a>
+    <span>
+                                &nbsp;: null    </span>
+</dt>
+<dd>Utilise la librairie de SendinBlue pour envoyer un mail
+pour la double authentification, depuis le serveur de production.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Outils-Utilitaires.html#method_estConnecte">estConnecte()</a>
@@ -269,7 +359,7 @@ et le montant</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">232</span>
+    <span class="phpdocumentor-element-found-in__line">294</span>
 
     </aside>
 
@@ -307,9 +397,119 @@ et le montant</dd>
             -public
                                     -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_connecter">
-        connecter()
-        <a href="classes/Outils-Utilitaires.html#method_connecter" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_connecterA2f">
+        connecterA2f()
+        <a href="classes/Outils-Utilitaires.html#method_connecterA2f" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">108</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Implémente le code de vérification à 2 facteurs dans
+une variable de session. Le code sera ensuite envoyé
+avec un mail transactionnel via l&#039;API de SendinBlue</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">connecterA2f</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$code</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$code</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Code à 4 chiffres pour connexion A2F</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">null</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_connecterComptable">
+        connecterComptable()
+        <a href="classes/Outils-Utilitaires.html#method_connecterComptable" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">57</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Enregistre dans une variable session les infos d&#039;un comptable</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">connecterComptable</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$idComptable</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nom</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$prenom</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$idComptable</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>ID du visiteur</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$nom</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Nom du visiteur</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$prenom</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Prénom du visiteur</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">null</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_connecterVisiteur">
+        connecterVisiteur()
+        <a href="classes/Outils-Utilitaires.html#method_connecterVisiteur" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
@@ -322,7 +522,7 @@ et le montant</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">connecter</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$idVisiteur</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nom</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$prenom</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">connecterVisiteur</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$idVisiteur</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$nom</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$prenom</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -377,7 +577,7 @@ et le montant</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">144</span>
 
     </aside>
 
@@ -425,7 +625,7 @@ français jj/mm/aaaa</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">130</span>
 
     </aside>
 
@@ -473,7 +673,7 @@ aaaa-mm-jj</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">117</span>
 
     </aside>
 
@@ -485,6 +685,67 @@ aaaa-mm-jj</p>
 
     
     
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">null</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_emailBuilder">
+        emailBuilder()
+        <a href="classes/Outils-Utilitaires.html#method_emailBuilder" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">78</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Utilise la librairie de SendinBlue pour envoyer un mail
+pour la double authentification, depuis le serveur de production.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">emailBuilder</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$email</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$code</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+
+        <section class="phpdocumentor-description"><p>Il est nécessaire de spécifier le chemin d'un fichier .pem (clef privé) dans le fichier
+php.ini d'Apache pour que ça fonctionne. Et corriger la dépréciation de SendinBlue
+envers PHP 8.1(Spécifier le type de retour des fonctions dans 2 fichiers
+dans le dossier vendor/sendinblue/api-v3-sdk/lib/Model/CreateSmtpEmail[Sender].php
+(plus d'infos dans le fichier tests/txt/Enleve-Deprecation-Sendinblue.txt))</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$email</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Email recevant le code</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$code</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Code à 4 chiffres pour connexion A2F</p>
+</section>
+
+            </dd>
+            </dl>
+
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
@@ -541,7 +802,7 @@ aaaa-mm-jj</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">143</span>
+    <span class="phpdocumentor-element-found-in__line">207</span>
 
     </aside>
 
@@ -588,7 +849,7 @@ aaaa-mm-jj</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">160</span>
+    <span class="phpdocumentor-element-found-in__line">224</span>
 
     </aside>
 
@@ -635,7 +896,7 @@ aaaa-mm-jj</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">177</span>
 
     </aside>
 
@@ -682,7 +943,7 @@ aaaa-mm-jj</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">125</span>
+    <span class="phpdocumentor-element-found-in__line">189</span>
 
     </aside>
 
@@ -729,7 +990,7 @@ aaaa-mm-jj</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">94</span>
+    <span class="phpdocumentor-element-found-in__line">158</span>
 
     </aside>
 
@@ -776,7 +1037,7 @@ aaaa-mm-jj</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">185</span>
+    <span class="phpdocumentor-element-found-in__line">249</span>
 
     </aside>
 
@@ -823,7 +1084,7 @@ aaaa-mm-jj</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">245</span>
+    <span class="phpdocumentor-element-found-in__line">307</span>
 
     </aside>
 
@@ -858,7 +1119,7 @@ aaaa-mm-jj</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="resources/Outils/Utilitaires.php"><a href="files/resources-outils-utilitaires.html"><abbr title="resources/Outils/Utilitaires.php">Utilitaires.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">202</span>
+    <span class="phpdocumentor-element-found-in__line">266</span>
 
     </aside>
 

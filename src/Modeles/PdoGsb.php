@@ -120,7 +120,7 @@ class PdoGsb {
 
     /**
      * Retourne le code d'authentification à 2 facteurs
-     * de l'utilisateur concerné lors de sa connexion.
+     * d'un visiteur lors de sa connexion.
      *
      * @param string $id
      * @return string
@@ -136,6 +136,12 @@ class PdoGsb {
         return $requetePrepare->fetch()['codea2f'];
     }
 
+    /* Retourne le code d'authentification à 2 facteurs
+     * d'un comptable lors de sa connexion.
+     *
+     * @param string $id
+     * @return string
+     */
     public function getCodeComptable($id) {
         $requetePrepare = $this->connexion->prepare(
             'SELECT comptable.codea2f AS codea2f '
@@ -148,7 +154,7 @@ class PdoGsb {
     }
 
     /**
-     * Retourne le mot de passe de l'utilisateur souhaitant se connecter.
+     * Retourne le mot de passe hashé du visiteur souhaitant se connecter.
      *
      * @param string $login
      * @return string
@@ -164,6 +170,12 @@ class PdoGsb {
         return $requetePrepare->fetch(PDO::FETCH_OBJ)->mdp;
     }
 
+    /**
+     * Retourne le mot de passe hashé du comptable souhaitant se connecter.
+     *
+     * @param string $login
+     * @return string
+    */
     public function getMdpComptable($login) {
         $requetePrepare = $this->connexion->prepare(
             'SELECT mdp '
