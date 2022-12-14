@@ -1,7 +1,11 @@
+#gitignore group
 /nbproject
 /vendor
 /AP-GSB-2023.pdf
 
+
+
+#gitignore personal
 # thibaud
 /doc_projet
 /.vscode
