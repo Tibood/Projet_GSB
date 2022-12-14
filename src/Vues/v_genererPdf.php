@@ -40,7 +40,7 @@ $Annee_pdf = substr($_SESSION["date"],0,4);
 //Presentation visiteur
 $pdf->text($marge * 2, 230 + $marge,         "Visiteur          ".$_SESSION["idVisiteur"] ."           " . $prenom . " " . $nom);
 
-//Mois 
+//Mois
 $pdf->Text($marge * 2, 230 + $marge * 1.5,   "Date               " . utf8_decode (dateToFrench ( date("F",mktime(0,0,0,$mois_pdf)),"F"))." ". $Annee_pdf);
 
 //FRAIS FORFAIT
@@ -64,13 +64,13 @@ $info_RepasRestaurant_MontantUnitaire = (float)($montantUnitaire[3][0]);
 //Les fonctions
 function CreateRow_Forfait ($txt,$xIndex,$yIndex) {
     global $pdf,$xSize;
-    
+
     $ysize = 20;
-    
+
     $xpos = calc_xpos($xIndex);
     $ypos = calc_ypos_Forfait($yIndex);
-    
-    $pdf->Rect($xpos, $ypos,$xSize,$ysize);   
+
+    $pdf->Rect($xpos, $ypos,$xSize,$ysize);
     $pdf->Text($xpos + 5,$ypos + $ysize / 2 + 3,$txt );
 }
 
@@ -78,33 +78,33 @@ $pourcentActuelUtilisé = 0;
 
 function CreateRow_HorsForfait ($txt,$yIndex,$pourcentRect) {
     global $pdf,$rect_xSize,$pourcentActuelUtilisé;
-    
+
     $ysize = 20;
-    
+
     $xpos = calc_xpos(0)+ $pourcentActuelUtilisé * $rect_xSize / 100;
     $ypos = calc_ypos_HorsForfait($yIndex);
-    
+
     $pourcentActuelUtilisé += $pourcentRect;
-    
-    $pdf->Rect($xpos, $ypos,$rect_xSize * $pourcentRect / 100,$ysize);   
+
+    $pdf->Rect($xpos, $ypos,$rect_xSize * $pourcentRect / 100,$ysize);
     $pdf->Text($xpos + 5,$ypos + $ysize / 2 + 3,utf8_decode($txt) );
 }
 
 function calc_xpos (int $index) : float {
     global $marge, $xSize;
-    
+
     return $marge * 1.5  + $xSize * $index;
 }
 
 function calc_ypos_Forfait (int $index) : float {
     global $marge,$ySize, $rect_yPos;
-    
+
     return $rect_yPos + $marge * 2.5 + $ySize * $index + 20;
 }
 
 function calc_ypos_HorsForfait (int $index) : float {
     global $ySize,$yPos_HorsForfaitTitre;
-    
+
     return $yPos_HorsForfaitTitre + $ySize * $index;
 }
 
@@ -174,12 +174,12 @@ $yIndex = 0;
 
 foreach ($info_horsForfait as $currentInfo) {
     $moisAnne = $currentInfo[2];
-    
+
     $mois = substr($moisAnne, 4, 2);
     $Anne = substr($moisAnne,0,4);
-    
+
     $moisToRender = $mois . " - " . $Anne;
-    
+
     CreateFraisHorsForfais($yIndex, $moisToRender, $currentInfo[3], $currentInfo[5]);
     $yIndex++;
     $pourcentActuelUtilisé = 0;
@@ -201,7 +201,7 @@ $pdf->Output();
 //ob_end_flush();
 
 // Convertit une date ou un timestamp en français
-function dateToFrench($date, $format) 
+function dateToFrench($date, $format)
 {
     $english_days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
     $french_days = array('lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche');
