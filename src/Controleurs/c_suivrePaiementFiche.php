@@ -41,7 +41,7 @@ if ($_SESSION['metier'] === 'Comptable' ) {
             exit();
             break;
         case 'miseEnPaiement':
-            //$pdo->majEtatFicheFrais($visiteurFicheFrais,$moisFicheFrais,'RB');
+            $pdo->majEtatFicheFrais($visiteurFicheFrais,$moisFicheFrais,'RB');
             exit();
             break;
     }
