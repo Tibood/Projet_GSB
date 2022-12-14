@@ -23,7 +23,3 @@ SET SQL_SAFE_UPDATES = 0;
 UPDATE visiteur
 SET idvehicule = FLOOR(RAND() * 4) + 1;
 SET SQL_SAFE_UPDATES = 1;
-
-select * from visiteur;
-select * from vehicule;
-
