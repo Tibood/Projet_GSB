@@ -175,24 +175,6 @@ class PdoGsb {
         return $requetePrepare->fetch(PDO::FETCH_OBJ)->mdp;
     }
 
-        /**
-     * Créé le code d'authentification à 2 facteurs,
-     * l'implémente dans la base en fonction de l'utilisateur.
-     *
-     * @param type $id
-     * @param type $code
-     */
-    public function setCodeA2f($id, $code) {
-        $requetePrepare = $this->connexion->prepare(
-            'UPDATE visiteur '
-          . 'SET codea2f = :unCode '
-          . 'WHERE visiteur.id = :unIdVisiteur '
-        );
-        $requetePrepare->bindParam(':unCode', $code, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unIdVisiteur', $id, PDO::PARAM_STR);
-        $requetePrepare->execute();
-    }
-
     public function setCodeA2fComptable($id, $code) {
         $requetePrepare = $this->connexion->prepare(
             'UPDATE comptable '
@@ -404,7 +386,7 @@ class PdoGsb {
      * l'implémente dans la base en fonction de l'utilisateur.
      *
      * @param string $id
-     * @param id $code
+     * @param int $code
      */
     public function setCodeA2f(string $id, int $code) : void {
         $requetePrepare = $this->connexion->prepare(
