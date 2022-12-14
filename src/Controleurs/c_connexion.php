@@ -36,10 +36,11 @@ switch ($action) {
                 include PATH_VIEWS . 'v_erreurs.php';
                 include PATH_VIEWS . 'v_connexion.php';
             } else {
-            $id = $visiteur['id'];
-            $nom = $visiteur['nom'];
-            $prenom = $visiteur['prenom'];
-            $_SESSION['metier'] = 'Visiteur';
+                $id = $visiteur['id'];
+                $nom = $visiteur['nom'];
+                $prenom = $visiteur['prenom'];
+                $_SESSION['metier'] = 'Visiteur';
+                Utilitaires::connecterVisiteur($id, $nom, $prenom);
             }
         } elseif ($comptable = $pdo->getInfosComptable($login)) {
             if (!password_verify($mdp, $pdo->getMdpComptable($login))) {
@@ -47,13 +48,14 @@ switch ($action) {
                 include PATH_VIEWS . 'v_erreurs.php';
                 include PATH_VIEWS . 'v_connexion.php';
             } else {
-            $id = $comptable['id'];
-            $nom = $comptable['nom'];
-            $prenom = $comptable['prenom'];
-            $_SESSION['metier'] = 'Comptable';
+                $id = $comptable['id'];
+                $nom = $comptable['nom'];
+                $prenom = $comptable['prenom'];
+                $_SESSION['metier'] = 'Comptable';
+                Utilitaires::connecterVisiteur($id, $nom, $prenom);
             }
         }
-        Utilitaires::connecter($id, $nom, $prenom);
+        
         //$email = $visiteur['email'];
         $email = 'Verif.A2F.GSB.ATR@protonmail.com';
         $code = rand(1000, 9999);
