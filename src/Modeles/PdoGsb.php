@@ -584,4 +584,18 @@ class PdoGsb {
         $requetePrepare->execute();
     }
 
+    public function getPrixAuKilometreVisiteur($idVisiteur): array | bool
+    {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT vehicule.prixaukilometre '
+            . 'FROM vehicule INNER JOIN visiteur '
+            . 'ON vehicule.id = visiteur.idvehicule '
+            . 'WHERE visiteur.id = :unIdVisiteur '
+        );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $laLigne = $requetePrepare->fetch();
+        return $laLigne;
+    }
+
 }
