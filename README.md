@@ -77,6 +77,7 @@ https://bitbucket.org/guimotri/debugger-php7-avec-netbeans-8.2-et-xampp/src/mast
  2. ajoutMailA2f.sql
  3. hashMdp.sql
  3. ajoutComptable.sql
+ 4. Vehicule.sql
 
 - Execution script php
 (script -> /bin)
