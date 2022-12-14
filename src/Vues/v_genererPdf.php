@@ -48,8 +48,8 @@ $pdf->Text($marge * 2, 230 + $marge * 1.5,   "Date               " . utf8_decode
 $montantUnitaire = $pdo->getMontantUnitaire();
 
 $prixAuKm = $pdo->getPrixAuKilometreVisiteur($_SESSION["idVisiteur"]);
-if (!$prixAuKm){
-    $prixAuKm = 1;
+if ($prixAuKm == false){
+    $prixAuKm['prixaukilometre'] = 1;
 }
 
 //RECUPERE INFOS VISITEUR
@@ -58,7 +58,7 @@ $info_ForfaitEtape = $info[0][2];
 $info_ForfaitEtape_MontantUnitaire = (float)($montantUnitaire[0][0]);
 
 $info_FraisKilometrique = $info[1][2];
-$info_FraisKilometrique_MontantUnitaire = (float)($montantUnitaire[1][0])* $prixAuKm;
+$info_FraisKilometrique_MontantUnitaire = (float)($montantUnitaire[1][0])* $prixAuKm['prixaukilometre'];
 
 $info_NuiteeHotel = $info[2][2];
 $info_NuiteeHotel_MontantUnitaire = (float)($montantUnitaire[2][0]);
