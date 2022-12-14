@@ -584,6 +584,9 @@ class PdoGsb {
         $requetePrepare->execute();
     }
 
+     /**
+     *
+     */
     public function getPrixAuKilometreVisiteur($idVisiteur): array | bool
     {
         $requetePrepare = $this->connexion->prepare(
