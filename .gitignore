@@ -1,12 +1,22 @@
+#gitignore group
 /nbproject
+/vendor
+/vendor/*
+/vendor/composer/autoload_real.php
+/vendor/composer/autoload_static.php
+/AP-GSB-2023.pdf
 
 
+
+#gitignore personal
 # thibaud
 /doc_projet
 /.vscode
 
-
 # adrien
+/tests/sql
+/tests/php
+/tests/txt
 
-
-# rayan
+# rayane
+REMBOURSEMENT_FRAIS_202207-VILLECHALANE.docx

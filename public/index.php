@@ -30,7 +30,11 @@ session_start();
 $pdo = PdoGsb::getPdoGsb();
 $estConnecte = Utilitaires::estConnecte();
 
-require PATH_VIEWS . 'v_entete.php';
+$Requeteajax = filter_input(INPUT_GET, 'a', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+if(!$Requeteajax){
+    require PATH_VIEWS . 'v_entete.php';
+}
 
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -53,9 +57,13 @@ switch ($uc) {
     case 'etatFrais':
         include PATH_CTRLS . 'c_etatFrais.php';
         break;
+    case 'validerFicheFrais':
+        include PATH_CTRLS . 'c_validerFicheFrais.php';
+        break;
     case 'deconnexion':
         include PATH_CTRLS . 'c_deconnexion.php';
         break;
+
     default:
         Utilitaires::ajouterErreur('Page non trouvée, veuillez vérifier votre lien...');
         include PATH_VIEWS . 'v_erreurs.php';

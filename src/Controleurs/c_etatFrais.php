@@ -15,6 +15,7 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 
+// Pointe vers fichier resources/Outils/Utilitaires.php
 use Outils\Utilitaires;
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);

@@ -86,17 +86,114 @@ class PdoGsb {
      *
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
-    public function getInfosVisiteur($login, $mdp): array|bool {
+
+    public function getInfosVisiteur($login): array | bool {
         $requetePrepare = $this->connexion->prepare(
-                'SELECT visiteur.id AS id, visiteur.nom AS nom, '
-                . 'visiteur.prenom AS prenom '
-                . 'FROM visiteur '
-                . 'WHERE visiteur.login = :unLogin AND visiteur.mdp = :unMdp'
+            'SELECT visiteur.id AS id, visiteur.nom AS nom, '
+            . 'visiteur.prenom AS prenom, visiteur.email AS email '
+            . 'FROM visiteur '
+            . 'WHERE visiteur.login = :unLogin'
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
         $requetePrepare->execute();
         return $requetePrepare->fetch();
+    }
+
+    public function getInfosComptable($login): array | bool {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT comptable.id AS id, comptable.nom AS nom, '
+            . 'comptable.prenom AS prenom, comptable.email AS email '
+            . 'FROM comptable '
+            . 'WHERE comptable.login = :unLogin'
+        );
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch();
+    }
+
+    /**
+     * Retourne le code d'authentification à 2 facteurs
+     * de l'utilisateur concerné lors de sa connexion.
+     *
+     * @param type $id
+     * @return type
+     */
+    public function getCodeVisiteur($id) {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT visiteur.codea2f AS codea2f '
+          . 'FROM visiteur '
+          . 'WHERE visiteur.id = :unId'
+        );
+        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch()['codea2f'];
+    }
+
+    public function getCodeComptable($id) {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT comptable.codea2f AS codea2f '
+          . 'FROM comptable '
+          . 'WHERE comptable.id = :unId'
+        );
+        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch()['codea2f'];
+    }
+
+    /**
+     * Retourne le mot de passe de l'utilisateur souhaitant se connecter.
+     * @param type $login
+     * @return type
+    */
+    public function getMdpVisiteur($login) {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT mdp '
+            . 'FROM visiteur '
+            . 'WHERE visiteur.login = :unLogin'
+        );
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch(PDO::FETCH_OBJ)->mdp;
+    }
+
+    public function getMdpComptable($login) {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT mdp '
+            . 'FROM comptable '
+            . 'WHERE comptable.login = :unLogin'
+        );
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch(PDO::FETCH_OBJ)->mdp;
+    }
+
+        /**
+     * Créé le code d'authentification à 2 facteurs,
+     * l'implémente dans la base en fonction de l'utilisateur.
+     *
+     * @param type $id
+     * @param type $code
+     */
+    public function setCodeA2f($id, $code) {
+        $requetePrepare = $this->connexion->prepare(
+            'UPDATE visiteur '
+          . 'SET codea2f = :unCode '
+          . 'WHERE visiteur.id = :unIdVisiteur '
+        );
+        $requetePrepare->bindParam(':unCode', $code, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdVisiteur', $id, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
+
+    public function setCodeA2fComptable($id, $code) {
+        $requetePrepare = $this->connexion->prepare(
+            'UPDATE comptable '
+          . 'SET codea2f = :unCode '
+          . 'WHERE comptable.id = :unIdcomptable '
+        );
+        $requetePrepare->bindParam(':unCode', $code, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdcomptable', $id, PDO::PARAM_STR);
+        $requetePrepare->execute();
     }
 
     /**
@@ -426,7 +523,8 @@ class PdoGsb {
      * @return un tableau avec des champs de jointure entre une fiche de frais
      *         et la ligne d'état
      */
-    public function getLesInfosFicheFrais($idVisiteur, $mois): array {
+    public function getLesInfosFicheFrais($idVisiteur, $mois): array | bool
+    {
         $requetePrepare = $this->connexion->prepare(
                 'SELECT fichefrais.idetat as idEtat, '
                 . 'fichefrais.datemodif as dateModif,'
@@ -465,6 +563,24 @@ class PdoGsb {
         $requetePrepare->bindParam(':unEtat', $etat, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
+
+    public function majFraisHorsForfait($idVisiteur, $mois,$libelle, $date, $montant, $idFrais): void
+    {
+        $requetePrepare = $this->connexion->prepare(
+            'UPDATE lignefraishorsforfait '
+            . 'SET libelle = :unLibelle, date = :uneDate, montant = :unMontant '
+            . 'WHERE lignefraishorsforfait.idvisiteur = :unIdVisiteur '
+            . 'AND lignefraishorsforfait.mois = :unMois '
+            . 'AND lignefraishorsforfait.id = :unIdFrais'
+        );
+        $requetePrepare->bindParam(':unLibelle', $libelle, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':uneDate', $date, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMontant', $montant, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
 
