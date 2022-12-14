@@ -44,7 +44,7 @@ function getInfo(moisDejaSelectioner = null)
             $("#Frais_Kilometrique").val(retour['fraisForfait'][1]['quantite']);
             $("#Nuitee_Hotel").val(retour['fraisForfait'][2]['quantite']);
             $("#Repas_Restaurant").val(retour['fraisForfait'][3]['quantite']);
-            $("#tablo_fraisHorsForfait tr").remove();
+            $("#tablo_fraisHorsForfait td").remove();
             retour['fraisHorsForfait'].forEach(element => ajoutLigne(element['date'],element['libelle'],element['montant'],element['id']));
             $("#Nb_justificatif").val(retour['nbJustificatif']);
             if (retour['fichefraisetat'] === "CL" || retour['fichefraisetat'] === "CR") {
