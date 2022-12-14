@@ -51,8 +51,8 @@
 
 
 <!--AFFICHAGE-->
+<h1>Valider la fiche de frais</h1>
 <div class='container'>
-    <h1>Valider la fiche de frais</h1>
     <div class="input-group" id='fraisForfait'>
         <h3>Eléments forfaitisé</h3>
         <label>Fofait Etape</label>
