@@ -15,3 +15,10 @@ function getInfo(){
     });
 
 }
+
+function miseEnPaiement(){
+    confirm('mettre en payement')
+    {
+        alert('mois en paiement')
+    }
+}
