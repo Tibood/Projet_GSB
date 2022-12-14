@@ -23,7 +23,8 @@ $moisFicheFrais = filter_input(INPUT_POST, 'mois', FILTER_SANITIZE_FULL_SPECIAL_
 if ($_SESSION['metier'] === 'Comptable' ) {
     switch ($action) {
         case 'saisirInfo':
-            $lesfichesfrrais = getLesFichesFrais($pdo2);
+            $visiteurs = getLesVisiteurs($pdo2);
+            $lesfichesfrais = getLesFichesFrais($pdo2);
             include PATH_VIEWS . 'v_suivrePaiementFiche.php';
             break;
         case 'getInfo':

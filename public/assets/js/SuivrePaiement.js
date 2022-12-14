@@ -17,7 +17,7 @@ function getInfo(){
 }
 
 function miseEnPaiement(){
-    confirm('mettre en payement')
+    confirm('mettre en paiement')
     {
         alert('mois en paiement')
     }
