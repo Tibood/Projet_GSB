@@ -70,7 +70,7 @@ if ($_SESSION['metier'] === 'Comptable'){
                                 </a>
                             </li>
                             <li <?php if ($uc == 'suivrePaiementFicheFrais') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=suivrePaiementFicheFrais">
+                                <a href="index.php?uc=suivrePaiementFiche&action=saisirInfo">
                                     <span class="glyphicon glyphicon-euro"></span>
                                     Suivre le paiement des fiches de frais
                                 </a>
@@ -116,6 +116,7 @@ if ($_SESSION['metier'] === 'Comptable'){
                     </div>
                 </div>
             </div>
+            <span class="badge text-bg-warning">Connecté sur le compte de <?php echo($_SESSION['prenom']." ". $_SESSION['nom'])?></span>
             <?php
             } else {
                 ?>

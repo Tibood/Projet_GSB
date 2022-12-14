@@ -35,6 +35,7 @@ switch ($action) {
                 Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
                 include PATH_VIEWS . 'v_erreurs.php';
                 include PATH_VIEWS . 'v_connexion.php';
+                break;
             } else {
             $id = $visiteur['id'];
             $nom = $visiteur['nom'];
@@ -46,6 +47,7 @@ switch ($action) {
                 Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
                 include PATH_VIEWS . 'v_erreurs.php';
                 include PATH_VIEWS . 'v_connexion.php';
+                break;
             } else {
             $id = $comptable['id'];
             $nom = $comptable['nom'];

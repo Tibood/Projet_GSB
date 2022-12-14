@@ -15,47 +15,44 @@
 <link href="styles/styleComptable.css" rel="stylesheet" type="text/css">
 
 <!--SELECTION-->
-<span class="badge badge-primary">Connecté sur le compte de <?php echo($_SESSION['prenom']." ". $_SESSION['nom'])?></span>
 <br>
 <br>
 <div>
-        <label for ='listVisiteur'>Choisir le visiteur:</label>
-        <select class="form-control" name="listVisiteur" id='listVisiteur' onchange="getMois();" >
-        <option selected value="0">-- Sélectionner un visiteur --</option>
-            <?php
-            foreach ($visiteurs as $unVisiteur) {
-                $id = $unVisiteur['id'];
-                $nom = $unVisiteur['nom'];
-                $prenom = $unVisiteur['prenom'];
-                ?>
-                    <option value="<?php echo $id ?>">
-                        <?php echo $nom .' '. $prenom ?>
-                    </option>
-                <?php
-                }
+    <label for ='listVisiteur'>Choisir le visiteur:</label>
+    <select class="form-control" name="listVisiteur" id='listVisiteur' onchange="getMois();" >
+    <option selected value="0" disabled>-- Sélectionner un visiteur --</option>
+        <?php
+        foreach ($visiteurs as $unVisiteur) {
+            $id = $unVisiteur['id'];
+            $nom = $unVisiteur['nom'];
+            $prenom = $unVisiteur['prenom'];
             ?>
-        </select>
-        &nbsp;
-        <label for="listMois">Mois :</label>
-        <select class="form-control" name="listMois" id="listMois" onchange="getInfo();" >
+                <option value="<?php echo $id ?>">
+                    <?php echo $nom .' '. $prenom ?>
+                </option>
             <?php
-            if (!$lesMois)
-            {
-                ?>
-                <option selected value=""></option>
-                <?php
             }
+        ?>
+    </select>
+    &nbsp;
+    <label for="listMois">Mois :</label>
+    <select class="form-control" name="listMois" id="listMois" onchange="getInfo();" >
+        <?php
+        if (!$lesMois)
+        {
             ?>
-        </select>
-        </div>
-    </form>
+            <option selected value=""></option>
+            <?php
+        }
+        ?>
+    </select>
 </div>
 
 
 
 <!--AFFICHAGE-->
+<h1>Valider la fiche de frais</h1>
 <div class='container'>
-    <h1>Valider la fiche de frais</h1>
     <div class="input-group" id='fraisForfait'>
         <h3>Eléments forfaitisé</h3>
         <label>Fofait Etape</label>
