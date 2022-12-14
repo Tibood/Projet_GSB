@@ -19,7 +19,7 @@
 <br>
 
 <div>
-    <label for ='listFiche'>Choisir la Fiche Frais en attente de remboursement:</label>
+    <label for ='listFiche'>Choisir la Fiche Frais en attente de paiement:</label>
     <select class="form-control" name="listFiche" id='listFiche' onchange="getInfo()" >
     <option selected value="0" disabled>-- Sélectionner une fiche frais --</option>
         <?php
