@@ -35,7 +35,7 @@
             }
             if($etat === 'VA'){
                 ?>
-                <option value="<?php echo $id . '/' . $mois?>">
+                <option id="<?php echo $id . '/' . $mois?>" value="<?php echo $id . '/' . $mois?>">
                     <?php echo $visiteur . ' / ' . $mois ?>
                 </option>
             <?php
