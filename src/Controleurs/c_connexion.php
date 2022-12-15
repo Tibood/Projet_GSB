@@ -56,6 +56,11 @@ switch ($action) {
                 $_SESSION['metier'] = 'Comptable';
                 Utilitaires::connecterVisiteur($id, $nom, $prenom);
             }
+        } else {
+            Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
+            include PATH_VIEWS . 'v_erreurs.php';
+            include PATH_VIEWS . 'v_connexion.php';
+            break;
         }
         
         //$email = $visiteur['email'];
