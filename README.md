@@ -1,5 +1,5 @@
 # Avancée :
-
+testtttttttt tibo
 - Planifier les tâches avec Trello
 - Mettre à jour PHP > 8 (click sur logo Wamp en barre des tâches => PHP => Version => Sélectionner PHP 8)
 - Mettre le PATH de PHP 8.1 dans variable d'environnement windows
