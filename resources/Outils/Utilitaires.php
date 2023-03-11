@@ -76,12 +76,9 @@ abstract class Utilitaires
      * @return null
      */ 
     public static function emailBuilder(string $email, int $code) : void {
-        $config = \SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 
-                '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');
-        $apiInstance = new \SendinBlue\Client\Api\TransactionalEmailsApi(
-            new \GuzzleHttp\Client(),
-            $config
-        );
+        $clefApi = file_get_contents(__DIR__ . '/clefApi.txt');
+        $config = \SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', $clefApi);
+        $apiInstance = new \SendinBlue\Client\Api\TransactionalEmailsApi(new \GuzzleHttp\Client(), $config);
         $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail();
         $sendSmtpEmail['subject'] = "Code d'authentification : " . $code;
         $sendSmtpEmail['htmlContent'] = '<html><body><h1>Le code : ' . $code . ' vous permettra de vous connecter à GSB.</h1></body></html>';
