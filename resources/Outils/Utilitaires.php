@@ -77,6 +77,7 @@ abstract class Utilitaires
      */ 
     public static function emailBuilder(string $email, int $code) : void {
         $clefApi = file_get_contents(__DIR__ . '/clefApi.txt');
+        error_reporting(E_ALL ^ (E_DEPRECATED));
         $config = \SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', $clefApi);
         $apiInstance = new \SendinBlue\Client\Api\TransactionalEmailsApi(new \GuzzleHttp\Client(), $config);
         $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail();
