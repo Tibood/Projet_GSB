@@ -27,13 +27,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="./styles/bootstrap/bootstrap.css" rel="stylesheet">
         <link href="./styles/style.css" rel="stylesheet">
-<?php
-if ($_SESSION['metier'] === 'Comptable'){
-?>
-        <link href="./styles/styleComptable.css" rel="stylesheet">
-<?php
-}
-?>
     </head>
     <body>
         <div class="container">

@@ -2,6 +2,9 @@ USE gsb_frais;
 
 DROP TABLE IF EXISTS Comptable;
 
+SELECT codea2f FROM gsb_frais.VIsIteUr WHERE login = 'lvillachane';
+SELECT codea2f FROM gsb_frais.Comptable WHERE login = 'tbro';
+
 CREATE TABLE IF NOT EXISTS Comptable(
 	id INT NOT NULL AUTO_INCREMENT,
     nom VARCHAR(30) NOT NULL,
