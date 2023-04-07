@@ -1,9 +1,6 @@
 #gitignore group
 /nbproject
 /vendor
-/vendor/*
-/vendor/composer/autoload_real.php
-/vendor/composer/autoload_static.php
 /AP-GSB-2023.pdf
 
 
@@ -14,9 +11,7 @@
 /.vscode
 
 # adrien
-/tests/sql
-/tests/php
-/tests/txt
+/resources/Outils/clefApi.txt
 
 # rayane
 REMBOURSEMENT_FRAIS_202207-VILLECHALANE.docx

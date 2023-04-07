@@ -16,9 +16,6 @@
  */
 
 namespace Outils;
-//require_once(PATH_VENDOR . 'autoload.php');
-//use SendinBlue\Client\Configuration;
-//use SendinBlue\Client\Api\TransactionalEmailsApi;
 
 abstract class Utilitaires
 {
@@ -41,9 +38,25 @@ abstract class Utilitaires
      *
      * @return null
      */
-    public static function connecter($idVisiteur, $nom, $prenom): void
+    public static function connecterVisiteur(string $idVisiteur, string $nom, string $prenom): void
     {
         $_SESSION['idVisiteur'] = $idVisiteur;
+        $_SESSION['nom'] = $nom;
+        $_SESSION['prenom'] = $prenom;
+    }
+    
+     /**
+     * Enregistre dans une variable session les infos d'un comptable
+     *
+     * @param String $idComptable ID du visiteur
+     * @param String $nom        Nom du visiteur
+     * @param String $prenom     Prénom du visiteur
+     *
+     * @return null
+     */
+    public static function connecterComptable(string $idComptable, string $nom, string $prenom): void
+    {
+        $_SESSION['idComptable'] = $idComptable;
         $_SESSION['nom'] = $nom;
         $_SESSION['prenom'] = $prenom;
     }
@@ -57,16 +70,16 @@ abstract class Utilitaires
      * dans le dossier vendor/sendinblue/api-v3-sdk/lib/Model/CreateSmtpEmail[Sender].php
      * (plus d'infos dans le fichier tests/txt/Enleve-Deprecation-Sendinblue.txt))
      * 
+     * @param String $email     Email recevant le code
+     * @param int $code         Code à 4 chiffres pour connexion A2F
+     * 
      * @return null
      */ 
-     
     public static function emailBuilder(string $email, int $code) : void {
-        $config = \SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', 
-                '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');
-        $apiInstance = new \SendinBlue\Client\Api\TransactionalEmailsApi(
-            new \GuzzleHttp\Client(),
-            $config
-        );
+        $clefApi = file_get_contents(__DIR__ . '/clefApi.txt');
+        error_reporting(E_ALL ^ (E_DEPRECATED));
+        $config = \SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', $clefApi);
+        $apiInstance = new \SendinBlue\Client\Api\TransactionalEmailsApi(new \GuzzleHttp\Client(), $config);
         $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail();
         $sendSmtpEmail['subject'] = "Code d'authentification : " . $code;
         $sendSmtpEmail['htmlContent'] = '<html><body><h1>Le code : ' . $code . ' vous permettra de vous connecter à GSB.</h1></body></html>';
@@ -86,9 +99,11 @@ abstract class Utilitaires
      * une variable de session. Le code sera ensuite envoyé 
      * avec un mail transactionnel via l'API de SendinBlue
      * 
-     * @param type $code
+     * @param int $code     Code à 4 chiffres pour connexion A2F
+     * 
+     * @return null
      */
-    public static function connecterA2f($code) : void {
+    public static function connecterA2f(int $code) : void {
         $_SESSION['codeA2f'] = $code;
     }
     
@@ -110,7 +125,7 @@ abstract class Utilitaires
      *
      * @return Date au format anglais aaaa-mm-jj
      */
-    public static function dateFrancaisVersAnglais($maDate): string
+    public static function dateFrancaisVersAnglais(string $maDate): string
     {
         @list($jour, $mois, $annee) = explode('/', $maDate);
         return date('Y-m-d', mktime(0, 0, 0, (int)$mois, (int)$jour, (int)$annee));
@@ -124,7 +139,7 @@ abstract class Utilitaires
      *
      * @return Date au format format français jj/mm/aaaa
      */
-    public static function dateAnglaisVersFrancais($maDate): string
+    public static function dateAnglaisVersFrancais(string $maDate): string
     {
         @list($annee, $mois, $jour) = explode('-', $maDate);
         $date = $jour . '/' . $mois . '/' . $annee;
@@ -138,7 +153,7 @@ abstract class Utilitaires
      *
      * @return String Mois au format aaaamm
      */
-    public static function getMois($date): string
+    public static function getMois(string $date): string
     {
         @list($jour, $mois, $annee) = explode('/', $date);
         unset($jour);
@@ -157,7 +172,7 @@ abstract class Utilitaires
      *
      * @return Boolean vrai ou faux
      */
-    public static function estEntierPositif($valeur): bool
+    public static function estEntierPositif(int $valeur): bool
     {
         return preg_match('/[^0-9]/', $valeur) == 0;
     }
@@ -169,7 +184,7 @@ abstract class Utilitaires
      *
      * @return Boolean vrai ou faux
      */
-    public static function estTableauEntiers($tabEntiers): bool
+    public static function estTableauEntiers(array $tabEntiers): bool
     {
         $boolReturn = true;
         foreach ($tabEntiers as $unEntier) {
@@ -187,7 +202,7 @@ abstract class Utilitaires
      *
      * @return Boolean vrai ou faux
      */
-    public static function estDateDepassee($dateTestee): bool
+    public static function estDateDepassee(string $dateTestee): bool
     {
         $dateActuelle = date('d/m/Y');
         @list($jour, $mois, $annee) = explode('/', $dateActuelle);
@@ -204,7 +219,7 @@ abstract class Utilitaires
      *
      * @return Boolean vrai ou faux
      */
-    public static function estDateValide($date): bool
+    public static function estDateValide(string $date): bool
     {
         $tabDate = explode('/', $date);
         $dateOK = true;
@@ -229,7 +244,7 @@ abstract class Utilitaires
      *
      * @return Boolean vrai ou faux
      */
-    public static function lesQteFraisValides($lesFrais): bool
+    public static function lesQteFraisValides(array $lesFrais): bool
     {
         return self::estTableauEntiers($lesFrais);
     }
@@ -246,7 +261,7 @@ abstract class Utilitaires
      *
      * @return null
      */
-    public static function valideInfosFrais($dateFrais, $libelle, $montant): void
+    public static function valideInfosFrais(string $dateFrais, string $libelle, float $montant): void
     {
         if ($dateFrais == '') {
             self::ajouterErreur('Le champ date ne doit pas être vide');
@@ -274,7 +289,7 @@ abstract class Utilitaires
      *
      * @return null
      */
-    public static function ajouterErreur($msg): void
+    public static function ajouterErreur(string $msg): void
     {
         if (!isset($_REQUEST['erreurs'])) {
             $_REQUEST['erreurs'] = array();

@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS comptable (
     CONSTRAINT PK_COMPTABLE PRIMARY KEY (ID)
 );
 
-INSERT INTO comptable VALUES ('F3d7', 'ralie','leo','leoralie','azerty','test.mail@gmail.com',NULL);
-
-
+# mdp = azerty
+INSERT INTO comptable VALUES ('F3d7', 'ralie','leo','leoralie','$2y$10$jNirelhMBPNo64aCGO0pOezXofKZTbEQHgMAsA2M/UD9/FlUHhzWi','test.mail@gmail.com',NULL);
 

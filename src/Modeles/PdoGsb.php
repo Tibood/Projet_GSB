@@ -51,7 +51,11 @@ class PdoGsb {
     /**
      * Constructeur privé, crée l'instance de PDO qui sera sollicitée
      * pour toutes les méthodes de la classe
+     *
+     * @return null
      */
+
+
     private function __construct() {
         $this->connexion = new PDO(DB_DSN, DB_USER, DB_PWD);
         $this->connexion->query('SET CHARACTER SET utf8');
@@ -60,7 +64,10 @@ class PdoGsb {
     /**
      * Méthode destructeur appelée dès qu'il n'y a plus de référence sur un
      * objet donné, ou dans n'importe quel ordre pendant la séquence d'arrêt.
+     *
+     * @return null
      */
+
     public function __destruct() {
         $this->connexion = null;
     }
@@ -79,15 +86,15 @@ class PdoGsb {
     }
 
     /**
-     * Retourne les informations d'un visiteur
+     * Retourne les informations d'un visiteur depuis
+     * la base de données.
      *
      * @param String $login Login du visiteur
-     * @param String $mdp   Mot de passe du visiteur
      *
-     * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
+     * @return array ou bool l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
+    public function getInfosVisiteur(string $login): array | bool {
 
-    public function getInfosVisiteur($login): array | bool {
         $requetePrepare = $this->connexion->prepare(
             'SELECT visiteur.id AS id, visiteur.nom AS nom, '
             . 'visiteur.prenom AS prenom, visiteur.email AS email '
@@ -113,12 +120,12 @@ class PdoGsb {
 
     /**
      * Retourne le code d'authentification à 2 facteurs
-     * de l'utilisateur concerné lors de sa connexion.
+     * d'un visiteur lors de sa connexion.
      *
-     * @param type $id
-     * @return type
+     * @param string $id
+     * @return string
      */
-    public function getCodeVisiteur($id) {
+    public function getCodeVisiteur(string $id) : string {
         $requetePrepare = $this->connexion->prepare(
             'SELECT visiteur.codea2f AS codea2f '
           . 'FROM visiteur '
@@ -129,6 +136,12 @@ class PdoGsb {
         return $requetePrepare->fetch()['codea2f'];
     }
 
+    /* Retourne le code d'authentification à 2 facteurs
+     * d'un comptable lors de sa connexion.
+     *
+     * @param string $id
+     * @return string
+     */
     public function getCodeComptable($id) {
         $requetePrepare = $this->connexion->prepare(
             'SELECT comptable.codea2f AS codea2f '
@@ -141,11 +154,12 @@ class PdoGsb {
     }
 
     /**
-     * Retourne le mot de passe de l'utilisateur souhaitant se connecter.
-     * @param type $login
-     * @return type
+     * Retourne le mot de passe hashé du visiteur souhaitant se connecter.
+     *
+     * @param string $login
+     * @return string
     */
-    public function getMdpVisiteur($login) {
+    public function getMdpVisiteur(string $login) : string {
         $requetePrepare = $this->connexion->prepare(
             'SELECT mdp '
             . 'FROM visiteur '
@@ -156,6 +170,12 @@ class PdoGsb {
         return $requetePrepare->fetch(PDO::FETCH_OBJ)->mdp;
     }
 
+    /**
+     * Retourne le mot de passe hashé du comptable souhaitant se connecter.
+     *
+     * @param string $login
+     * @return string
+    */
     public function getMdpComptable($login) {
         $requetePrepare = $this->connexion->prepare(
             'SELECT mdp '
@@ -165,24 +185,6 @@ class PdoGsb {
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->execute();
         return $requetePrepare->fetch(PDO::FETCH_OBJ)->mdp;
-    }
-
-        /**
-     * Créé le code d'authentification à 2 facteurs,
-     * l'implémente dans la base en fonction de l'utilisateur.
-     *
-     * @param type $id
-     * @param type $code
-     */
-    public function setCodeA2f($id, $code) {
-        $requetePrepare = $this->connexion->prepare(
-            'UPDATE visiteur '
-          . 'SET codea2f = :unCode '
-          . 'WHERE visiteur.id = :unIdVisiteur '
-        );
-        $requetePrepare->bindParam(':unCode', $code, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unIdVisiteur', $id, PDO::PARAM_STR);
-        $requetePrepare->execute();
     }
 
     public function setCodeA2fComptable($id, $code) {
@@ -208,7 +210,9 @@ class PdoGsb {
      * @return tous les champs des lignes de frais hors forfait sous la forme
      * d'un tableau associatif
      */
-    public function getLesFraisHorsForfait($idVisiteur, $mois): array {
+
+    public function getLesFraisHorsForfait(string $idVisiteur, string $mois): array
+    {
         $requetePrepare = $this->connexion->prepare(
                 'SELECT * FROM lignefraishorsforfait '
                 . 'WHERE lignefraishorsforfait.idvisiteur = :unIdVisiteur '
@@ -232,9 +236,11 @@ class PdoGsb {
      * @param String $idVisiteur ID du visiteur
      * @param String $mois       Mois sous la forme aaaamm
      *
-     * @return le nombre entier de justificatifs
+     * @return int le nombre entier de justificatifs
      */
-    public function getNbjustificatifs($idVisiteur, $mois): int {
+
+    public function getNbjustificatifs(string $idVisiteur, string $mois): int
+    {
         $requetePrepare = $this->connexion->prepare(
                 'SELECT fichefrais.nbjustificatifs as nb FROM fichefrais '
                 . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
@@ -257,7 +263,9 @@ class PdoGsb {
      * @return l'id, le libelle et la quantité sous la forme d'un tableau
      * associatif
      */
-    public function getLesFraisForfait($idVisiteur, $mois): array {
+
+    public function getLesFraisForfait(string $idVisiteur, string $mois): array
+    {
         $requetePrepare = $this->connexion->prepare(
                 'SELECT fraisforfait.id as idfrais, '
                 . 'fraisforfait.libelle as libelle, '
@@ -309,7 +317,9 @@ class PdoGsb {
      *
      * @return null
      */
-    public function majFraisForfait($idVisiteur, $mois, $lesFrais): void {
+
+    public function majFraisForfait(string $idVisiteur, string $mois, array $lesFrais): void
+    {
         $lesCles = array_keys($lesFrais);
         foreach ($lesCles as $unIdFrais) {
             $qte = $lesFrais[$unIdFrais];
@@ -338,7 +348,9 @@ class PdoGsb {
      *
      * @return null
      */
-    public function majNbJustificatifs($idVisiteur, $mois, $nbJustificatifs): void {
+
+    public function majNbJustificatifs(string $idVisiteur, string $mois, int $nbJustificatifs): void
+    {
         $requetePrepare = $this->connexion->prepare(
                 'UPDATE fichefrais '
                 . 'SET nbjustificatifs = :unNbJustificatifs '
@@ -363,7 +375,9 @@ class PdoGsb {
      *
      * @return vrai ou faux
      */
-    public function estPremierFraisMois($idVisiteur, $mois): bool {
+
+    public function estPremierFraisMois(string $idVisiteur, string $mois): bool
+    {
         $boolReturn = false;
         $requetePrepare = $this->connexion->prepare(
                 'SELECT fichefrais.mois FROM fichefrais '
@@ -377,6 +391,24 @@ class PdoGsb {
             $boolReturn = true;
         }
         return $boolReturn;
+    }
+
+    /**
+     * Créé le code d'authentification à 2 facteurs,
+     * l'implémente dans la base en fonction de l'utilisateur.
+     *
+     * @param string $id
+     * @param int $code
+     */
+    public function setCodeA2f(string $id, int $code) : void {
+        $requetePrepare = $this->connexion->prepare(
+            'UPDATE visiteur '
+          . 'SET codea2f = :unCode '
+          . 'WHERE visiteur.id = :unIdVisiteur '
+        );
+        $requetePrepare->bindParam(':unCode', $code, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdVisiteur', $id, PDO::PARAM_STR);
+        $requetePrepare->execute();
     }
 
     /**
@@ -555,7 +587,7 @@ class PdoGsb {
      */
     public function majEtatFicheFrais($idVisiteur, $mois, $etat): void {
         $requetePrepare = $this->connexion->prepare(
-                'UPDATE ficheFrais '
+                'UPDATE fichefrais '
                 . 'SET idetat = :unEtat, datemodif = now() '
                 . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
                 . 'AND fichefrais.mois = :unMois'

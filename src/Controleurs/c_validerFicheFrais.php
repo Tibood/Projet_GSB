@@ -9,7 +9,7 @@
  * @author    BROUILLET THIBAUD
  */
 use Outils\Utilitaires;
-require '..\bin\gendatas\fonctions.php';
+require '../bin/gendatas/fonctions.php';
 
 $pdo2 = new PDO('mysql:host=localhost;dbname=gsb_frais', 'userGsb', 'secret');
 $pdo2->query('SET CHARACTER SET utf8');

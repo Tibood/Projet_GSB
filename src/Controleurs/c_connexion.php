@@ -37,10 +37,11 @@ switch ($action) {
                 include PATH_VIEWS . 'v_connexion.php';
                 break;
             } else {
-            $id = $visiteur['id'];
-            $nom = $visiteur['nom'];
-            $prenom = $visiteur['prenom'];
-            $_SESSION['metier'] = 'Visiteur';
+                $id = $visiteur['id'];
+                $nom = $visiteur['nom'];
+                $prenom = $visiteur['prenom'];
+                $_SESSION['metier'] = 'Visiteur';
+                Utilitaires::connecterVisiteur($id, $nom, $prenom);
             }
         } elseif ($comptable = $pdo->getInfosComptable($login)) {
             if (!password_verify($mdp, $pdo->getMdpComptable($login))) {
@@ -49,10 +50,11 @@ switch ($action) {
                 include PATH_VIEWS . 'v_connexion.php';
                 break;
             } else {
-            $id = $comptable['id'];
-            $nom = $comptable['nom'];
-            $prenom = $comptable['prenom'];
-            $_SESSION['metier'] = 'Comptable';
+                $id = $comptable['id'];
+                $nom = $comptable['nom'];
+                $prenom = $comptable['prenom'];
+                $_SESSION['metier'] = 'Comptable';
+                Utilitaires::connecterVisiteur($id, $nom, $prenom);
             }
         } else {
             Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
@@ -60,18 +62,23 @@ switch ($action) {
             include PATH_VIEWS . 'v_connexion.php';
             break;
         }
-        Utilitaires::connecter($id, $nom, $prenom);
-        //$email = $visiteur['email'];
-        $email = 'Verif.A2F.GSB.ATR@protonmail.com';
-        $code = rand(1000, 9999);
-        if ($_SESSION['metier'] === 'Comptable') {
-            $pdo->setCodeA2fComptable($id,$code);
-        } else {
-            $pdo->setCodeA2f($id,$code);
+        
+        try {
+            $email = 'Verif.A2F.GSB.ATR@protonmail.com';
+            $code = rand(1000, 9999);
+            if ($_SESSION['metier'] === 'Comptable') {
+                $pdo->setCodeA2fComptable($id,$code);
+            } else {
+                $pdo->setCodeA2f($id,$code);
+            }
+            Utilitaires::emailBuilder($email, $code);
+            include PATH_VIEWS . 'v_code2facteurs.php';
+        } catch(Exception $e) {
+            Utilitaires::ajouterErreur("Problème avec envoi de mail. Vérifiez la clef d'API ou lisez le code à 2 facteurs avec une requêtes SQL : "
+                    . "SELECT codea2f FROM gsb_frais." . $_SESSION['metier'] . " WHERE login = '" . $login . "';");
+            include PATH_VIEWS . 'v_erreurs.php';
+            include PATH_VIEWS . 'v_code2facteurs.php';
         }
-        Utilitaires::emailBuilder($email, $code);
-        //mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
-        include PATH_VIEWS . 'v_code2facteurs.php';
         break;
     case 'valideA2fConnexion':
         $code = filter_input(INPUT_POST, 'code', FILTER_SANITIZE_NUMBER_INT);
