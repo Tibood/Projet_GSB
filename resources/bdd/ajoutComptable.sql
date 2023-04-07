@@ -1,5 +1,5 @@
 USE gsb_frais;
-DROP TABLE IF EXISTS COMPTABLE;
+DROP TABLE IF EXISTS comptable;
 
 CREATE TABLE IF NOT EXISTS comptable (
 	id Char(4) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS comptable (
     CONSTRAINT PK_COMPTABLE PRIMARY KEY (ID)
 );
 
-INSERT INTO COMPTABLE VALUES ('F3d7', 'ralie','leo','leoralie','azerty','test.mail@gmail.com',NULL);
+INSERT INTO comptable VALUES ('F3d7', 'ralie','leo','leoralie','azerty','test.mail@gmail.com',NULL);
 
 
 
