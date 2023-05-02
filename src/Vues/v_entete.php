@@ -28,6 +28,13 @@
         <link href="./styles/bootstrap/bootstrap.css" rel="stylesheet">
         <link href="./styles/style.css" rel="stylesheet">
     </head>
+    <?php
+        if ($_SESSION['metier'] === 'Comptable') {
+            ?>
+            <link href="styles/styleComptable.css" rel="stylesheet" type="text/css">
+            <?php
+        }
+    ?>
     <body>
         <div class="container">
             <?php
