@@ -12,7 +12,6 @@
 ?>
 <script src="assets/js/SuivrePaiement.js"></script>
 <script src = "//code.jquery.com/jquery-1.12.0.min.js"></script>
-<link href="styles/styleComptable.css" rel="stylesheet" type="text/css">
 
 <!--SELECTION-->
 <br>
