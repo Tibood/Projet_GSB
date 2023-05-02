@@ -29,7 +29,7 @@
         <link href="./styles/style.css" rel="stylesheet">
     </head>
     <?php
-        if ($_SESSION['metier'] ?? '' === 'Comptable') {
+        if (isset($_SESSION['metier']) && $_SESSION['metier'] === 'Comptable') {
             ?>
             <link href="styles/styleComptable.css" rel="stylesheet" type="text/css">
             <?php
