@@ -66,6 +66,9 @@ switch ($uc) {
     case 'deconnexion':
         include PATH_CTRLS . 'c_deconnexion.php';
         break;
+    case 'ajoutVisiteur':
+        include PATH_CTRLS . 'c_ajoutVisiteur.php';
+        break;
 
     default:
         Utilitaires::ajouterErreur('Page non trouvée, veuillez vérifier votre lien...');

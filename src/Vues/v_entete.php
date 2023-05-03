@@ -81,6 +81,12 @@
                                     Déconnexion
                                 </a>
                             </li>
+                            <li
+                            <?php if ($uc == 'ajoutVisiteur') { ?>class="active"<?php } ?>>
+                                <a href="index.php?uc=ajoutVisiteur&action=ajoutVisiteurForm">
+                                    Ajout visiteur
+                                </a>
+                            </li>
                             <?php
                             } else {
                                 ?>

@@ -633,4 +633,19 @@ class PdoGsb {
         return $laLigne;
     }
 
+    /**
+     *
+     */
+    public function ajouterVisiteur($id,$nom,$prenom): void
+    {
+        $requetePrepare = $this->connexion->prepare(
+            'INSERT INTO visiteur (id,nom,prenom) '
+            . 'VALUES (:unId,:unNom,:unPrenom)'
+        );
+        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unNom', $nom, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unPrenom', $prenom, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
+
 }
