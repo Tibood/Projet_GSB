@@ -3,7 +3,7 @@
     "type": "project",
     "description": "Application de gestion de frais pour les visiteurs médicaux de l'entreprise",
     "homepage": "https://ameliapilou.github.io/",
-    "license": "AFL-3.0",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Cheri Bibi - Réseau CERTA",
