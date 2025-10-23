@@ -11,12 +11,16 @@ services:
 
   nginx:
     image: nginx:latest
+    container_name: nginx_server
     restart: unless-stopped
+    depends_on:
+      - app
     ports:
       - 80
       - 443
     volumes:
       - nginx-config:/etc/nginx
+      - .:/var/www/html
       - nginx-html:/usr/share/nginx/html
 
   # db:
