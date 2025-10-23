@@ -8,6 +8,8 @@ services:
       - .:/var/www/html
     environment:
       - DB_HOST=db
+      - DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - DB_NAME=${DB_NAME}
     networks:
       - app_network
     depends_on:
@@ -36,7 +38,7 @@ services:
     container_name: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: gsb_frais
+      MYSQL_DATABASE: ${DB_NAME}
     ports:
       - "3306:3306"
     networks:
