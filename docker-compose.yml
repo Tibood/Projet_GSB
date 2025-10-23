@@ -22,37 +22,37 @@ services:
     networks:
       - app_network
 
-  db:
-    image: mariadb:latest
-    container_name: mariadb_server
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: my_database
-      MYSQL_USER: my_user
-      MYSQL_PASSWORD: my_password
-    ports:
-      - "3306:3306"
-    networks:
-      - app_network
-    volumes:
-      - db_data:/var/lib/mysql
+  # db:
+  #   image: mariadb:latest
+  #   container_name: mariadb_server
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: my_database
+  #     MYSQL_USER: my_user
+  #     MYSQL_PASSWORD: my_password
+  #   ports:
+  #     - "3306:3306"
+  #   networks:
+  #     - app_network
+  #   volumes:
+  #     - db_data:/var/lib/mysql
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin_server
-    ports:
-      - "8081:80"
-    environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: root
-    depends_on:
-      - db
-    networks:
-      - app_network
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: phpmyadmin_server
+  #   ports:
+  #     - "8081:80"
+  #   environment:
+  #     PMA_HOST: db
+  #     MYSQL_ROOT_PASSWORD: root
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - app_network
 
 networks:
   app_network:
     driver: bridge
 
-volumes:
-  db_data:
+# volumes:
+#   db_data:
