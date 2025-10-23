@@ -45,6 +45,7 @@ services:
       - app_network
     volumes:
       - db_data:/var/lib/mysql
+      - ./resources/bdd/global.sql:/docker-entrypoint-initdb.d/global.sql
 
   # phpmyadmin:
   #   image: phpmyadmin/phpmyadmin
