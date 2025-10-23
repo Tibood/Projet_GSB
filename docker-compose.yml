@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
     # Option: attendre la DB puis exécuter le script avant de lancer php-fpm
-    command: sh -c "until mysql -h db -u${MYSQL_USER:-root} -p${MYSQL_PASSWORD:-root} -e 'select 1' >/dev/null 2>&1; do sleep 1; done; /var/www/html/bin/majgsb && php-fpm"
+    command: sh -c "until mysql -h db -u${MYSQL_USER:-root} -p${MYSQL_PASSWORD:-root} -e 'select 1' >/dev/null 2>&1; do sleep 1; done; /var/www/html/bin/gendatas/majGSB && php-fpm"
 
 
   nginx:
