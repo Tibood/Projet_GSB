@@ -18,7 +18,7 @@
 $moisDebut = '202009';
 require './fonctions.php';
 
-$pdo = new PDO('mysql:host=localhost;dbname=gsb_frais', 'gsb_user', 'secret');
+$pdo = new PDO('mysql:host=' . $_ENV['DB_HOST'] . ';dbname=gsb_frais', $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
 $pdo->query('SET CHARACTER SET utf8');
 
 set_time_limit(0);

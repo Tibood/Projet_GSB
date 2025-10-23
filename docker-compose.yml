@@ -35,8 +35,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: gsb_frais
-      MYSQL_USER: gsb_user
-      MYSQL_PASSWORD: secret
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306"
     networks:
