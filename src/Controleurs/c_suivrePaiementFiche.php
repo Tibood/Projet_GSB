@@ -11,7 +11,7 @@
 use Outils\Utilitaires;
 require '../bin/gendatas/fonctions.php';
 
-$pdo2 = new PDO('mysql:host=' . $_ENV['DB_HOST'] . ';dbname=gsb_frais', $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
+$pdo2 = new PDO('mysql:host=' . $_ENV['DB_HOST'] . ';port=' . $_ENV['DB_PORT'] . ';dbname=gsb_frais', $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
 $pdo2->query('SET CHARACTER SET utf8');
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
