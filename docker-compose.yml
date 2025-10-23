@@ -6,6 +6,8 @@ services:
     container_name: gsb_app
     volumes:
       - .:/var/www/html
+    environment:
+      - DB_HOST=db
     networks:
       - app_network
     depends_on:
