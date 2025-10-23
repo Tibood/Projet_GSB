@@ -8,6 +8,11 @@ services:
       - .:/var/www/html
     networks:
       - app_network
+    depends_on:
+      - db
+    # Option: attendre la DB puis exécuter le script avant de lancer php-fpm
+    command: sh -c "until mysql -h db -u${MYSQL_USER:-root} -p${MYSQL_PASSWORD:-root} -e 'select 1' >/dev/null 2>&1; do sleep 1; done; /var/www/html/bin/majgsb && php-fpm"
+
 
   nginx:
     image: nginx:latest
@@ -26,7 +31,7 @@ services:
 
   db:
     image: mariadb:latest
-    container_name: mariadb_server
+    container_name: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: gsb_frais
