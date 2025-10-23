@@ -20,7 +20,6 @@ services:
       - 443
     volumes:
       - nginx-config:/etc/nginx
-      - .:/var/www/html
       - nginx-html:/usr/share/nginx/html
 
   # db:
