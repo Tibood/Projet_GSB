@@ -16,7 +16,7 @@ services:
       - app_network
     depends_on:
       - db
-    command: sh -c "cd /var/www/html/bin/gendatas && php majGSB.php && php-fpm"
+    # command: sh -c "cd /var/www/html/bin/gendatas && php majGSB.php && php-fpm"
 
 
   nginx:
