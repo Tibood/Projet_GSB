@@ -3,7 +3,7 @@
 require 'gendatas/fonctions.php';
 
 
-$pdo = new PDO('mysql:host=localhost;dbname=gsb_frais', 'userGsb', 'secret');
+$pdo = new PDO('mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
 
 $visiteurs = getLesVisiteurs($pdo);
 $comptables = getLesComptables($pdo);
