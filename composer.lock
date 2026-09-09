@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "fpdf/fpdf",
-            "version": "1.86.0",
+            "version": "1.90.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/coreydoughty/Fpdf.git",
-                "reference": "d2a0cbd9e4b5557b9c6c29ddc8eb2b36d8761e00"
+                "reference": "4078bf7667c957627f72d2b307744c7ebf0109e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/coreydoughty/Fpdf/zipball/d2a0cbd9e4b5557b9c6c29ddc8eb2b36d8761e00",
-                "reference": "d2a0cbd9e4b5557b9c6c29ddc8eb2b36d8761e00",
+                "url": "https://api.github.com/repos/coreydoughty/Fpdf/zipball/4078bf7667c957627f72d2b307744c7ebf0109e5",
+                "reference": "4078bf7667c957627f72d2b307744c7ebf0109e5",
                 "shasum": ""
             },
             "require": {
@@ -55,9 +55,9 @@
             ],
             "support": {
                 "issues": "https://github.com/coreydoughty/Fpdf/issues",
-                "source": "https://github.com/coreydoughty/Fpdf/tree/1.86.0"
+                "source": "https://github.com/coreydoughty/Fpdf/tree/1.90.0"
             },
-            "time": "2023-07-04T16:41:45+00:00"
+            "time": "2026-07-13T17:53:25+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
